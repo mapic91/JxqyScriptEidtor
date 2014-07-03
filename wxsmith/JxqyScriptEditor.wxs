@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxFrame" name="JxqyScriptEditor">
+		<size>800,600</size>
+		<id_arg>0</id_arg>
+		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
+			<object class="sizeritem">
+				<object class="wxAuiNotebook" name="ID_AUINOTEBOOK1" variable="m_AuiBook" member="yes">
+					<style>wxAUI_NB_CLOSE_ON_ALL_TABS|wxAUI_NB_DEFAULT_STYLE</style>
+				</object>
+				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+		</object>
+		<object class="wxMenuBar" variable="MenuBar1" member="yes">
+			<object class="wxMenu" variable="Menu1" member="yes">
+				<label>文件</label>
+				<object class="wxMenuItem" name="wxID_NEW" variable="MenuItem2" member="yes">
+					<label>新建文档</label>
+					<accel>Ctrl+N</accel>
+				</object>
+				<object class="wxMenuItem" name="wxID_OPEN" variable="MenuItem1" member="yes">
+					<label>打开...</label>
+					<accel>Ctrl+O</accel>
+				</object>
+				<object class="wxMenuItem" name="wxID_SAVE" variable="MenuItem3" member="yes">
+					<label>保存</label>
+					<accel>Ctrl+S</accel>
+				</object>
+				<object class="wxMenuItem" name="wxID_SAVEAS" variable="MenuItem4" member="yes">
+					<label>另存为...</label>
+					<accel>Ctrl+Alt+S</accel>
+				</object>
+				<object class="wxMenuItem" name="MYID_SAVEALL" variable="MenuItem5" member="yes">
+					<label>保存所有</label>
+					<accel>Ctrl+Shift+S</accel>
+					<help>保存所有打开的文件</help>
+				</object>
+				<object class="wxMenuItem" name="MYID_CLOSE" variable="MenuItem6" member="yes">
+					<label>关闭</label>
+					<accel>Ctrl+W</accel>
+				</object>
+				<object class="wxMenuItem" name="MYID_CLOSEALL" variable="MenuItem7" member="yes">
+					<label>关闭所有</label>
+					<accel>Shift+Esc</accel>
+					<help>关闭所有打开的文档</help>
+				</object>
+				<object class="wxMenuItem" name="wxID_EXIT" variable="MenuItem8" member="yes">
+					<label>退出</label>
+					<accel>Alt+F4</accel>
+				</object>
+			</object>
+			<object class="wxMenu" variable="Menu2" member="yes">
+				<label>设置</label>
+			</object>
+		</object>
+	</object>
+</wxsmith>

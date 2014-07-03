@@ -1,0 +1,429 @@
+
+If
+功能：条件跳转
+参数：等于：    ==
+      大于等于：>=
+      小于等于：<=
+      不等于：  !=
+
+Goto
+功能：无条件跳转
+参数：@标号名称
+
+Assign(b)
+功能：赋值
+参数：b: 变量名
+
+Assign(a)
+功能：赋值
+参数：a: 变量名
+
+Assign(a,b)
+功能：赋值
+参数：a: 变量名
+      b: 数值
+
+Return()
+功能：返回		
+参数：无
+
+Say(a)
+功能：对话
+参数：a: 对话文本
+
+Talk(a)
+功能：对话
+参数：a: 对话段落标号
+
+FadeIn()
+功能：淡入
+参数：无
+
+FadeOut()
+功能：淡出
+参数：无
+
+SetFadeLum(a)
+功能：设置淡入淡出亮度
+参数：a: 亮度(0-32)
+
+SetMainLum(a)
+功能：设置地图场景亮度	
+参数：a: 亮度(0-32)
+
+PlayMusic(a)
+功能：播放音乐
+参数：a: 音乐文件名
+
+StopMusic()
+功能：停放音乐
+参数：无
+
+PlaySound(a)
+功能：播放声效
+参数：a: 音效文件名
+
+RunScript(a)
+功能：运行脚本
+参数：a: 脚本文件名
+
+MoveScreen(a,b)
+功能：移动屏幕
+参数：a - 方向
+      b - 距离
+
+LoadMap(a)
+功能：载入地图
+参数：a - 地图文件名
+
+
+LoadGame(a)
+功能：载入游戏进度
+参数：a - 进度索引(0-5)
+
+SetMapPos(a,b)
+功能：设置地图位置
+参数：a - 地图x坐标
+      b - 地图y坐标
+
+SetMapTrap(a,b)
+功能：设置地图陷阱
+参数：a - 陷阱索引
+      b - 脚本文件名
+      
+SaveMapTrap()
+功能：保存地图陷阱
+参数：无
+
+SetMapTime(a)
+功能：设置地图时间
+参数：a = 0 — 白天
+		  1 — 夜晚
+		  2 — 黄昏
+		  3 — 黎明
+
+LoadNpc(a)
+功能：载入人物
+参数：a: 文件名
+
+SaveNpc()
+功能：保存人物
+参数：无
+
+AddNpc(a,b,c,d)
+功能：增加人物
+参数：a: INI文件名
+      b: X地图坐标
+      c: Y地图坐标
+      d: 方向(0-7)
+
+DelNpc(a)
+功能：删除人物
+参数：a: 人物名称
+
+SetNpcScript(a,b)
+功能：设置人物脚本(尽量用条件判断代替)
+参数：a: 人物名称
+      b: 脚本文件名
+
+NpcGoto(a,b,c)
+功能：人物走到某地图坐标
+参数：a: 人物名称
+      b: X地图坐标
+      c: Y地图坐标
+
+NpcGotoEx(a,b,c)
+功能：人物走到某地图坐标
+参数：a: 人物名称
+      b: X地图坐标
+      c: Y地图坐标
+
+FollowNpc(a,b)
+功能：使当前对话的NPC跟随另一个NPC
+参数：a: 跟随的人物名称
+      b: 被跟随人物名字
+
+EnableNpcAI()
+功能：打开人物AI
+参数：无
+
+DisableNpcAI()
+功能：关闭人物AI
+参数：无
+
+SetNpcPos(a,b,c)
+功能：设置NPC的位置
+参数：a: NPC的名字
+      b: X坐标
+      c: Y坐标
+     
+SetNpcDir(a,b)
+功能：设置NPC的方向
+参数：a: NPC的名字
+      b: 方向值(0-7)
+   
+SetNpcKind(a,b)
+功能：设置NPC的类型
+参数：a: NPC的名字
+      b: 类型0-6
+
+SetNpcLevel(a,b)
+功能：设置NPC的等级
+参数：a: NPC的名字
+      b: 等级1-60
+
+SetNpcActionType(a,b)
+功能：设置NPC的行为类型
+参数：a: NPC的名字
+      b: 类型0-1 0 = 站立 1 = 走动
+
+SetNpcActionFile(a,b,c);
+功能：设置NPC的动作MPC文件名
+参数：a: NPC的名字
+      b: 行为
+      c: MPC文件名
+
+NpcSpecailAction(a,b);
+功能：让Npc作一个特殊动作，动画由MPC文件给出。
+参数：a: NPC的名字
+      b: MPC文件名
+
+NpcAttack(a,b,c);
+功能：让Npc攻击一个目标点。
+参数：a: NPC的名字
+      b: 目标X坐标
+      c: 目标Y坐标
+      
+LoadObj(a)
+功能：载入物品
+参数：a: OBJ的文件名
+
+SaveObj()
+功能：保存物品
+参数：无
+
+AddObj(a,b,c,d);
+功能：增加物品
+参数：a: INI文件名
+      b: X地图坐标
+      c: Y地图坐标
+      d: 方向(0-7)
+
+DelObj(a)
+功能：删除物品
+参数：a: 物品名字
+
+SetObjScript(a,b)
+功能：设置物品脚本
+参数：a: 物品的名字
+      b: 脚本文件名
+
+LoadPlayer(a)
+功能：载入主角
+参数：a: 文件名(没有也可以)
+
+SavePlayer(a)
+功能：保存主角
+参数：a: 文件名(没有也可以)
+
+SetPlayerPos(a,b)
+功能：设置主角位置
+参数：a: X坐标
+      b: Y坐标
+
+SetPlayerDir(a)
+功能：设置主角方向
+参数：b: 方向值(0-7)
+
+SetPlayerScn()
+功能：设置主角位于屏幕中心
+参数：无
+
+EnableFight()
+功能：使主角能够战斗
+参数：无
+
+DisableFight()
+功能：使主角不能战斗
+参数：无
+
+PlayerGoto(a,b)
+功能：主角走到某处
+参数：a: X坐标
+      b: Y坐标
+
+AddLife(a)
+功能：增加生命
+参数：a: 数值
+
+AddLifeMax(a)
+功能：增加生命的最大值
+参数：a: 数值
+
+AddThew(a)
+功能：增加体力
+参数：a: 数值
+
+AddThewMax(a)
+功能：增加体力的最大值
+参数：a: 数值
+
+AddMana(a)
+功能：增加内力
+参数：a: 数值
+
+AddManaMax(a)
+功能：增加内力的最大值
+参数：a: 数值
+
+AddAttack(a)
+功能：增加攻击力
+参数：a: 数值
+
+AddDefend(a)
+功能：增加防御力
+参数：a: 数值
+
+AddEvade(a)
+功能：增加闪避力	
+参数：a: 数值
+
+AddAntiHeat(a)
+功能：增加抗热
+参数：a: 数值
+
+AddAntiCold(a)
+功能：增加抗寒
+参数：a: 数值
+
+AddAntiPoison(a)
+功能：增加抗毒
+参数：a: 数值
+
+AddExp(a)
+功能：增加经验
+参数：a: 数值
+
+AddMoney(a)
+功能：增加金钱	
+参数：a: 数值
+
+AddRandMoney(a,b);
+功能：给主角增加随机数量的银子,在提示栏会自动出提示。
+参数：a:最小值
+      b:最大值
+
+AddGoods(a)
+功能：增加物品
+参数：a: 物品INI文件名
+
+AddRandGoods(a)
+功能：增加一个随机物品
+参数：a: 物品列表文件名
+
+AddMagic(a)
+功能：增加武功
+参数：a: 魔法INI文件名
+
+DelMagic(a)
+功能：删除魔法
+参数：a: 魔法INI文件名
+
+DelGoods(a)
+功能：删除主角的一个物品
+参数：a: 物品INI文件名
+
+SaveGoods(a);
+功能：保存主角的物品
+参数：a: 物品文件名
+
+LoadGoods(a);
+功能：读取主角的物品
+参数：a: 物品文件名
+
+ClearGoods();
+功能：清空主角的物品
+参数：无
+
+FullLife();
+功能：主角的生命全满
+参数：无
+
+FullThew();
+功能：主角的体力全满
+参数：无
+
+FullMana();
+功能：主角的内力全满
+参数：无
+
+UpdateState();
+功能：更新主角的状态
+参数：无
+
+SetPlayerLevel(a);
+功能：设置主角的战斗等级
+参数：a: 等级
+
+SetPlayerState(a);
+功能：设置主角的状态
+参数：a = 0 平常状态
+	  a = 1 战斗状态
+
+SetMagicLevel(a,b);
+功能：设置主角的魔法等级
+参数：a: 魔法的Ini文件名
+      b: 等级
+
+ShowMessage(a)
+功能：消息提示
+参数：a: 消息文本
+
+AddToMemo(a)
+功能：增加信息到备忘录
+参数：a: 备忘信息文本
+
+ClearMemo()
+功能：清空备忘录
+参数：无
+
+BuyGoods(a)
+功能：购买物品
+参数：a: 物品列表INI文件名
+
+SellGoods()
+功能：卖出物品
+参数：无
+
+ReturnToTitle()
+功能：回到主画面
+
+Sleep(a)
+功能：等待一定时间
+参数：a: 毫秒数
+
+SetNpcRes(a,b)
+功能：设置人物图形npcres
+参数：a: 人物名称
+      b: INI文件名(\ini\npcres)
+
+GetMoneyNum(a)
+功能：取得主角的银子数量，存放到变量a
+参数：a: 变量名称
+
+SetMoneyNum(a)
+功能：设置主角的银子数量
+参数：a: 数量
+
+ShowSnow(a)
+功能：设置下雪效果
+参数：a＝0：停雪
+	   ＝1：下雪
+
+ShowRandomSnow()
+功能：随机下雪效果
+参数：无
+
+ShowRandomSnow()
+功能：随机下雪效果
+参数：无
