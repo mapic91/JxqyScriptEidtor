@@ -1692,7 +1692,7 @@
 1384175917 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\univ\theme.h
 	"wx/string.h"
 
-1404395139 e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.h
+1404453452 e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.h
 	"JxqyStc.h"
 	"ConfigManager.h"
 	<wx/sizer.h>
@@ -2231,19 +2231,20 @@
 
 1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\msw\rcdefs.h
 
-1404392824 source:e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.cpp
+1404467249 source:e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.cpp
 	"JxqyScriptEditor.h"
 	"helperFun.h"
+	"ColourSettingDialog.h"
 	"wx/msgdlg.h"
 	"wx/filedlg.h"
-	"wx/config.h"
+	"wx/fontdlg.h"
 	<wx/string.h>
 
-1404389450 e:\programmingworkshop\jxqyscripteditor\jxqystc.h
+1404465970 e:\programmingworkshop\jxqyscripteditor\jxqystc.h
 	"wx/stc/stc.h"
 	<map>
 
-1404280812 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\stc\stc.h
+1404456232 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\stc\stc.h
 	"wx/defs.h"
 	"wx/control.h"
 	"wx/dnd.h"
@@ -2385,7 +2386,7 @@
 	<os2.h>
 	<pmstddlg.h>
 
-1404395783 source:e:\programmingworkshop\jxqyscripteditor\jxqystc.cpp
+1404465970 source:e:\programmingworkshop\jxqyscripteditor\jxqystc.cpp
 	"JxqyStc.h"
 	"wx/textfile.h"
 	"wx/msgdlg.h"
@@ -2653,11 +2654,200 @@
 	"wx/confbase.h"
 	"wx/filename.h"
 
-1404395210 e:\programmingworkshop\jxqyscripteditor\configmanager.h
+1404468015 e:\programmingworkshop\jxqyscripteditor\configmanager.h
 	"wx/string.h"
+	"wx/stc/stc.h"
+	"wx/fileconf.h"
 
-1404395225 source:e:\programmingworkshop\jxqyscripteditor\configmanager.cpp
+1404467138 source:e:\programmingworkshop\jxqyscripteditor\configmanager.cpp
 	"ConfigManager.h"
 	"helperFun.h"
-	"wx/config.h"
+	"wx/font.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\fontdlg.h
+	"wx/defs.h"
+	"wx/dialog.h"
+	"wx/fontdata.h"
+	"wx/generic/fontdlgg.h"
+	"wx/msw/fontdlg.h"
+	"wx/gtk/fontdlg.h"
+	"wx/gtk1/fontdlg.h"
+	"wx/os2/fontdlg.h"
+	"wx/osx/fontdlg.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\fontdata.h
+	"wx/font.h"
+	"wx/colour.h"
+	"wx/encinfo.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\encinfo.h
+	"wx/string.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\generic\fontdlgg.h
+	"wx/gdicmn.h"
+	"wx/font.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\msw\fontdlg.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\gtk\fontdlg.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\gtk1\fontdlg.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\os2\fontdlg.h
+	"wx/dialog.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\osx\fontdlg.h
+	"wx/dialog.h"
+
+1404465716 source:e:\programmingworkshop\jxqyscripteditor\coloursettingdialog.cpp
+	"ColourSettingDialog.h"
+	<wx/string.h>
+
+1404465716 e:\programmingworkshop\jxqyscripteditor\coloursettingdialog.h
+	<wx/stattext.h>
+	<wx/listbox.h>
+	<wx/button.h>
+	<wx/dialog.h>
+	<wx/clrpicker.h>
+	"ConfigManager.h"
+
+1384175917 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\stattext.h
+	"wx/defs.h"
+	"wx/control.h"
+	"wx/univ/stattext.h"
+	"wx/msw/stattext.h"
+	"wx/motif/stattext.h"
+	"wx/gtk/stattext.h"
+	"wx/gtk1/stattext.h"
+	"wx/osx/stattext.h"
+	"wx/cocoa/stattext.h"
+	"wx/os2/stattext.h"
+
+1384175917 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\univ\stattext.h
+	"wx/generic/stattextg.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\generic\stattextg.h
+	"wx/stattext.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\msw\stattext.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\motif\stattext.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\gtk\stattext.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\gtk1\stattext.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\osx\stattext.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\cocoa\stattext.h
+	"wx/cocoa/NSTextField.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\os2\stattext.h
+	"wx/control.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\listbox.h
+	"wx/defs.h"
+	"wx/ctrlsub.h"
+	"wx/univ/listbox.h"
+	"wx/msw/listbox.h"
+	"wx/motif/listbox.h"
+	"wx/gtk/listbox.h"
+	"wx/gtk1/listbox.h"
+	"wx/osx/listbox.h"
+	"wx/os2/listbox.h"
+	"wx/cocoa/listbox.h"
+
+1384175917 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\univ\listbox.h
+	"wx/scrolwin.h"
+	"wx/dynarray.h"
+	"wx/arrstr.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\msw\listbox.h
+	"wx/dynarray.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\motif\listbox.h
+	"wx/ctrlsub.h"
+	"wx/clntdata.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\gtk\listbox.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\gtk1\listbox.h
+	"wx/list.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\osx\listbox.h
+	"wx/dynarray.h"
+	"wx/arrstr.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\os2\listbox.h
+	"wx/dynarray.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\cocoa\listbox.h
+	"wx/cocoa/NSTableView.h"
+	"wx/dynarray.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\cocoa\nstableview.h
+	"wx/hashmap.h"
+	"wx/cocoa/ObjcAssociate.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\clrpicker.h
+	"wx/defs.h"
+	"wx/pickerbase.h"
+	"wx/gtk/clrpicker.h"
+	"wx/generic/clrpickerg.h"
+
+1384175917 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\pickerbase.h
+	"wx/control.h"
+	"wx/sizer.h"
+	"wx/containr.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\gtk\clrpicker.h
+	"wx/button.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\generic\clrpickerg.h
+	"wx/button.h"
+	"wx/bmpbuttn.h"
+	"wx/colourdata.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\bmpbuttn.h
+	"wx/defs.h"
+	"wx/button.h"
+	"wx/univ/bmpbuttn.h"
+	"wx/msw/bmpbuttn.h"
+	"wx/motif/bmpbuttn.h"
+	"wx/gtk/bmpbuttn.h"
+	"wx/gtk1/bmpbuttn.h"
+	"wx/osx/bmpbuttn.h"
+	"wx/cocoa/bmpbuttn.h"
+	"wx/os2/bmpbuttn.h"
+
+1384175917 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\univ\bmpbuttn.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\msw\bmpbuttn.h
+	"wx/button.h"
+	"wx/bitmap.h"
+	"wx/brush.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\motif\bmpbuttn.h
+	"wx/motif/bmpmotif.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\motif\bmpmotif.h
+	"wx/defs.h"
+	"wx/bitmap.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\gtk\bmpbuttn.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\gtk1\bmpbuttn.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\osx\bmpbuttn.h
+	"wx/button.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\cocoa\bmpbuttn.h
+	"wx/cocoa/NSButton.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\os2\bmpbuttn.h
+	"wx/button.h"
+	"wx/dcclient.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\colourdata.h
+	"wx/colour.h"
 

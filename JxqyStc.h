@@ -21,27 +21,27 @@ public:
             const wxString &name=wxSTCNameStr);
     virtual ~JxqyStc();
 
-    void SetDefaultFont(wxFont &font)
-    {
-        for(int i = 0; i <= wxSTC_STYLE_DEFAULT; i++)
-        {
-            StyleSetFont(i, font);
-        }
-    }
-    void SetDefaultForegroundColour(const wxColour &colour)
-    {
-        for(int i = 0; i <= wxSTC_STYLE_DEFAULT; i++)
-        {
-            StyleSetForeground(i, colour);
-        }
-    }
-    void SetDefaultBackgroundColour(const wxColour &colour)
-    {
-        for(int i = 0; i <= wxSTC_STYLE_DEFAULT; i++)
-        {
-            StyleSetBackground(i, colour);
-        }
-    }
+//    void SetDefaultFont(wxFont font)
+//    {
+//        for(int i = 0; i <= wxSTC_STYLE_DEFAULT; i++)
+//        {
+//            StyleSetFont(i, font);
+//        }
+//    }
+//    void SetDefaultForegroundColour(const wxColour &colour)
+//    {
+//        for(int i = 0; i <= wxSTC_STYLE_DEFAULT; i++)
+//        {
+//            StyleSetForeground(i, colour);
+//        }
+//    }
+//    void SetDefaultBackgroundColour(const wxColour &colour)
+//    {
+//        for(int i = 0; i <= wxSTC_STYLE_DEFAULT; i++)
+//        {
+//            StyleSetBackground(i, colour);
+//        }
+//    }
     void SetFunctionKeyword(const wxString &words, bool sortedAndClean = false)
     {
     	if(!sortedAndClean)

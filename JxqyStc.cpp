@@ -11,33 +11,25 @@ JxqyStc::JxqyStc(wxWindow *parent,
                  const wxString &name)
     :wxStyledTextCtrl(parent, id, pos, size, style, name)
 {
-    StyleClearAll();
-
     SetLexer(wxSTC_LEX_JXQY);
-    wxFont font(12, wxMODERN, wxNORMAL, wxNORMAL);
-    SetDefaultFont(font);
-    SetDefaultBackgroundColour(wxColour(192, 255, 185));
-    StyleSetBackground(wxSTC_STYLE_DEFAULT, wxColour(192, 255, 185));
-    StyleSetForeground(wxSTC_JXQY_COMMENT, wxColour(160, 160, 160));
-    //StyleSetForeground(wxSTC_JXQY_KEYWORD, wxColour(0, 255, 0));
-    StyleSetForeground(wxSTC_JXQY_FUNCTION, wxColour(255, 128, 0));
-    StyleSetForeground(wxSTC_JXQY_OPERATOR, wxColour(255, 0, 0));
-    StyleSetForeground(wxSTC_JXQY_STRING, wxColour(0, 0, 255));
-    StyleSetForeground(wxSTC_JXQY_GOTOPOS, wxColour(201,84,218));
-    StyleSetForeground(wxSTC_JXQY_VARIABLE, wxColour(50,167,120));
-    StyleSetForeground(wxSTC_JXQY_NUMBER, wxColour(255,128,255));
-    SetTabWidth(4);
-    SetIndent(4);
-    SetUseTabs(true);
-    SetTabIndents (false);
-    SetBackSpaceUnIndents(false);
-    SetIndentationGuides(true);
-
-    AutoCompSetIgnoreCase(true);
-    AutoCompSetMaxWidth(50);
-
-    ShowLineNumber(true);
-	SetIndentationGuides( true );
+//    wxFont font(12, wxMODERN, wxNORMAL, wxNORMAL);
+//    SetDefaultFont(font);
+//    SetDefaultBackgroundColour(wxColour(192, 255, 185));
+//    StyleSetBackground(wxSTC_STYLE_DEFAULT, wxColour(192, 255, 185));
+//    StyleSetForeground(wxSTC_JXQY_COMMENT, wxColour(160, 160, 160));
+//    //StyleSetForeground(wxSTC_JXQY_KEYWORD, wxColour(0, 255, 0));
+//    StyleSetForeground(wxSTC_JXQY_FUNCTION, wxColour(255, 128, 0));
+//    StyleSetForeground(wxSTC_JXQY_OPERATOR, wxColour(255, 0, 0));
+//    StyleSetForeground(wxSTC_JXQY_STRING, wxColour(0, 0, 255));
+//    StyleSetForeground(wxSTC_JXQY_GOTOPOS, wxColour(201,84,218));
+//    StyleSetForeground(wxSTC_JXQY_VARIABLE, wxColour(50,167,120));
+//    StyleSetForeground(wxSTC_JXQY_NUMBER, wxColour(255,128,255));
+//    SetTabWidth(4);
+//    SetIndent(4);
+//    SetUseTabs(true);
+//    SetTabIndents (false);
+//    SetBackSpaceUnIndents(false);
+//    SetIndentationGuides(true);
 
     //Settings
     m_showCallTip = true;

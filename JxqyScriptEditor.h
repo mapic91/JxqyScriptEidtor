@@ -29,12 +29,15 @@ class JxqyScriptEditor: public wxFrame
 		wxMenuItem* MenuItem1;
 		wxMenuItem* MenuItem4;
 		wxMenu* Menu1;
+		wxMenuItem* MenuItem10;
 		wxMenuItem* MenuItem3;
 		wxMenuItem* MenuItem6;
 		wxMenuBar* MenuBar1;
 		wxMenu* Menu2;
+		wxMenuItem* MenuItem9;
 		//*)
 
+		//File
 		void OnNewFile(wxCommandEvent &event);
 		void OnOpenFile(wxCommandEvent &event);
 		void OnSave(wxCommandEvent &event);
@@ -43,10 +46,16 @@ class JxqyScriptEditor: public wxFrame
 		void OnClose(wxCommandEvent &event);
 		void OnCloseAll(wxCommandEvent &event);
 		void OnExit(wxCommandEvent &event);
+		//Setting
+		void OnFontSetting(wxCommandEvent &event);
+		void OnColourSetting(wxCommandEvent &event);
 
 		void OnPageClose(wxAuiNotebookEvent &event);
 
+		void AddNewFile();
 		JxqyStc* GetInitlizedJxqyStc();
+		void SetJxqyStcStyleFromSetting(JxqyStc *stc);
+		void ResetOpenedPageStyle();
 
 		void Init();
 		void Uninit();
@@ -58,6 +67,8 @@ class JxqyScriptEditor: public wxFrame
 		static const long MYID_SAVEALL;
 		static const long MYID_CLOSE;
 		static const long MYID_CLOSEALL;
+		static const long MYID_FONTSETTING;
+		static const long MYID_COLOURSETTING;
 		//*)
 
 	public:
