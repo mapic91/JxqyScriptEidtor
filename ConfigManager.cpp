@@ -11,7 +11,7 @@
 //#define GetGValue(rgb) (LOBYTE(((WORD)(rgb)) >> 8))
 //#define GetBValue(rgb) (LOBYTE((rgb)>>16))
 
-const wxString ConfigManager::LEX_JXQY2_FILEPATH = wxT("Function\\剑侠情缘2.txt");
+const wxString ConfigManager::LEX_JXQY2_FILEPATH = wxT("Function\\剑侠情缘二.txt");
 const wxString ConfigManager::LEX_YYCS_FILEPATH = wxT("Function\\月影传说.txt");
 const wxString ConfigManager::LEX_XJXQY_FILEPATH = wxT("Function\\新剑侠情缘.txt");
 //const wxString ConfigManager::CONFIGNAME = wxT("JxqyScriptEditor");
@@ -41,11 +41,15 @@ const ConfigManager::LexerType ConfigManager::LEXER_INIT = ConfigManager::LEX_JX
 #define DEFAULT_FONT_STRIKETHROUGH "DEFAULT_FONT_STRIKETHROUGH"
 #define STYLE_FOREGROUNDCOLOUR "STYLE_FOREGROUNDCOLOUR"
 #define STYLE_BACKGROUNDCOLOUR "STYLE_BACKGROUNDCOLOUR"
+#define IS_WORD_WRAP "IS_WORD_WRAP"
+#define IS_FUNCTION_HELP_SHOW "IS_FUNCTION_HELP_SHOW"
 
 ConfigManager::ConfigManager()
 {
     m_lexer = LEXER_INIT;
     m_defaultFont =  FONT_INIT;
+    m_isWordWrap = true;
+    m_isFunctionHelpShow = true;
 
     for(int i = 0 ; i < wxSTC_STYLE_MAX; i++)
     {
@@ -110,6 +114,11 @@ void ConfigManager::ReadConfig()
 		m_isBackgroundColourSetted[j] = cfg->Read(col_key, (int*)&m_backgroundColour[j]);
     }
 
+	if(cfg->Read(IS_WORD_WRAP, &long_var))
+		m_isWordWrap = (bool) long_var;
+	if(cfg->Read(IS_FUNCTION_HELP_SHOW, &long_var))
+		m_isFunctionHelpShow = (bool) long_var;
+
     delete cfg;
 }
 
@@ -143,6 +152,9 @@ void ConfigManager::WriteConfig()
         if(m_isBackgroundColourSetted[j])
 			cfg->Write(col_key, (long)m_backgroundColour[j]);
     }
+
+    cfg->Write(IS_WORD_WRAP, (long)m_isWordWrap);
+    cfg->Write(IS_FUNCTION_HELP_SHOW, (long)m_isFunctionHelpShow);
 
     delete cfg;
 }

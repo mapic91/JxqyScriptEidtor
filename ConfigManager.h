@@ -104,7 +104,12 @@ class ConfigManager
 			else
 				return false;
 		}
-
+		void SetWordWrap(bool wrap) { m_isWordWrap = wrap; }
+		bool IsWordWrap() { return m_isWordWrap; }
+		void SetFunctionHelpShow(bool show) { m_isFunctionHelpShow = show; }
+		bool IsFunctionHelpShow() { return m_isFunctionHelpShow; }
+		void SetLexerType(LexerType type) { m_lexer = type; };
+		LexerType GetLexerType() { return m_lexer; }
 	protected:
 	private:
 
@@ -116,6 +121,9 @@ class ConfigManager
 		unsigned int m_backgroundColour[wxSTC_STYLE_MAX];
 		bool m_isForegroundColourSetted[wxSTC_STYLE_MAX];
 		bool m_isBackgroundColourSetted[wxSTC_STYLE_MAX];
+
+		bool m_isWordWrap;
+		bool m_isFunctionHelpShow;
 };
 
 #endif // CONFIGMANAGER_H

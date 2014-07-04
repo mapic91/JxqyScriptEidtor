@@ -43,15 +43,17 @@
 		</object>
 		<object class="wxButton" name="ID_BUTTON1" variable="m_button_Forground" member="yes">
 			<label>D</label>
-			<pos>300,38</pos>
+			<pos>300,65</pos>
 			<size>20,20</size>
+			<enabled>0</enabled>
 			<tooltip>默认颜色</tooltip>
 			<handler function="Onm_button_ForgroundClick" entry="EVT_BUTTON" />
 		</object>
 		<object class="wxButton" name="ID_BUTTON2" variable="m_button_Background" member="yes">
 			<label>D</label>
-			<pos>300,96</pos>
+			<pos>300,125</pos>
 			<size>20,20</size>
+			<enabled>0</enabled>
 			<tooltip>默认颜色</tooltip>
 			<handler function="Onm_button_BackgroundClick" entry="EVT_BUTTON" />
 		</object>

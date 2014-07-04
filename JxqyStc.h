@@ -86,7 +86,6 @@ public:
     bool Save();
     bool SaveToFile(const wxString &filePath);
     bool FilePathEmpty(){return m_filePath.IsEmpty();}
-
     wxString GetFilePath(){return m_filePath;}
     wxString GetFileName();
 

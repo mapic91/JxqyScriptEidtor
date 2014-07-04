@@ -40,9 +40,11 @@ ColourSettingDialog::ColourSettingDialog(wxWindow* parent,wxWindowID id,const wx
 	StaticText2 = new wxStaticText(this, ID_STATICTEXT2, _T("背景颜色："), wxPoint(220,100), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
 	m_colourPickerCtrl_Forground = new wxColourPickerCtrl(this, ID_COLOURPICKERCTRL1, wxColour(0,0,0), wxPoint(220,65), wxSize(70,20), 0, wxDefaultValidator, _T("ID_COLOURPICKERCTRL1"));
 	m_colourPickerCtrl_BackGround = new wxColourPickerCtrl(this, ID_COLOURPICKERCTRL2, wxColour(0,0,0), wxPoint(220,125), wxSize(70,20), 0, wxDefaultValidator, _T("ID_COLOURPICKERCTRL2"));
-	m_button_Forground = new wxButton(this, ID_BUTTON1, _T("D"), wxPoint(300,38), wxSize(20,20), 0, wxDefaultValidator, _T("ID_BUTTON1"));
+	m_button_Forground = new wxButton(this, ID_BUTTON1, _T("D"), wxPoint(300,65), wxSize(20,20), 0, wxDefaultValidator, _T("ID_BUTTON1"));
+	m_button_Forground->Disable();
 	m_button_Forground->SetToolTip(_T("默认颜色"));
-	m_button_Background = new wxButton(this, ID_BUTTON2, _T("D"), wxPoint(300,96), wxSize(20,20), 0, wxDefaultValidator, _T("ID_BUTTON2"));
+	m_button_Background = new wxButton(this, ID_BUTTON2, _T("D"), wxPoint(300,125), wxSize(20,20), 0, wxDefaultValidator, _T("ID_BUTTON2"));
+	m_button_Background->Disable();
 	m_button_Background->SetToolTip(_T("默认颜色"));
 	m_button_OK = new wxButton(this, ID_BUTTON3, _T("确认"), wxPoint(88,192), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON3"));
 	m_button_Cancle = new wxButton(this, ID_BUTTON4, _T("取消"), wxPoint(216,192), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON4"));
@@ -72,7 +74,11 @@ void ColourSettingDialog::Onm_colourPickerCtrl_ForgroundColourChanged(wxColourPi
 	wxColour col = event.GetColour();
 	int sel = GetCorrectedListSelection();
 	if(sel != wxNOT_FOUND)
+	{
 		m_cfg.SetStyleForegroundColour(sel, col);
+		m_button_Forground->Enable(true);
+	}
+
 }
 
 void ColourSettingDialog::Onm_colourPickerCtrl_BackGroundColourChanged(wxColourPickerEvent& event)
@@ -80,7 +86,11 @@ void ColourSettingDialog::Onm_colourPickerCtrl_BackGroundColourChanged(wxColourP
 	wxColour col = event.GetColour();
 	int sel = GetCorrectedListSelection();
 	if(sel != wxNOT_FOUND)
+	{
 		m_cfg.SetStyleBackgroundColour(sel, col);
+		m_button_Background->Enable(true);
+	}
+
 }
 
 void ColourSettingDialog::Onm_button_ForgroundClick(wxCommandEvent& event)
@@ -90,6 +100,7 @@ void ColourSettingDialog::Onm_button_ForgroundClick(wxCommandEvent& event)
 	{
 		m_cfg.UnsetForgroundColour(sel);
 		m_colourPickerCtrl_Forground->SetColour(m_cfg.GetStyleForegroundColour(0));
+		m_button_Forground->Enable(false);
 	}
 }
 
@@ -100,6 +111,7 @@ void ColourSettingDialog::Onm_button_BackgroundClick(wxCommandEvent& event)
 	{
 		m_cfg.UnsetBackgroundColour(sel);
 		m_colourPickerCtrl_BackGround->SetColour(m_cfg.GetStyleBackgroundColour(0));
+		m_button_Background->Enable(false);
 	}
 }
 
@@ -121,13 +133,25 @@ void ColourSettingDialog::Onm_listBox_StyleSelect(wxCommandEvent& event)
 	{
 		wxColour forcol, backcol;
 		if(m_cfg.IsForgroundColourSetted(sel))
+		{
 			forcol = m_cfg.GetStyleForegroundColour(sel);
+			m_button_Forground->Enable(true);
+		}
 		else
+		{
 			forcol = m_cfg.GetStyleForegroundColour(0);
+			m_button_Forground->Enable(false);
+		}
 		if(m_cfg.IsBackgroundColourSetted(sel))
+		{
 			backcol = m_cfg.GetStyleBackgroundColour(sel);
+			m_button_Background->Enable(true);
+		}
 		else
+		{
 			backcol = m_cfg.GetStyleBackgroundColour(0);
+			m_button_Background->Enable(false);
+		}
 		m_colourPickerCtrl_Forground->SetColour(forcol);
 		m_colourPickerCtrl_BackGround->SetColour(backcol);
 	}
