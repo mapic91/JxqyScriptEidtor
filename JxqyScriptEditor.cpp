@@ -3,11 +3,32 @@
 #include "ColourSettingDialog.h"
 
 #include "wx/msgdlg.h"
-#include "wx/filedlg.h"
 #include "wx/fontdlg.h"
+#include "wx/log.h"
 
 #define SAVE_ERROR_MESSAGEDIALOG wxMessageBox(wxT("保存失败！"), wxT("错误"), wxOK | wxCENTER | wxICON_ERROR)
 #define VOTE_SAVE_ERROR_MESSAGEDIALOG wxMessageBox(wxT("保存失败！关闭文件？"), wxT("错误"), wxYES_NO | wxCENTER | wxICON_ERROR)
+
+wxFileDialog* JxqyScriptEditor::GetFileSaveDialog(const wxString& defaultFileName)
+{
+    wxFileDialog *fileDlg = new wxFileDialog(this,
+            wxT("保存文件"),
+            wxEmptyString,
+            defaultFileName,
+            wxT("txt(*.txt)|*.txt|所有文件(*.*)|*.*"),
+            wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+    return fileDlg;
+}
+wxFileDialog* JxqyScriptEditor::GetFileOpenDialog()
+{
+    wxFileDialog *fileDlg = new wxFileDialog(this,
+            wxT("打开文件"),
+            wxEmptyString,
+            wxEmptyString,
+            wxT("txt(*.txt)|*.txt|所有文件(*.*)|*.*"),
+            wxFD_OPEN | wxFD_FILE_MUST_EXIST);
+    return fileDlg;
+}
 
 //(*InternalHeaders(JxqyScriptEditor)
 #include <wx/string.h>
@@ -22,6 +43,7 @@ const long JxqyScriptEditor::MYID_FONTSETTING = wxNewId();
 const long JxqyScriptEditor::MYID_COLOURSETTING = wxNewId();
 const long JxqyScriptEditor::MYID_WORDWRAP = wxNewId();
 const long JxqyScriptEditor::MYID_FUNHELP = wxNewId();
+const long JxqyScriptEditor::MYID_SHOWLINENUMBER = wxNewId();
 const long JxqyScriptEditor::MYID_JXQY2 = wxNewId();
 const long JxqyScriptEditor::MYID_YYCS = wxNewId();
 const long JxqyScriptEditor::MYID_XJXQY = wxNewId();
@@ -44,6 +66,7 @@ BEGIN_EVENT_TABLE(JxqyScriptEditor,wxFrame)
     EVT_MENU(MYID_COLOURSETTING, JxqyScriptEditor::OnColourSetting)
     EVT_MENU(MYID_WORDWRAP, JxqyScriptEditor::OnWordWrap)
     EVT_MENU(MYID_FUNHELP, JxqyScriptEditor::OnFunctionHelpShow)
+    EVT_MENU(MYID_SHOWLINENUMBER, JxqyScriptEditor::OnLineNumberShow)
     EVT_MENU(MYID_JXQY2, JxqyScriptEditor::OnFunctionFileChoose)
     EVT_MENU(MYID_YYCS, JxqyScriptEditor::OnFunctionFileChoose)
     EVT_MENU(MYID_XJXQY, JxqyScriptEditor::OnFunctionFileChoose)
@@ -89,6 +112,8 @@ JxqyScriptEditor::JxqyScriptEditor(wxWindow* parent,wxWindowID id,const wxPoint&
     Menu2->Append(MenuItem11);
     MenuItem12 = new wxMenuItem(Menu2, MYID_FUNHELP, _T("显示函数帮助"), wxEmptyString, wxITEM_CHECK);
     Menu2->Append(MenuItem12);
+    MenuItem16 = new wxMenuItem(Menu2, MYID_SHOWLINENUMBER, _T("显示行数"), wxEmptyString, wxITEM_CHECK);
+    Menu2->Append(MenuItem16);
     Menu2->AppendSeparator();
     MenuItem13 = new wxMenuItem(Menu2, MYID_JXQY2, _T("剑侠情缘二"), wxEmptyString, wxITEM_RADIO);
     Menu2->Append(MenuItem13);
@@ -101,12 +126,15 @@ JxqyScriptEditor::JxqyScriptEditor(wxWindow* parent,wxWindowID id,const wxPoint&
     SetSizer(BoxSizer1);
     Layout();
     Center();
+
+    Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&JxqyScriptEditor::OnFrameClose);
     //*)
     Init();
     AddNewFile();
 
     m_menuBar->Check(MYID_WORDWRAP, m_cfg.IsWordWrap());
     m_menuBar->Check(MYID_FUNHELP, m_cfg.IsFunctionHelpShow());
+    m_menuBar->Check(MYID_SHOWLINENUMBER, m_cfg.IsShowLineNumber());
     switch(m_cfg.GetLexerType())
     {
     case ConfigManager::LEX_JXQY2:
@@ -149,16 +177,11 @@ void JxqyScriptEditor::OnNewFile(wxCommandEvent& event)
 
 void JxqyScriptEditor::OnOpenFile(wxCommandEvent& event)
 {
-    wxFileDialog fileDlg(this,
-                         wxT("打开文件"),
-                         wxEmptyString,
-                         wxEmptyString,
-                         wxT("txt(*.txt)|*.txt|所有文件(*.*)|*.*"),
-                         wxFD_OPEN | wxFD_FILE_MUST_EXIST);
+    wxFileDialog *fileDlg = GetFileOpenDialog();
 
-    if(fileDlg.ShowModal() == wxID_OK)
+    if(fileDlg->ShowModal() == wxID_OK)
     {
-        int openedIdx = GetOpenedFile(fileDlg.GetPath());
+        int openedIdx = GetOpenedFile(fileDlg->GetPath());
         if(openedIdx != -1)
         {
             m_AuiBook->SetSelection(openedIdx);
@@ -166,11 +189,12 @@ void JxqyScriptEditor::OnOpenFile(wxCommandEvent& event)
         else
         {
             JxqyStc *stc = GetInitlizedJxqyStc();
-            stc->OpenFromFile(fileDlg.GetPath());
+            stc->OpenFromFile(fileDlg->GetPath());
             m_AuiBook->AddPage(stc, stc->GetFileName(), true);
             m_AuiBook->SetPageToolTip(m_AuiBook->GetPageIndex(stc), stc->GetFilePath());
         }
     }
+    delete fileDlg;
 }
 
 void JxqyScriptEditor::OnSave(wxCommandEvent& event)
@@ -180,27 +204,48 @@ void JxqyScriptEditor::OnSave(wxCommandEvent& event)
 
 void JxqyScriptEditor::OnSaveAs(wxCommandEvent& event)
 {
-
+	wxFileDialog *fileDlg = GetFileSaveDialog(GetPageTiltleClean());
+	if(fileDlg->ShowModal() == wxID_OK)
+	{
+		SavePageToFile(-1, fileDlg->GetPath());
+	}
+	delete fileDlg;
 }
 
 void JxqyScriptEditor::OnSaveAll(wxCommandEvent& event)
 {
-
+	size_t counts = m_AuiBook->GetPageCount();
+	int cur_sel = m_AuiBook->GetSelection();
+	JxqyStc *stc;
+	for(size_t i = 0; i < counts; i++)
+	{
+		stc = (JxqyStc*) m_AuiBook->GetPage(i);
+		if(stc)
+		{
+			if(stc->GetModify() || stc->FilePathEmpty())
+			{
+				if(stc->FilePathEmpty())
+					m_AuiBook->SetSelection(i);
+				SavePageToFile((int)i);
+			}
+		}
+	}
+	m_AuiBook->SetSelection(cur_sel);
 }
 
 void JxqyScriptEditor::OnClose(wxCommandEvent& event)
 {
-
+	ClosePage();
 }
 
 void JxqyScriptEditor::OnCloseAll(wxCommandEvent& event)
 {
-
+	CloseAllPage();
 }
 
 void JxqyScriptEditor::OnExit(wxCommandEvent& event)
 {
-
+	this->Close();
 }
 
 void JxqyScriptEditor::OnFontSetting(wxCommandEvent& event)
@@ -230,13 +275,25 @@ void JxqyScriptEditor::OnWordWrap(wxCommandEvent& event)
     if(m_cfg.IsWordWrap())
     {
         m_cfg.SetWordWrap(false);
-        m_cfg.WriteConfig();
     }
     else
     {
         m_cfg.SetWordWrap(true);
-        m_cfg.WriteConfig();
     }
+    m_cfg.WriteConfig();
+    ResetOpenedPageStyle();
+}
+void JxqyScriptEditor::OnLineNumberShow(wxCommandEvent& event)
+{
+    if(m_cfg.IsShowLineNumber())
+    {
+        m_cfg.SetShowLineNumber(false);
+    }
+    else
+    {
+        m_cfg.SetShowLineNumber(true);
+    }
+    m_cfg.WriteConfig();
     ResetOpenedPageStyle();
 }
 void JxqyScriptEditor::OnFunctionHelpShow(wxCommandEvent& event)
@@ -244,13 +301,12 @@ void JxqyScriptEditor::OnFunctionHelpShow(wxCommandEvent& event)
     if(m_cfg.IsFunctionHelpShow())
     {
         m_cfg.SetFunctionHelpShow(false);
-        m_cfg.WriteConfig();
     }
     else
     {
         m_cfg.SetFunctionHelpShow(true);
-        m_cfg.WriteConfig();
     }
+    m_cfg.WriteConfig();
     ResetOpenedPageStyle();
 }
 
@@ -262,7 +318,7 @@ void JxqyScriptEditor::OnPageClose(wxAuiNotebookEvent& event)
     {
         if(stc->GetModify())
         {
-        	bool veto = false;
+            bool veto = false;
             wxString title = GetPageTiltleClean(pageIdx);
             wxString msg = wxT("保存文件 \"") + title + wxT("\" ?");
             int ret = wxMessageBox(msg, wxT("保存"), wxCANCEL | wxYES_NO | wxICON_QUESTION |wxCENTER);
@@ -333,13 +389,22 @@ void JxqyScriptEditor::SetJxqyStcStyleFromSetting(JxqyStc* stc)
     stc->AutoCompSetMaxWidth(50);
 
     //Line number
-    stc->StyleSetForeground(wxSTC_STYLE_LINENUMBER, m_cfg.GetStyleForegroundColour(wxSTC_STYLE_LINENUMBER));
-    stc->StyleSetBackground(wxSTC_STYLE_LINENUMBER, m_cfg.GetStyleBackgroundColour(wxSTC_STYLE_LINENUMBER));
-    stc->ShowLineNumber(true);
-    stc->SetMarginWidth( 2, 0 );
-    stc->SetMarginWidth( 1, 5 );
-    stc->SetMarginType( 0, wxSTC_MARGIN_NUMBER );
-    stc->SetMarginWidth( 0, stc->TextWidth( wxSTC_STYLE_LINENUMBER, wxT("_9999") ) );
+    if(m_cfg.IsShowLineNumber())
+    {
+        stc->StyleSetForeground(wxSTC_STYLE_LINENUMBER, m_cfg.GetStyleForegroundColour(wxSTC_STYLE_LINENUMBER));
+        stc->StyleSetBackground(wxSTC_STYLE_LINENUMBER, m_cfg.GetStyleBackgroundColour(wxSTC_STYLE_LINENUMBER));
+        stc->ShowLineNumber(true);
+        stc->SetMarginWidth( 2, 0 );
+        stc->SetMarginWidth( 1, 5 );
+        stc->SetMarginType( 0, wxSTC_MARGIN_NUMBER );
+        stc->SetMarginWidth( 0, stc->TextWidth( wxSTC_STYLE_LINENUMBER, wxT("_9999") ) );
+    }
+    else
+    {
+        stc->SetMarginWidth( 0, 0 );
+        stc->SetMarginWidth( 1, 0 );
+        stc->SetMarginWidth( 2, 0 );
+    }
 
     //Wordwrap
     if(m_cfg.IsWordWrap())
@@ -413,7 +478,8 @@ void JxqyScriptEditor::SetPageChanged(bool changed, int idx)
 }
 bool JxqyScriptEditor::SavePageToFile(int idx, const wxString& path, const wxString &defaultFileName, bool *veto)
 {
-	if(m_AuiBook->GetPageCount() == 0) return false;
+    wxLogNull lognull;
+    if(m_AuiBook->GetPageCount() == 0) return false;
 
     if(idx == -1)
         idx = m_AuiBook->GetSelection();
@@ -422,62 +488,69 @@ bool JxqyScriptEditor::SavePageToFile(int idx, const wxString& path, const wxStr
     if(veto) *veto = false;
 
     int ret;
-    bool successed = true;
+    bool successed = true, cancled = false;
+    wxString filename = defaultFileName.IsEmpty() ?  GetPageTiltleClean(idx) : defaultFileName;
     JxqyStc *stc = (JxqyStc*)m_AuiBook->GetPage(idx);
     if(stc)
     {
-        if(stc->GetModify())
+        if(stc->FilePathEmpty() && path.IsEmpty())
         {
-            if(stc->FilePathEmpty() && path.IsEmpty())
+            wxFileDialog *fileDlg = GetFileSaveDialog(filename);
+
+            if(fileDlg->ShowModal() == wxID_OK)
             {
-                wxFileDialog fileDlg(this,
-                                     wxT("保存文件"),
-                                     wxEmptyString,
-                                     defaultFileName,
-                                     wxT("txt(*.txt)|*.txt|所有文件(*.*)|*.*"),
-                                     wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
-                if(fileDlg.ShowModal() == wxID_OK)
-                {
-                    if(!stc->SaveToFile(fileDlg.GetPath()))
-                    {
-						successed = false;
-                    }
-                }
-                else
-                {
-                    if(veto) *veto = true;
-                }
-            }
-            else if(!stc->FilePathEmpty() && path.IsEmpty())
-            {
-                if(!stc->Save())
+                if(!stc->SaveToFile(fileDlg->GetPath()))
                 {
                     successed = false;
                 }
             }
-            else if(!path.IsEmpty())
+            else
             {
-                if(!stc->SaveToFile(path))
-                {
-                    successed = false;
-                }
+            	successed = false;
+            	cancled = true;
+            }
+            delete fileDlg;
+        }
+        else if(!stc->FilePathEmpty() && path.IsEmpty())
+        {
+            if(!stc->Save())
+            {
+                successed = false;
+            }
+        }
+        else if(!path.IsEmpty())
+        {
+            if(!stc->SaveToFile(path))
+            {
+                successed = false;
             }
         }
     }
     else
         successed = false;
 
-	if(successed == false)
-	{
+    if(successed == false)
+    {
         if(veto)
         {
-            ret = VOTE_SAVE_ERROR_MESSAGEDIALOG;
-            if(ret == wxNO) *veto = true;
+        	if(cancled)
+			{
+				*veto = true;
+			}
+			else
+			{
+				ret = VOTE_SAVE_ERROR_MESSAGEDIALOG;
+				if(ret == wxNO) *veto = true;
+			}
         }
         else
         {
-            SAVE_ERROR_MESSAGEDIALOG;
+            if(!cancled)SAVE_ERROR_MESSAGEDIALOG;
         }
+    }
+    else
+	{
+		ResetPageTitleTooltip(idx);
 	}
 
     return successed;
@@ -485,14 +558,59 @@ bool JxqyScriptEditor::SavePageToFile(int idx, const wxString& path, const wxStr
 
 wxString JxqyScriptEditor::GetPageTiltleClean(int idx)
 {
-	if(idx == -1) m_AuiBook->GetSelection();
-	wxString title = m_AuiBook->GetPageText(idx);
-	if(!title.IsEmpty() && title[0] == wxChar('*') )
+    if(idx == -1) idx = m_AuiBook->GetSelection();
+    wxString title = m_AuiBook->GetPageText(idx);
+    if(!title.IsEmpty() && title[0] == wxChar('*') )
+    {
+        title = title.Mid(1);
+    }
+    return title;
+}
+void JxqyScriptEditor::ResetPageTitleTooltip(int idx)
+{
+	if(idx == -1) idx = m_AuiBook->GetSelection();
+	JxqyStc *stc = (JxqyStc*)m_AuiBook->GetPage(idx);
+	if(stc)
 	{
-		title = title.Mid(1);
+		m_AuiBook->SetPageText(idx, stc->GetFileName());
+		m_AuiBook->SetPageToolTip(idx, stc->GetFilePath());
 	}
-	return title;
+}
+bool JxqyScriptEditor::ClosePage(int idx, bool deletePage)
+{
+	if(idx == -1) idx = m_AuiBook->GetSelection();
+	wxAuiNotebookEvent auievent;
+	auievent.SetSelection(idx);
+	auievent.SetEventType(wxEVT_AUINOTEBOOK_PAGE_CLOSE);
+	//auievent.SetEventObject(this);
+	m_AuiBook->GetEventHandler()->ProcessEvent(auievent);
+	if(auievent.IsAllowed())
+	{
+		if(deletePage)m_AuiBook->DeletePage(idx);
+		return true;
+	}
+	else
+		return false;
+}
+bool JxqyScriptEditor::CloseAllPage()
+{
+	size_t count = m_AuiBook->GetPageCount();
+    JxqyStc *stc;
+    for(size_t i = 0; i < count; i++)
+    {
+        stc = (JxqyStc*)m_AuiBook->GetPage(i);
+        if(stc)
+        {
+        	m_AuiBook->SetSelection(i);
+            if(!ClosePage(i, false)) return false;
+        }
+    }
+    m_AuiBook->DeleteAllPages();
+    return true;
 }
 
 
-
+void JxqyScriptEditor::OnFrameClose(wxCloseEvent& event)
+{
+	if(CloseAllPage()) this->Destroy();
+}

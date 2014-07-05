@@ -43,6 +43,7 @@ const ConfigManager::LexerType ConfigManager::LEXER_INIT = ConfigManager::LEX_JX
 #define STYLE_BACKGROUNDCOLOUR "STYLE_BACKGROUNDCOLOUR"
 #define IS_WORD_WRAP "IS_WORD_WRAP"
 #define IS_FUNCTION_HELP_SHOW "IS_FUNCTION_HELP_SHOW"
+#define IS_LINE_NUMBER_SHOW "IS_LINE_NUMBER_SHOW"
 
 ConfigManager::ConfigManager()
 {
@@ -50,6 +51,7 @@ ConfigManager::ConfigManager()
     m_defaultFont =  FONT_INIT;
     m_isWordWrap = true;
     m_isFunctionHelpShow = true;
+    m_showLineNumber = true;
 
     for(int i = 0 ; i < wxSTC_STYLE_MAX; i++)
     {
@@ -118,7 +120,8 @@ void ConfigManager::ReadConfig()
 		m_isWordWrap = (bool) long_var;
 	if(cfg->Read(IS_FUNCTION_HELP_SHOW, &long_var))
 		m_isFunctionHelpShow = (bool) long_var;
-
+	if(cfg->Read(IS_LINE_NUMBER_SHOW, &long_var))
+		m_showLineNumber = (bool) long_var;
     delete cfg;
 }
 
@@ -155,6 +158,7 @@ void ConfigManager::WriteConfig()
 
     cfg->Write(IS_WORD_WRAP, (long)m_isWordWrap);
     cfg->Write(IS_FUNCTION_HELP_SHOW, (long)m_isFunctionHelpShow);
+    cfg->Write(IS_LINE_NUMBER_SHOW, (long)m_showLineNumber);
 
     delete cfg;
 }

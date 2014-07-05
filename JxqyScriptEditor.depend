@@ -1692,9 +1692,10 @@
 1384175917 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\univ\theme.h
 	"wx/string.h"
 
-1404483169 e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.h
+1404532402 e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.h
 	"JxqyStc.h"
 	"ConfigManager.h"
+	"wx/filedlg.h"
 	<wx/sizer.h>
 	<wx/menu.h>
 	<wx/aui/aui.h>
@@ -2231,13 +2232,13 @@
 
 1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\msw\rcdefs.h
 
-1404467249 source:e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.cpp
+1404527614 source:e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.cpp
 	"JxqyScriptEditor.h"
 	"helperFun.h"
 	"ColourSettingDialog.h"
 	"wx/msgdlg.h"
-	"wx/filedlg.h"
 	"wx/fontdlg.h"
+	"wx/log.h"
 	<wx/string.h>
 
 1404477547 e:\programmingworkshop\jxqyscripteditor\jxqystc.h
@@ -2654,12 +2655,12 @@
 	"wx/confbase.h"
 	"wx/filename.h"
 
-1404472448 e:\programmingworkshop\jxqyscripteditor\configmanager.h
+1404523035 e:\programmingworkshop\jxqyscripteditor\configmanager.h
 	"wx/string.h"
 	"wx/stc/stc.h"
 	"wx/fileconf.h"
 
-1404477105 source:e:\programmingworkshop\jxqyscripteditor\configmanager.cpp
+1404523370 source:e:\programmingworkshop\jxqyscripteditor\configmanager.cpp
 	"ConfigManager.h"
 	"helperFun.h"
 	"wx/font.h"
@@ -2850,4 +2851,6 @@
 
 1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\colourdata.h
 	"wx/colour.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\lib\gcc_lib\mswud\wx\setup.h
 

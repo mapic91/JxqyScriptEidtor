@@ -3,7 +3,14 @@
 #include "wx/string.h"
 #include "wx/stc/stc.h"
 #include "wx/fileconf.h"
-
+/**
+* Add config:
+* 1.Add class member
+* 2.Add setter,getter
+* 3.Add default value in constructor
+* 4.Add to ReadConfig()
+* 5.Add to WriteConfig()
+**/
 class ConfigManager
 {
 	public:
@@ -110,6 +117,8 @@ class ConfigManager
 		bool IsFunctionHelpShow() { return m_isFunctionHelpShow; }
 		void SetLexerType(LexerType type) { m_lexer = type; };
 		LexerType GetLexerType() { return m_lexer; }
+		void SetShowLineNumber(bool show) { m_showLineNumber = show; }
+		bool IsShowLineNumber() { return m_showLineNumber; }
 	protected:
 	private:
 
@@ -124,6 +133,7 @@ class ConfigManager
 
 		bool m_isWordWrap;
 		bool m_isFunctionHelpShow;
+		bool m_showLineNumber;
 };
 
 #endif // CONFIGMANAGER_H

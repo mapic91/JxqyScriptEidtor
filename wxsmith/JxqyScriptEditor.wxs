@@ -4,6 +4,7 @@
 		<centered>1</centered>
 		<size>800,600</size>
 		<id_arg>0</id_arg>
+		<handler function="OnFrameClose" entry="EVT_CLOSE" />
 		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
 			<object class="sizeritem">
 				<object class="wxAuiNotebook" name="ID_AUINOTEBOOK1" variable="m_AuiBook" member="yes">
@@ -66,6 +67,10 @@
 				</object>
 				<object class="wxMenuItem" name="MYID_FUNHELP" variable="MenuItem12" member="yes">
 					<label>显示函数帮助</label>
+					<checkable>1</checkable>
+				</object>
+				<object class="wxMenuItem" name="MYID_SHOWLINENUMBER" variable="MenuItem16" member="yes">
+					<label>显示行数</label>
 					<checkable>1</checkable>
 				</object>
 				<object class="separator" />
