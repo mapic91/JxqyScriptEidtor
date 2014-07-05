@@ -343,7 +343,7 @@ void JxqyScriptEditor::AddNewFile()
 
 JxqyStc* JxqyScriptEditor::GetInitlizedJxqyStc()
 {
-    JxqyStc *stc = new JxqyStc(m_AuiBook);
+    JxqyStc *stc = new JxqyStc(this);
     SetJxqyStcStyleFromSetting(stc);
     return stc;
 }
