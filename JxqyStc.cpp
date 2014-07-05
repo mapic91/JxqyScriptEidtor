@@ -80,14 +80,30 @@ void JxqyStc::OnCharAdded(wxStyledTextEvent &event)
 
     int lineLen = lineStr.length(), hintLen = 0;
     while(hintLen < lineLen)
-        if(lineStr[lineLen - hintLen - 1] != wxChar(' '))
+        if(wxIsalpha(lineStr[lineLen - hintLen - 1]))
             hintLen++;
         else
             break;
     if(hintLen > 1)
     {
-        if(!AutoCompActive())
-            AutoCompShow(hintLen, m_functionKeyword);
+    	wxString compList, tmpStr;
+    	wxString findStr = lineStr.Mid(lineLen - hintLen);
+		size_t len = m_functionKeyword.Length();
+		size_t findEnd;
+    	for(size_t findBeg = 0; findBeg < len;)
+		{
+			findEnd = m_functionKeyword.find(wxChar(' '), findBeg);
+			tmpStr = m_functionKeyword.Mid(findBeg, findEnd - findBeg);
+			if(tmpStr.Length() >= findStr.Length() &&
+				!findStr.CmpNoCase(tmpStr.Mid(0, findStr.Length())))
+			{
+				compList += (tmpStr + wxT(" "));
+			}
+			findBeg = findEnd + 1;
+		}
+
+        if(!AutoCompActive() && !compList.IsEmpty())
+            AutoCompShow(hintLen, compList);
     }
 }
 

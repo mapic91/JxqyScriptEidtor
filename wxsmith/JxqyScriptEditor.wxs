@@ -122,5 +122,59 @@
 				</object>
 			</object>
 		</object>
+		<object class="wxToolBar" name="ID_TOOLBAR1" variable="m_toolBar" member="yes">
+			<object class="tool" name="wxID_NEW" variable="ToolBarItem1" member="yes">
+				<label>新建文档</label>
+				<bitmap code="wxBITMAP_PNG(NEW)" />
+				<tooltip>新建文档</tooltip>
+			</object>
+			<object class="tool" name="wxID_OPEN" variable="ToolBarItem2" member="yes">
+				<label>打开</label>
+				<bitmap code="wxBITMAP_PNG(OPEN)" />
+				<tooltip>打开文档</tooltip>
+			</object>
+			<object class="tool" name="wxID_SAVE" variable="ToolBarItem3" member="yes">
+				<label>保存</label>
+				<bitmap code="wxBITMAP_PNG(SAVE)" />
+				<tooltip>保存</tooltip>
+			</object>
+			<object class="tool" name="wxID_SAVEAS" variable="ToolBarItem4" member="yes">
+				<label>另存为</label>
+				<bitmap code="wxBITMAP_PNG(SAVEAS)" />
+				<tooltip>另存为</tooltip>
+			</object>
+			<object class="tool" name="TOOLBAR_MYID_SAVEALL" variable="ToolBarItem5" member="yes">
+				<label>保存所有</label>
+				<bitmap code="wxBITMAP_PNG(SAVEALL)" />
+				<tooltip>保存所有</tooltip>
+			</object>
+			<object class="separator" />
+			<object class="tool" name="TOOLBAR_MYID_UNDO" variable="ToolBarItem7" member="yes">
+				<label>撤销</label>
+				<bitmap code="wxBITMAP_PNG(UNDO)" />
+				<tooltip>撤销</tooltip>
+			</object>
+			<object class="tool" name="TOOLBAR_MYID_REDO" variable="ToolBarItem6" member="yes">
+				<label>恢复</label>
+				<bitmap code="wxBITMAP_PNG(REDO)" />
+				<tooltip>恢复</tooltip>
+			</object>
+			<object class="separator" />
+			<object class="tool" name="TOOLBAR_MYID_CUT" variable="ToolBarItem8" member="yes">
+				<label>剪切</label>
+				<bitmap code="wxBITMAP_PNG(CUT)" />
+				<tooltip>剪切</tooltip>
+			</object>
+			<object class="tool" name="TOOLBAR_MYID_COPY" variable="ToolBarItem9" member="yes">
+				<label>复制</label>
+				<bitmap code="wxBITMAP_PNG(COPY)" />
+				<tooltip>复制</tooltip>
+			</object>
+			<object class="tool" name="TOOLBAR_MYID_PASTE" variable="ToolBarItem10" member="yes">
+				<label>粘贴</label>
+				<bitmap code="wxBITMAP_PNG(PASTE)" />
+				<tooltip>粘贴</tooltip>
+			</object>
+		</object>
 	</object>
 </wxsmith>

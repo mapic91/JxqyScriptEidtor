@@ -5,6 +5,7 @@
 #include "wx/msgdlg.h"
 #include "wx/fontdlg.h"
 #include "wx/log.h"
+#include "wx/app.h"
 
 #define SAVE_ERROR_MESSAGEDIALOG wxMessageBox(wxT("保存失败！"), wxT("错误"), wxOK | wxCENTER | wxICON_ERROR)
 #define VOTE_SAVE_ERROR_MESSAGEDIALOG wxMessageBox(wxT("保存失败！关闭文件？"), wxT("错误"), wxYES_NO | wxCENTER | wxICON_ERROR)
@@ -31,6 +32,8 @@ wxFileDialog* JxqyScriptEditor::GetFileOpenDialog()
 }
 
 //(*InternalHeaders(JxqyScriptEditor)
+#include <wx/bitmap.h>
+#include <wx/image.h>
 #include <wx/string.h>
 //*)
 
@@ -54,6 +57,13 @@ const long JxqyScriptEditor::MYID_SHOWLINENUMBER = wxNewId();
 const long JxqyScriptEditor::MYID_JXQY2 = wxNewId();
 const long JxqyScriptEditor::MYID_YYCS = wxNewId();
 const long JxqyScriptEditor::MYID_XJXQY = wxNewId();
+const long JxqyScriptEditor::TOOLBAR_MYID_SAVEALL = wxNewId();
+const long JxqyScriptEditor::TOOLBAR_MYID_UNDO = wxNewId();
+const long JxqyScriptEditor::TOOLBAR_MYID_REDO = wxNewId();
+const long JxqyScriptEditor::TOOLBAR_MYID_CUT = wxNewId();
+const long JxqyScriptEditor::TOOLBAR_MYID_COPY = wxNewId();
+const long JxqyScriptEditor::TOOLBAR_MYID_PASTE = wxNewId();
+const long JxqyScriptEditor::ID_TOOLBAR1 = wxNewId();
 //*)
 
 
@@ -66,14 +76,20 @@ BEGIN_EVENT_TABLE(JxqyScriptEditor,wxFrame)
     EVT_MENU(wxID_SAVE, JxqyScriptEditor::OnSave)
     EVT_MENU(wxID_SAVEAS, JxqyScriptEditor::OnSaveAs)
     EVT_MENU(MYID_SAVEALL, JxqyScriptEditor::OnSaveAll)
+    EVT_MENU(TOOLBAR_MYID_SAVEALL, JxqyScriptEditor::OnSaveAll)
     EVT_MENU(MYID_CLOSE, JxqyScriptEditor::OnClose)
     EVT_MENU(MYID_CLOSEALL, JxqyScriptEditor::OnCloseAll)
     EVT_MENU(wxID_EXIT, JxqyScriptEditor::OnExit)
     EVT_MENU(MYID_UNDO, JxqyScriptEditor::OnEdit)
     EVT_MENU(MYID_REDO, JxqyScriptEditor::OnEdit)
+    EVT_MENU(TOOLBAR_MYID_UNDO, JxqyScriptEditor::OnEdit)
+    EVT_MENU(TOOLBAR_MYID_REDO, JxqyScriptEditor::OnEdit)
     EVT_MENU(MYID_CUT, JxqyScriptEditor::OnEdit)
     EVT_MENU(MYID_COPY, JxqyScriptEditor::OnEdit)
     EVT_MENU(MYID_PASTE, JxqyScriptEditor::OnEdit)
+    EVT_MENU(TOOLBAR_MYID_CUT, JxqyScriptEditor::OnEdit)
+    EVT_MENU(TOOLBAR_MYID_COPY, JxqyScriptEditor::OnEdit)
+    EVT_MENU(TOOLBAR_MYID_PASTE, JxqyScriptEditor::OnEdit)
     EVT_MENU(MYID_DELETE, JxqyScriptEditor::OnEdit)
     EVT_MENU(MYID_SELECTALL, JxqyScriptEditor::OnEdit)
     EVT_MENU(MYID_FONTSETTING, JxqyScriptEditor::OnFontSetting)
@@ -154,6 +170,21 @@ JxqyScriptEditor::JxqyScriptEditor(wxWindow* parent,wxWindowID id,const wxPoint&
     Menu2->Append(MenuItem15);
     m_menuBar->Append(Menu2, _T("设置"));
     SetMenuBar(m_menuBar);
+    m_toolBar = new wxToolBar(this, ID_TOOLBAR1, wxDefaultPosition, wxDefaultSize, wxTB_HORIZONTAL|wxNO_BORDER, _T("ID_TOOLBAR1"));
+    ToolBarItem1 = m_toolBar->AddTool(wxID_NEW, _T("新建文档"), wxBITMAP_PNG(NEW), wxNullBitmap, wxITEM_NORMAL, _T("新建文档"), wxEmptyString);
+    ToolBarItem2 = m_toolBar->AddTool(wxID_OPEN, _T("打开"), wxBITMAP_PNG(OPEN), wxNullBitmap, wxITEM_NORMAL, _T("打开文档"), wxEmptyString);
+    ToolBarItem3 = m_toolBar->AddTool(wxID_SAVE, _T("保存"), wxBITMAP_PNG(SAVE), wxNullBitmap, wxITEM_NORMAL, _T("保存"), wxEmptyString);
+    ToolBarItem4 = m_toolBar->AddTool(wxID_SAVEAS, _T("另存为"), wxBITMAP_PNG(SAVEAS), wxNullBitmap, wxITEM_NORMAL, _T("另存为"), wxEmptyString);
+    ToolBarItem5 = m_toolBar->AddTool(TOOLBAR_MYID_SAVEALL, _T("保存所有"), wxBITMAP_PNG(SAVEALL), wxNullBitmap, wxITEM_NORMAL, _T("保存所有"), wxEmptyString);
+    m_toolBar->AddSeparator();
+    ToolBarItem7 = m_toolBar->AddTool(TOOLBAR_MYID_UNDO, _T("撤销"), wxBITMAP_PNG(UNDO), wxNullBitmap, wxITEM_NORMAL, _T("撤销"), wxEmptyString);
+    ToolBarItem6 = m_toolBar->AddTool(TOOLBAR_MYID_REDO, _T("恢复"), wxBITMAP_PNG(REDO), wxNullBitmap, wxITEM_NORMAL, _T("恢复"), wxEmptyString);
+    m_toolBar->AddSeparator();
+    ToolBarItem8 = m_toolBar->AddTool(TOOLBAR_MYID_CUT, _T("剪切"), wxBITMAP_PNG(CUT), wxNullBitmap, wxITEM_NORMAL, _T("剪切"), wxEmptyString);
+    ToolBarItem9 = m_toolBar->AddTool(TOOLBAR_MYID_COPY, _T("复制"), wxBITMAP_PNG(COPY), wxNullBitmap, wxITEM_NORMAL, _T("复制"), wxEmptyString);
+    ToolBarItem10 = m_toolBar->AddTool(TOOLBAR_MYID_PASTE, _T("粘贴"), wxBITMAP_PNG(PASTE), wxNullBitmap, wxITEM_NORMAL, _T("粘贴"), wxEmptyString);
+    m_toolBar->Realize();
+    SetToolBar(m_toolBar);
     SetSizer(BoxSizer1);
     Layout();
     Center();
@@ -162,8 +193,12 @@ JxqyScriptEditor::JxqyScriptEditor(wxWindow* parent,wxWindowID id,const wxPoint&
     Connect(ID_AUINOTEBOOK1,wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGED,(wxObjectEventFunction)&JxqyScriptEditor::OnPageChanged);
     Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&JxqyScriptEditor::OnFrameClose);
     //*)
+
     Init();
-    AddNewFile();
+    if(wxTheApp && wxTheApp->argc > 1)
+    {
+        OpenFile(wxTheApp->argv[1]);
+    }
 
     m_menuBar->Check(MYID_WORDWRAP, m_cfg.IsWordWrap());
     m_menuBar->Check(MYID_FUNHELP, m_cfg.IsFunctionHelpShow());
@@ -182,6 +217,10 @@ JxqyScriptEditor::JxqyScriptEditor(wxWindow* parent,wxWindowID id,const wxPoint&
     default:
         break;
     }
+
+    SetIcon(wxICON(aaaa));
+    Center();
+    Raise();
 }
 
 JxqyScriptEditor::~JxqyScriptEditor()
@@ -212,18 +251,7 @@ void JxqyScriptEditor::OnOpenFile(wxCommandEvent& event)
 
     if(fileDlg->ShowModal() == wxID_OK)
     {
-        int openedIdx = GetOpenedFile(fileDlg->GetPath());
-        if(openedIdx != -1)
-        {
-            m_AuiBook->SetSelection(openedIdx);
-        }
-        else
-        {
-            JxqyStc *stc = GetInitlizedJxqyStc();
-            stc->OpenFromFile(fileDlg->GetPath());
-            m_AuiBook->AddPage(stc, stc->GetFileName(), true);
-            m_AuiBook->SetPageToolTip(m_AuiBook->GetPageIndex(stc), stc->GetFilePath());
-        }
+		OpenFile(fileDlg->GetPath());
     }
     delete fileDlg;
 }
@@ -235,70 +263,70 @@ void JxqyScriptEditor::OnSave(wxCommandEvent& event)
 
 void JxqyScriptEditor::OnSaveAs(wxCommandEvent& event)
 {
-	wxFileDialog *fileDlg = GetFileSaveDialog(GetPageTiltleClean());
-	if(fileDlg->ShowModal() == wxID_OK)
-	{
-		SavePageToFile(-1, fileDlg->GetPath());
-	}
-	delete fileDlg;
+    wxFileDialog *fileDlg = GetFileSaveDialog(GetPageTiltleClean());
+    if(fileDlg->ShowModal() == wxID_OK)
+    {
+        SavePageToFile(-1, fileDlg->GetPath());
+    }
+    delete fileDlg;
 }
 
 void JxqyScriptEditor::OnSaveAll(wxCommandEvent& event)
 {
-	size_t counts = m_AuiBook->GetPageCount();
-	int cur_sel = m_AuiBook->GetSelection();
-	JxqyStc *stc;
-	for(size_t i = 0; i < counts; i++)
-	{
-		stc = (JxqyStc*) m_AuiBook->GetPage(i);
-		if(stc)
-		{
-			if(stc->GetModify() || stc->FilePathEmpty())
-			{
-				if(stc->FilePathEmpty())
-					m_AuiBook->SetSelection(i);
-				SavePageToFile((int)i);
-			}
-		}
-	}
-	m_AuiBook->SetSelection(cur_sel);
+    size_t counts = m_AuiBook->GetPageCount();
+    int cur_sel = m_AuiBook->GetSelection();
+    JxqyStc *stc;
+    for(size_t i = 0; i < counts; i++)
+    {
+        stc = (JxqyStc*) m_AuiBook->GetPage(i);
+        if(stc)
+        {
+            if(stc->GetModify() || stc->FilePathEmpty())
+            {
+                if(stc->FilePathEmpty())
+                    m_AuiBook->SetSelection(i);
+                SavePageToFile((int)i);
+            }
+        }
+    }
+    m_AuiBook->SetSelection(cur_sel);
 }
 
 void JxqyScriptEditor::OnClose(wxCommandEvent& event)
 {
-	ClosePage();
+    ClosePage();
 }
 
 void JxqyScriptEditor::OnCloseAll(wxCommandEvent& event)
 {
-	CloseAllPage();
+    CloseAllPage();
 }
 
 void JxqyScriptEditor::OnExit(wxCommandEvent& event)
 {
-	this->Close();
+    this->Close();
 }
 void JxqyScriptEditor::OnEdit(wxCommandEvent& event)
 {
-	int id = event.GetId();
-	JxqyStc *stc = GetCurrentStc();
-	if(stc)
-	{
-		if(id == MYID_UNDO)
-			stc->Undo();
-		else if(id == MYID_REDO)
-			stc->Redo();
-		else if(id == MYID_CUT)
-			stc->Cut();
-		else if(id == MYID_COPY)
-			stc->Copy();
-		else if(id == MYID_PASTE)
-			stc->Paste();
-		else if(id == MYID_DELETE)
-			stc->Clear();
-		else if(id == MYID_SELECTALL)
-			stc->SelectAll();
-	}
+    int id = event.GetId();
+    JxqyStc *stc = GetCurrentStc();
+    if(stc)
+    {
+        if(id == MYID_UNDO || id == TOOLBAR_MYID_UNDO)
+            stc->Undo();
+        else if(id == MYID_REDO || id == TOOLBAR_MYID_REDO)
+            stc->Redo();
+        else if(id == MYID_CUT || id == TOOLBAR_MYID_CUT)
+            stc->Cut();
+        else if(id == MYID_COPY || id == TOOLBAR_MYID_COPY)
+            stc->Copy();
+        else if(id == MYID_PASTE || id == TOOLBAR_MYID_PASTE)
+            stc->Paste();
+        else if(id == MYID_DELETE)
+            stc->Clear();
+        else if(id == MYID_SELECTALL)
+            stc->SelectAll();
+    }
 
 }
 void JxqyScriptEditor::OnFontSetting(wxCommandEvent& event)
@@ -559,8 +587,8 @@ bool JxqyScriptEditor::SavePageToFile(int idx, const wxString& path, const wxStr
             }
             else
             {
-            	successed = false;
-            	cancled = true;
+                successed = false;
+                cancled = true;
             }
             delete fileDlg;
         }
@@ -586,15 +614,15 @@ bool JxqyScriptEditor::SavePageToFile(int idx, const wxString& path, const wxStr
     {
         if(veto)
         {
-        	if(cancled)
-			{
-				*veto = true;
-			}
-			else
-			{
-				ret = VOTE_SAVE_ERROR_MESSAGEDIALOG;
-				if(ret == wxNO) *veto = true;
-			}
+            if(cancled)
+            {
+                *veto = true;
+            }
+            else
+            {
+                ret = VOTE_SAVE_ERROR_MESSAGEDIALOG;
+                if(ret == wxNO) *veto = true;
+            }
         }
         else
         {
@@ -602,9 +630,9 @@ bool JxqyScriptEditor::SavePageToFile(int idx, const wxString& path, const wxStr
         }
     }
     else
-	{
-		ResetPageTitleTooltip(idx);
-	}
+    {
+        ResetPageTitleTooltip(idx);
+    }
 
     return successed;
 }
@@ -621,40 +649,40 @@ wxString JxqyScriptEditor::GetPageTiltleClean(int idx)
 }
 void JxqyScriptEditor::ResetPageTitleTooltip(int idx)
 {
-	if(idx == -1) idx = m_AuiBook->GetSelection();
-	JxqyStc *stc = (JxqyStc*)m_AuiBook->GetPage(idx);
-	if(stc)
-	{
-		m_AuiBook->SetPageText(idx, stc->GetFileName());
-		m_AuiBook->SetPageToolTip(idx, stc->GetFilePath());
-	}
+    if(idx == -1) idx = m_AuiBook->GetSelection();
+    JxqyStc *stc = (JxqyStc*)m_AuiBook->GetPage(idx);
+    if(stc)
+    {
+        m_AuiBook->SetPageText(idx, stc->GetFileName());
+        m_AuiBook->SetPageToolTip(idx, stc->GetFilePath());
+    }
 }
 bool JxqyScriptEditor::ClosePage(int idx, bool deletePage)
 {
-	if(idx == -1) idx = m_AuiBook->GetSelection();
-	wxAuiNotebookEvent auievent;
-	auievent.SetSelection(idx);
-	auievent.SetEventType(wxEVT_AUINOTEBOOK_PAGE_CLOSE);
-	//auievent.SetEventObject(this);
-	m_AuiBook->GetEventHandler()->ProcessEvent(auievent);
-	if(auievent.IsAllowed())
-	{
-		if(deletePage)m_AuiBook->DeletePage(idx);
-		return true;
-	}
-	else
-		return false;
+    if(idx == -1) idx = m_AuiBook->GetSelection();
+    wxAuiNotebookEvent auievent;
+    auievent.SetSelection(idx);
+    auievent.SetEventType(wxEVT_AUINOTEBOOK_PAGE_CLOSE);
+    //auievent.SetEventObject(this);
+    m_AuiBook->GetEventHandler()->ProcessEvent(auievent);
+    if(auievent.IsAllowed())
+    {
+        if(deletePage)m_AuiBook->DeletePage(idx);
+        return true;
+    }
+    else
+        return false;
 }
 bool JxqyScriptEditor::CloseAllPage()
 {
-	size_t count = m_AuiBook->GetPageCount();
+    size_t count = m_AuiBook->GetPageCount();
     JxqyStc *stc;
     for(size_t i = 0; i < count; i++)
     {
         stc = (JxqyStc*)m_AuiBook->GetPage(i);
         if(stc)
         {
-        	m_AuiBook->SetSelection(i);
+            m_AuiBook->SetSelection(i);
             if(!ClosePage(i, false)) return false;
         }
     }
@@ -665,71 +693,95 @@ bool JxqyScriptEditor::CloseAllPage()
 
 void JxqyScriptEditor::OnFrameClose(wxCloseEvent& event)
 {
-	if(CloseAllPage()) this->Destroy();
+    if(CloseAllPage()) this->Destroy();
 }
 void JxqyScriptEditor::OnStcChange(wxStyledTextEvent& event)
 {
-	int idx = m_AuiBook->GetPageIndex((wxWindow*)event.GetEventObject());
-	JxqyStc *stc = (JxqyStc*)m_AuiBook->GetPage(idx);
-	if(stc)
-	{
-		SetMenuAndPageState(stc);
-	}
-	event.Skip();
+    int idx = m_AuiBook->GetPageIndex((wxWindow*)event.GetEventObject());
+    JxqyStc *stc = (JxqyStc*)m_AuiBook->GetPage(idx);
+    if(stc)
+    {
+        SetMenuAndPageState(stc);
+    }
+    event.Skip();
 }
 JxqyStc *JxqyScriptEditor::GetCurrentStc()
 {
-	return (JxqyStc*)( m_AuiBook->GetPage(m_AuiBook->GetSelection()) );
+    return (JxqyStc*)( m_AuiBook->GetPage(m_AuiBook->GetSelection()) );
 }
 void JxqyScriptEditor::SetMenuAndPageState(JxqyStc* stc)
 {
-	if(stc == NULL)stc = (JxqyStc *)m_AuiBook->GetPage(m_AuiBook->GetSelection());
-	int idx = m_AuiBook->GetPageIndex(stc);
-	if(stc)
-	{
-		if(stc->IsModified())
-			SetPageChanged(true, idx);
-		else
-			SetPageChanged(false, idx);
-	}
+    if(stc == NULL)stc = (JxqyStc *)m_AuiBook->GetPage(m_AuiBook->GetSelection());
+    int idx = m_AuiBook->GetPageIndex(stc);
+    if(stc)
+    {
+        if(stc->IsModified())
+            SetPageChanged(true, idx);
+        else
+            SetPageChanged(false, idx);
+    }
 
-	size_t num = m_AuiBook->GetPageCount();
-	bool existUnmodifed = false;
-	JxqyStc *tmpstc;
-	for(size_t i = 0; i < num; i++)
-	{
-		tmpstc = (JxqyStc *)m_AuiBook->GetPage(i);
-		if(tmpstc)
-		{
-			if(tmpstc->IsModified())
-			{
-				existUnmodifed = true;
-				break;
-			}
-		}
-	}
+    size_t num = m_AuiBook->GetPageCount();
+    bool existUnmodifed = false;
+    JxqyStc *tmpstc;
+    for(size_t i = 0; i < num; i++)
+    {
+        tmpstc = (JxqyStc *)m_AuiBook->GetPage(i);
+        if(tmpstc)
+        {
+            if(tmpstc->IsModified())
+            {
+                existUnmodifed = true;
+                break;
+            }
+        }
+    }
 
-	m_menuBar->Enable(wxID_SAVE, stc ? stc->IsModified() : false);
-	m_menuBar->Enable(wxID_SAVEAS, (bool)stc);
-	m_menuBar->Enable(MYID_SAVEALL, existUnmodifed);
-	m_menuBar->Enable(MYID_CLOSE, (bool)num);
-	m_menuBar->Enable(MYID_CLOSEALL, (bool)num);
+    m_menuBar->Enable(wxID_SAVE, stc ? stc->IsModified() : false);
+    m_menuBar->Enable(wxID_SAVEAS, (bool)stc);
+    m_menuBar->Enable(MYID_SAVEALL, existUnmodifed);
+    m_menuBar->Enable(MYID_CLOSE, (bool)num);
+    m_menuBar->Enable(MYID_CLOSEALL, (bool)num);
+    m_toolBar->EnableTool(wxID_SAVE, stc ? stc->IsModified() : false);
+    m_toolBar->EnableTool(wxID_SAVEAS, (bool)stc);
+    m_toolBar->EnableTool(TOOLBAR_MYID_SAVEALL, existUnmodifed);
 
-	m_menuBar->Enable(MYID_UNDO, stc ? stc->CanUndo() : false);
-	m_menuBar->Enable(MYID_REDO, stc ? stc->CanRedo() : false);
-	m_menuBar->Enable(MYID_CUT, stc ? stc->HasSelection() : false);
-	m_menuBar->Enable(MYID_COPY, stc ? stc->HasSelection() : false);
-	m_menuBar->Enable(MYID_PASTE, stc ? stc->CanPaste() : false);
-	m_menuBar->Enable(MYID_DELETE, stc ? stc->HasSelection() : false);
-	m_menuBar->Enable(MYID_SELECTALL, (bool)stc);
+    m_menuBar->Enable(MYID_UNDO, stc ? stc->CanUndo() : false);
+    m_menuBar->Enable(MYID_REDO, stc ? stc->CanRedo() : false);
+    m_menuBar->Enable(MYID_CUT, stc ? stc->HasSelection() : false);
+    m_menuBar->Enable(MYID_COPY, stc ? stc->HasSelection() : false);
+    m_menuBar->Enable(MYID_PASTE, stc ? stc->CanPaste() : false);
+    m_menuBar->Enable(MYID_DELETE, stc ? stc->HasSelection() : false);
+    m_menuBar->Enable(MYID_SELECTALL, (bool)stc);
+    m_toolBar->EnableTool(TOOLBAR_MYID_UNDO, stc ? stc->CanUndo() : false);
+    m_toolBar->EnableTool(TOOLBAR_MYID_REDO, stc ? stc->CanRedo() : false);
+    m_toolBar->EnableTool(TOOLBAR_MYID_CUT, stc ? stc->HasSelection() : false);
+    m_toolBar->EnableTool(TOOLBAR_MYID_COPY, stc ? stc->HasSelection() : false);
+    m_toolBar->EnableTool(TOOLBAR_MYID_PASTE, stc ? stc->CanPaste() : false);
 }
 
 void JxqyScriptEditor::OnPageClosed(wxAuiNotebookEvent& event)
 {
-	SetMenuAndPageState();
+    SetMenuAndPageState();
 }
 
 void JxqyScriptEditor::OnPageChanged(wxAuiNotebookEvent& event)
 {
-	SetMenuAndPageState();
+    SetMenuAndPageState();
+}
+
+void JxqyScriptEditor::OpenFile(const wxString& path)
+{
+    int openedIdx = GetOpenedFile(path);
+    if(openedIdx != -1)
+    {
+        m_AuiBook->SetSelection(openedIdx);
+    }
+    else
+    {
+        JxqyStc *stc = GetInitlizedJxqyStc();
+        stc->OpenFromFile(path);
+        m_AuiBook->AddPage(stc, stc->GetFileName(), true);
+        m_AuiBook->SetPageToolTip(m_AuiBook->GetPageIndex(stc), stc->GetFilePath());
+    }
 }

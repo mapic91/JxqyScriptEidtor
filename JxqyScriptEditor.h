@@ -9,6 +9,7 @@
 #include <wx/sizer.h>
 #include <wx/menu.h>
 #include <wx/aui/aui.h>
+#include <wx/toolbar.h>
 #include <wx/frame.h>
 //*)
 
@@ -22,12 +23,16 @@ class JxqyScriptEditor: public wxFrame
 	private:
 
 		//(*Declarations(JxqyScriptEditor)
+		wxToolBarToolBase* ToolBarItem4;
 		wxMenuItem* MenuItem8;
+		wxToolBarToolBase* ToolBarItem9;
 		wxMenuItem* MenuItem7;
 		wxAuiNotebook* m_AuiBook;
+		wxToolBarToolBase* ToolBarItem3;
 		wxMenuItem* MenuItem5;
 		wxMenuItem* MenuItem2;
 		wxMenu* Menu3;
+		wxToolBarToolBase* ToolBarItem10;
 		wxMenuItem* MenuItem1;
 		wxMenuItem* MenuItem4;
 		wxMenuItem* MenuItem14;
@@ -38,18 +43,25 @@ class JxqyScriptEditor: public wxFrame
 		wxMenuItem* MenuItem13;
 		wxMenu* Menu1;
 		wxMenuItem* MenuItem10;
+		wxToolBarToolBase* ToolBarItem6;
 		wxMenuItem* MenuItem12;
+		wxToolBarToolBase* ToolBarItem1;
 		wxMenuItem* MenuItem3;
 		wxMenuItem* MenuItem20;
 		wxMenuItem* MenuItem6;
+		wxToolBar* m_toolBar;
 		wxMenuItem* MenuItem23;
 		wxMenuBar* m_menuBar;
+		wxToolBarToolBase* ToolBarItem5;
+		wxToolBarToolBase* ToolBarItem8;
 		wxMenuItem* MenuItem21;
 		wxMenuItem* MenuItem16;
 		wxMenu* Menu2;
 		wxMenuItem* MenuItem9;
 		wxMenuItem* MenuItem18;
+		wxToolBarToolBase* ToolBarItem2;
 		wxMenuItem* MenuItem19;
+		wxToolBarToolBase* ToolBarItem7;
 		//*)
 
 		//File
@@ -81,6 +93,7 @@ class JxqyScriptEditor: public wxFrame
 		//true - saved to file, false - not saved to file
 		bool SavePageToFile(int idx = -1, const wxString& path = wxEmptyString, const wxString &defaultFileName = wxEmptyString, bool *pageCloseVeto = NULL);
 		wxString GetPageTiltleClean(int idx = -1);
+		void OpenFile(const wxString& path);
 
 
 		void AddNewFile();
@@ -119,6 +132,13 @@ class JxqyScriptEditor: public wxFrame
 		static const long MYID_JXQY2;
 		static const long MYID_YYCS;
 		static const long MYID_XJXQY;
+		static const long TOOLBAR_MYID_SAVEALL;
+		static const long TOOLBAR_MYID_UNDO;
+		static const long TOOLBAR_MYID_REDO;
+		static const long TOOLBAR_MYID_CUT;
+		static const long TOOLBAR_MYID_COPY;
+		static const long TOOLBAR_MYID_PASTE;
+		static const long ID_TOOLBAR1;
 		//*)
 
 	public:

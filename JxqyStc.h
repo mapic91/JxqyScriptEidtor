@@ -6,12 +6,14 @@
 #include <map>
 
 class JxqyScriptEditor;
+typedef std::map<wxString, wxString>::iterator FunctionMapIterator;
+
 
 static int CmpStringNoCase(const wxString& first, const wxString& second)
 {
 	return first.CmpNoCase(second);
 }
-typedef std::map<wxString, wxString>::iterator FunctionMapIterator;
+
 class JxqyStc: public wxStyledTextCtrl
 {
 public:

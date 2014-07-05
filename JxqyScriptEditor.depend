@@ -1692,13 +1692,14 @@
 1384175917 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\univ\theme.h
 	"wx/string.h"
 
-1404547947 e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.h
+1404568555 e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.h
 	"JxqyStc.h"
 	"ConfigManager.h"
 	"wx/filedlg.h"
 	<wx/sizer.h>
 	<wx/menu.h>
 	<wx/aui/aui.h>
+	<wx/toolbar.h>
 	<wx/frame.h>
 
 1384175917 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\sizer.h
@@ -2212,7 +2213,7 @@
 	"wx/icon.h"
 	"wx/aui/auibook.h"
 
-1353751060 source:e:\programmingworkshop\jxqyscripteditor\resource.rc
+1404567676 source:e:\programmingworkshop\jxqyscripteditor\resource.rc
 	"wx/msw/wx.rc"
 
 1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\msw\wx.rc
@@ -2232,16 +2233,19 @@
 
 1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\msw\rcdefs.h
 
-1404547947 source:e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.cpp
+1404568766 source:e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.cpp
 	"JxqyScriptEditor.h"
 	"helperFun.h"
 	"ColourSettingDialog.h"
 	"wx/msgdlg.h"
 	"wx/fontdlg.h"
 	"wx/log.h"
+	"wx/app.h"
+	<wx/bitmap.h>
+	<wx/image.h>
 	<wx/string.h>
 
-1404541370 e:\programmingworkshop\jxqyscripteditor\jxqystc.h
+1404563154 e:\programmingworkshop\jxqyscripteditor\jxqystc.h
 	"wx/stc/stc.h"
 	<map>
 
@@ -2387,7 +2391,7 @@
 	<os2.h>
 	<pmstddlg.h>
 
-1404541370 source:e:\programmingworkshop\jxqyscripteditor\jxqystc.cpp
+1404566770 source:e:\programmingworkshop\jxqyscripteditor\jxqystc.cpp
 	"JxqyStc.h"
 	"wx/textfile.h"
 	"wx/msgdlg.h"
@@ -2854,4 +2858,10 @@
 	"wx/colour.h"
 
 1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\lib\gcc_lib\mswud\wx\setup.h
+
+1404556377 e:\programmingworkshop\jxqyscripteditor\resource.h
+
+1404556465 source:e:\programmingworkshop\jxqyscripteditor\resource.cpp
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\lib\gcc_lib\mswu\wx\setup.h
 
