@@ -39,6 +39,13 @@ const long JxqyScriptEditor::ID_AUINOTEBOOK1 = wxNewId();
 const long JxqyScriptEditor::MYID_SAVEALL = wxNewId();
 const long JxqyScriptEditor::MYID_CLOSE = wxNewId();
 const long JxqyScriptEditor::MYID_CLOSEALL = wxNewId();
+const long JxqyScriptEditor::MYID_UNDO = wxNewId();
+const long JxqyScriptEditor::MYID_REDO = wxNewId();
+const long JxqyScriptEditor::MYID_CUT = wxNewId();
+const long JxqyScriptEditor::MYID_COPY = wxNewId();
+const long JxqyScriptEditor::MYID_PASTE = wxNewId();
+const long JxqyScriptEditor::MYID_DELETE = wxNewId();
+const long JxqyScriptEditor::MYID_SELECTALL = wxNewId();
 const long JxqyScriptEditor::MYID_FONTSETTING = wxNewId();
 const long JxqyScriptEditor::MYID_COLOURSETTING = wxNewId();
 const long JxqyScriptEditor::MYID_WORDWRAP = wxNewId();
@@ -62,6 +69,13 @@ BEGIN_EVENT_TABLE(JxqyScriptEditor,wxFrame)
     EVT_MENU(MYID_CLOSE, JxqyScriptEditor::OnClose)
     EVT_MENU(MYID_CLOSEALL, JxqyScriptEditor::OnCloseAll)
     EVT_MENU(wxID_EXIT, JxqyScriptEditor::OnExit)
+    EVT_MENU(MYID_UNDO, JxqyScriptEditor::OnEdit)
+    EVT_MENU(MYID_REDO, JxqyScriptEditor::OnEdit)
+    EVT_MENU(MYID_CUT, JxqyScriptEditor::OnEdit)
+    EVT_MENU(MYID_COPY, JxqyScriptEditor::OnEdit)
+    EVT_MENU(MYID_PASTE, JxqyScriptEditor::OnEdit)
+    EVT_MENU(MYID_DELETE, JxqyScriptEditor::OnEdit)
+    EVT_MENU(MYID_SELECTALL, JxqyScriptEditor::OnEdit)
     EVT_MENU(MYID_FONTSETTING, JxqyScriptEditor::OnFontSetting)
     EVT_MENU(MYID_COLOURSETTING, JxqyScriptEditor::OnColourSetting)
     EVT_MENU(MYID_WORDWRAP, JxqyScriptEditor::OnWordWrap)
@@ -102,6 +116,23 @@ JxqyScriptEditor::JxqyScriptEditor(wxWindow* parent,wxWindowID id,const wxPoint&
     MenuItem8 = new wxMenuItem(Menu1, wxID_EXIT, _T("ÍË³ö\tAlt+F4"), wxEmptyString, wxITEM_NORMAL);
     Menu1->Append(MenuItem8);
     m_menuBar->Append(Menu1, _T("ÎÄ¼þ"));
+    Menu3 = new wxMenu();
+    MenuItem17 = new wxMenuItem(Menu3, MYID_UNDO, _T("³·Ïú\tCtrl+Z"), wxEmptyString, wxITEM_NORMAL);
+    Menu3->Append(MenuItem17);
+    MenuItem18 = new wxMenuItem(Menu3, MYID_REDO, _T("»Ö¸´\tCtrl+Y"), wxEmptyString, wxITEM_NORMAL);
+    Menu3->Append(MenuItem18);
+    Menu3->AppendSeparator();
+    MenuItem19 = new wxMenuItem(Menu3, MYID_CUT, _T("¼ôÇÐ\tCtrl+X"), wxEmptyString, wxITEM_NORMAL);
+    Menu3->Append(MenuItem19);
+    MenuItem20 = new wxMenuItem(Menu3, MYID_COPY, _T("¸´ÖÆ\tCtrl+C"), wxEmptyString, wxITEM_NORMAL);
+    Menu3->Append(MenuItem20);
+    MenuItem21 = new wxMenuItem(Menu3, MYID_PASTE, _T("Õ³Ìù\tCtrl+V"), wxEmptyString, wxITEM_NORMAL);
+    Menu3->Append(MenuItem21);
+    MenuItem22 = new wxMenuItem(Menu3, MYID_DELETE, _T("É¾³ý\tDEL"), wxEmptyString, wxITEM_NORMAL);
+    Menu3->Append(MenuItem22);
+    MenuItem23 = new wxMenuItem(Menu3, MYID_SELECTALL, _T("È«Ñ¡\tCtrl+A"), wxEmptyString, wxITEM_NORMAL);
+    Menu3->Append(MenuItem23);
+    m_menuBar->Append(Menu3, _T("±à¼­"));
     Menu2 = new wxMenu();
     MenuItem9 = new wxMenuItem(Menu2, MYID_FONTSETTING, _T("×ÖÌåÉèÖÃ..."), wxEmptyString, wxITEM_NORMAL);
     Menu2->Append(MenuItem9);
@@ -127,6 +158,8 @@ JxqyScriptEditor::JxqyScriptEditor(wxWindow* parent,wxWindowID id,const wxPoint&
     Layout();
     Center();
 
+    Connect(ID_AUINOTEBOOK1,wxEVT_COMMAND_AUINOTEBOOK_PAGE_CLOSED,(wxObjectEventFunction)&JxqyScriptEditor::OnPageClosed);
+    Connect(ID_AUINOTEBOOK1,wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGED,(wxObjectEventFunction)&JxqyScriptEditor::OnPageChanged);
     Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&JxqyScriptEditor::OnFrameClose);
     //*)
     Init();
@@ -159,13 +192,11 @@ JxqyScriptEditor::~JxqyScriptEditor()
 }
 void JxqyScriptEditor::Init()
 {
-
     m_AuiBook->Bind(wxEVT_AUINOTEBOOK_PAGE_CLOSE, &JxqyScriptEditor::OnPageClose, this);
 }
 
 void JxqyScriptEditor::Uninit()
 {
-
     m_AuiBook->Unbind(wxEVT_AUINOTEBOOK_PAGE_CLOSE, &JxqyScriptEditor::OnPageClose, this);
 }
 
@@ -247,7 +278,29 @@ void JxqyScriptEditor::OnExit(wxCommandEvent& event)
 {
 	this->Close();
 }
+void JxqyScriptEditor::OnEdit(wxCommandEvent& event)
+{
+	int id = event.GetId();
+	JxqyStc *stc = GetCurrentStc();
+	if(stc)
+	{
+		if(id == MYID_UNDO)
+			stc->Undo();
+		else if(id == MYID_REDO)
+			stc->Redo();
+		else if(id == MYID_CUT)
+			stc->Cut();
+		else if(id == MYID_COPY)
+			stc->Copy();
+		else if(id == MYID_PASTE)
+			stc->Paste();
+		else if(id == MYID_DELETE)
+			stc->Clear();
+		else if(id == MYID_SELECTALL)
+			stc->SelectAll();
+	}
 
+}
 void JxqyScriptEditor::OnFontSetting(wxCommandEvent& event)
 {
     wxFontData data;
@@ -613,4 +666,70 @@ bool JxqyScriptEditor::CloseAllPage()
 void JxqyScriptEditor::OnFrameClose(wxCloseEvent& event)
 {
 	if(CloseAllPage()) this->Destroy();
+}
+void JxqyScriptEditor::OnStcChange(wxStyledTextEvent& event)
+{
+	int idx = m_AuiBook->GetPageIndex((wxWindow*)event.GetEventObject());
+	JxqyStc *stc = (JxqyStc*)m_AuiBook->GetPage(idx);
+	if(stc)
+	{
+		SetMenuAndPageState(stc);
+	}
+	event.Skip();
+}
+JxqyStc *JxqyScriptEditor::GetCurrentStc()
+{
+	return (JxqyStc*)( m_AuiBook->GetPage(m_AuiBook->GetSelection()) );
+}
+void JxqyScriptEditor::SetMenuAndPageState(JxqyStc* stc)
+{
+	if(stc == NULL)stc = (JxqyStc *)m_AuiBook->GetPage(m_AuiBook->GetSelection());
+	int idx = m_AuiBook->GetPageIndex(stc);
+	if(stc)
+	{
+		if(stc->IsModified())
+			SetPageChanged(true, idx);
+		else
+			SetPageChanged(false, idx);
+	}
+
+	size_t num = m_AuiBook->GetPageCount();
+	bool existUnmodifed = false;
+	JxqyStc *tmpstc;
+	for(size_t i = 0; i < num; i++)
+	{
+		tmpstc = (JxqyStc *)m_AuiBook->GetPage(i);
+		if(tmpstc)
+		{
+			if(tmpstc->IsModified())
+			{
+				existUnmodifed = true;
+				break;
+			}
+		}
+	}
+
+	m_menuBar->Enable(wxID_SAVE, stc ? stc->IsModified() : false);
+	m_menuBar->Enable(wxID_SAVEAS, (bool)stc);
+	m_menuBar->Enable(MYID_SAVEALL, existUnmodifed);
+	m_menuBar->Enable(MYID_CLOSE, (bool)num);
+	m_menuBar->Enable(MYID_CLOSEALL, (bool)num);
+
+	m_menuBar->Enable(MYID_UNDO, stc ? stc->CanUndo() : false);
+	m_menuBar->Enable(MYID_REDO, stc ? stc->CanRedo() : false);
+	m_menuBar->Enable(MYID_CUT, stc ? stc->HasSelection() : false);
+	m_menuBar->Enable(MYID_COPY, stc ? stc->HasSelection() : false);
+	m_menuBar->Enable(MYID_PASTE, stc ? stc->CanPaste() : false);
+	m_menuBar->Enable(MYID_DELETE, stc ? stc->HasSelection() : false);
+	m_menuBar->Enable(MYID_SELECTALL, (bool)stc);
+}
+
+void JxqyScriptEditor::OnPageClosed(wxAuiNotebookEvent& event)
+{
+	SetMenuAndPageState();
+}
+
+void JxqyScriptEditor::OnPageChanged(wxAuiNotebookEvent& event)
+{
+	SetMenuAndPageState();
 }

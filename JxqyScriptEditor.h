@@ -27,21 +27,29 @@ class JxqyScriptEditor: public wxFrame
 		wxAuiNotebook* m_AuiBook;
 		wxMenuItem* MenuItem5;
 		wxMenuItem* MenuItem2;
+		wxMenu* Menu3;
 		wxMenuItem* MenuItem1;
 		wxMenuItem* MenuItem4;
 		wxMenuItem* MenuItem14;
 		wxMenuItem* MenuItem11;
 		wxMenuItem* MenuItem15;
+		wxMenuItem* MenuItem22;
+		wxMenuItem* MenuItem17;
 		wxMenuItem* MenuItem13;
 		wxMenu* Menu1;
 		wxMenuItem* MenuItem10;
 		wxMenuItem* MenuItem12;
 		wxMenuItem* MenuItem3;
+		wxMenuItem* MenuItem20;
 		wxMenuItem* MenuItem6;
+		wxMenuItem* MenuItem23;
 		wxMenuBar* m_menuBar;
+		wxMenuItem* MenuItem21;
 		wxMenuItem* MenuItem16;
 		wxMenu* Menu2;
 		wxMenuItem* MenuItem9;
+		wxMenuItem* MenuItem18;
+		wxMenuItem* MenuItem19;
 		//*)
 
 		//File
@@ -53,6 +61,8 @@ class JxqyScriptEditor: public wxFrame
 		void OnClose(wxCommandEvent &event);
 		void OnCloseAll(wxCommandEvent &event);
 		void OnExit(wxCommandEvent &event);
+		//Edit
+		void OnEdit(wxCommandEvent &event);
 		//Setting
 		void OnFontSetting(wxCommandEvent &event);
 		void OnColourSetting(wxCommandEvent &event);
@@ -78,6 +88,8 @@ class JxqyScriptEditor: public wxFrame
 		void SetJxqyStcStyleFromSetting(JxqyStc *stc);
 		void ResetOpenedPageStyle();
 		void ResetPageTitleTooltip(int idx = -1);
+		JxqyStc* GetCurrentStc();
+		void SetMenuAndPageState(JxqyStc *stc = NULL);
 
 		wxFileDialog* GetFileSaveDialog(const wxString& defaultFileName = wxEmptyString);
 		wxFileDialog* GetFileOpenDialog();
@@ -92,6 +104,13 @@ class JxqyScriptEditor: public wxFrame
 		static const long MYID_SAVEALL;
 		static const long MYID_CLOSE;
 		static const long MYID_CLOSEALL;
+		static const long MYID_UNDO;
+		static const long MYID_REDO;
+		static const long MYID_CUT;
+		static const long MYID_COPY;
+		static const long MYID_PASTE;
+		static const long MYID_DELETE;
+		static const long MYID_SELECTALL;
 		static const long MYID_FONTSETTING;
 		static const long MYID_COLOURSETTING;
 		static const long MYID_WORDWRAP;
@@ -106,8 +125,10 @@ class JxqyScriptEditor: public wxFrame
 
 		//(*Handlers(JxqyScriptEditor)
 		void OnFrameClose(wxCloseEvent& event);
+		void OnPageClosed(wxAuiNotebookEvent& event);
+		void OnPageChanged(wxAuiNotebookEvent& event);
 		//*)
-
+		void OnStcChange(wxStyledTextEvent &event);
 
 	private:
 		ConfigManager m_cfg;

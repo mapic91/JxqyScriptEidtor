@@ -2,8 +2,9 @@
 #include "wx/textfile.h"
 #include "wx/msgdlg.h"
 #include "wx/filename.h"
+#include "JxqyScriptEditor.h"
 
-JxqyStc::JxqyStc(wxWindow *parent,
+JxqyStc::JxqyStc(JxqyScriptEditor *parent,
                  wxWindowID id,
                  const wxPoint &pos,
                  const wxSize &size,
@@ -37,6 +38,7 @@ JxqyStc::JxqyStc(wxWindow *parent,
     this->Bind(wxEVT_STC_CHARADDED, &JxqyStc::OnCharAdded, this);
     this->Bind(wxEVT_MOTION, &JxqyStc::OnMouseMove, this);
     this->Bind(wxEVT_STC_AUTOCOMP_SELECTION, &JxqyStc::OnAutocompSelection, this);
+    this->Bind(wxEVT_STC_UPDATEUI, &JxqyScriptEditor::OnStcChange, (JxqyScriptEditor*)GetParent());
 }
 
 JxqyStc::~JxqyStc()
@@ -44,6 +46,7 @@ JxqyStc::~JxqyStc()
     this->Unbind(wxEVT_STC_CHARADDED, &JxqyStc::OnCharAdded, this);
     this->Unbind(wxEVT_MOTION, &JxqyStc::OnMouseMove, this);
     this->Unbind(wxEVT_STC_AUTOCOMP_SELECTION, &JxqyStc::OnAutocompSelection, this);
+    this->Unbind(wxEVT_STC_UPDATEUI, &JxqyScriptEditor::OnStcChange, (JxqyScriptEditor*)GetParent());
     //wxMessageBox(wxT("JxqyStc destructed"));
 }
 

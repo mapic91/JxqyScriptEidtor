@@ -9,6 +9,8 @@
 			<object class="sizeritem">
 				<object class="wxAuiNotebook" name="ID_AUINOTEBOOK1" variable="m_AuiBook" member="yes">
 					<style>wxAUI_NB_CLOSE_ON_ALL_TABS|wxAUI_NB_DEFAULT_STYLE</style>
+					<handler function="OnPageClosed" entry="EVT_AUINOTEBOOK_PAGE_CLOSED" />
+					<handler function="OnPageChanged" entry="EVT_AUINOTEBOOK_PAGE_CHANGED" />
 				</object>
 				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 				<option>1</option>
@@ -50,6 +52,38 @@
 				<object class="wxMenuItem" name="wxID_EXIT" variable="MenuItem8" member="yes">
 					<label>退出</label>
 					<accel>Alt+F4</accel>
+				</object>
+			</object>
+			<object class="wxMenu" variable="Menu3" member="yes">
+				<label>编辑</label>
+				<object class="wxMenuItem" name="MYID_UNDO" variable="MenuItem17" member="yes">
+					<label>撤销</label>
+					<accel>Ctrl+Z</accel>
+				</object>
+				<object class="wxMenuItem" name="MYID_REDO" variable="MenuItem18" member="yes">
+					<label>恢复</label>
+					<accel>Ctrl+Y</accel>
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="MYID_CUT" variable="MenuItem19" member="yes">
+					<label>剪切</label>
+					<accel>Ctrl+X</accel>
+				</object>
+				<object class="wxMenuItem" name="MYID_COPY" variable="MenuItem20" member="yes">
+					<label>复制</label>
+					<accel>Ctrl+C</accel>
+				</object>
+				<object class="wxMenuItem" name="MYID_PASTE" variable="MenuItem21" member="yes">
+					<label>粘贴</label>
+					<accel>Ctrl+V</accel>
+				</object>
+				<object class="wxMenuItem" name="MYID_DELETE" variable="MenuItem22" member="yes">
+					<label>删除</label>
+					<accel>DEL</accel>
+				</object>
+				<object class="wxMenuItem" name="MYID_SELECTALL" variable="MenuItem23" member="yes">
+					<label>全选</label>
+					<accel>Ctrl+A</accel>
 				</object>
 			</object>
 			<object class="wxMenu" variable="Menu2" member="yes">
