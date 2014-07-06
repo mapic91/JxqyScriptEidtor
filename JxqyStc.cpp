@@ -34,9 +34,11 @@ JxqyStc::JxqyStc(JxqyScriptEditor *parent,
 
     //Settings
     m_showCallTip = true;
+    m_autoCompSelected = false;
     this->Bind(wxEVT_STC_CHARADDED, &JxqyStc::OnCharAdded, this);
     this->Bind(wxEVT_MOTION, &JxqyStc::OnMouseMove, this);
     this->Bind(wxEVT_STC_AUTOCOMP_SELECTION, &JxqyStc::OnAutocompSelection, this);
+    this->Bind(wxEVT_STC_CHANGE, &JxqyStc::OnStcChange, this);
     this->Bind(wxEVT_STC_UPDATEUI, &JxqyScriptEditor::OnStcChange, (JxqyScriptEditor*)GetParent());
 }
 
@@ -45,6 +47,7 @@ JxqyStc::~JxqyStc()
     this->Unbind(wxEVT_STC_CHARADDED, &JxqyStc::OnCharAdded, this);
     this->Unbind(wxEVT_MOTION, &JxqyStc::OnMouseMove, this);
     this->Unbind(wxEVT_STC_AUTOCOMP_SELECTION, &JxqyStc::OnAutocompSelection, this);
+   // this->Unbind(wxEVT_STC_CHANGE, &JxqyStc::OnStcChange, this);
     this->Unbind(wxEVT_STC_UPDATEUI, &JxqyScriptEditor::OnStcChange, (JxqyScriptEditor*)GetParent());
     //wxMessageBox(wxT("JxqyStc destructed"));
 }
@@ -85,6 +88,8 @@ void JxqyStc::OnCharAdded(wxStyledTextEvent &event)
             break;
     if(hintLen > 1)
     {
+    	m_autoCompSearchLength = hintLen;
+
         wxString compList, tmpStr;
         wxString findStr = lineStr.Mid(lineLen - hintLen);
         size_t len = m_functionKeyword.Length();
@@ -104,6 +109,18 @@ void JxqyStc::OnCharAdded(wxStyledTextEvent &event)
         if(!AutoCompActive() && !compList.IsEmpty())
             AutoCompShow(hintLen, compList);
     }
+}
+void JxqyStc::OnStcChange(wxStyledTextEvent& event)
+{
+	if(m_showCallTip && m_autoCompSelected)
+	{
+		m_autoCompSelected = false;
+		wxString descrip = FindFunctionCallTip(m_lastCallTipWord);
+		if(!descrip.IsEmpty())
+		{
+			ShowFunctionCallTip(GetCurrentPos(),descrip);
+		}
+	}
 }
 
 void JxqyStc::SetFunctionKeywordFromFile(const wxString &filename)
@@ -198,6 +215,7 @@ void JxqyStc::OnMouseMove(wxMouseEvent &event)
         {
             if(word != m_lastCallTipWord || !CallTipActive())
             {
+            	m_lastCallTipWord = word;
                 wxString descip = FindFunctionCallTip(word);
                 if(!descip.IsEmpty())
                 {
@@ -211,19 +229,9 @@ void JxqyStc::OnMouseMove(wxMouseEvent &event)
 }
 void JxqyStc::OnAutocompSelection(wxStyledTextEvent& event)
 {
-    wxString key = event.GetText();
-    int acstart = AutoCompPosStart();
-    int curpos = event.GetPosition();
-    //DeleteRange(curpos, acstart - curpos);
-//    InsertText(curpos, key);
-//    GotoPos(curpos + key.Length());
-//   wxMessageBox(wxString::Format("%d, %d", acstart, event.GetLength()));
-	AutoCompComplete();
-    wxString descip = FindFunctionCallTip(key);
-    if(!descip.IsEmpty())
-    {
-        ShowFunctionCallTip(curpos + key.Length(), descip);
-    }
+    m_lastCallTipWord = event.GetText();
+    m_autoCompSelected = true;
+    m_autoCompBeginPos = event.GetPosition();
 }
 
 wxString JxqyStc::StripBraceContensAndNonalpha(const wxString& word)
@@ -301,7 +309,6 @@ wxString JxqyStc::FindFunctionCallTip(const wxString& keyword)
 }
 void JxqyStc::ShowFunctionCallTip(int pos, const wxString& word)
 {
-    m_lastCallTipWord = word;
     CallTipCancel();//Cancel calltip otherwise calltip window won't work properly
     CallTipShow(pos, word);
 }

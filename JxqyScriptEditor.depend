@@ -2247,7 +2247,7 @@
 	<wx/image.h>
 	<wx/string.h>
 
-1404615909 e:\programmingworkshop\jxqyscripteditor\jxqystc.h
+1404619343 e:\programmingworkshop\jxqyscripteditor\jxqystc.h
 	"wx/stc/stc.h"
 	<map>
 
@@ -2393,7 +2393,7 @@
 	<os2.h>
 	<pmstddlg.h>
 
-1404566770 source:e:\programmingworkshop\jxqyscripteditor\jxqystc.cpp
+1404618976 source:e:\programmingworkshop\jxqyscripteditor\jxqystc.cpp
 	"JxqyStc.h"
 	"wx/textfile.h"
 	"wx/msgdlg.h"

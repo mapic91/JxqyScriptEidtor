@@ -113,9 +113,13 @@ private:
 	void ShowFunctionCallTip(int pos, const wxString &word);
 
     void OnCharAdded(wxStyledTextEvent &event);
+    void OnStcChange(wxStyledTextEvent &event);
     wxString m_functionKeyword;
     wxString m_lastCallTipWord;
     std::map<wxString, wxString> m_functionDescribeMap;
+    bool m_autoCompSelected;
+    int m_autoCompBeginPos;
+    int m_autoCompSearchLength;
 
     wxString m_filePath;
 
