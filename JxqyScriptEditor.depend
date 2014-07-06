@@ -1,12 +1,13 @@
 # depslib dependency file v1.0
-1404391342 source:e:\programmingworkshop\jxqyscripteditor\app.cpp
+1404612631 source:e:\programmingworkshop\jxqyscripteditor\app.cpp
 	"wx_pch.h"
 	"App.h"
+	"IPC.cpp"
 	<wx/image.h>
-	"JxqyScriptEditor.h"
+	"wx/log.h"
 	<wx/image.h>
 
-1386829465 e:\programmingworkshop\jxqyscripteditor\app.h
+1404611379 e:\programmingworkshop\jxqyscripteditor\app.h
 	<wx/app.h>
 
 1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\app.h
@@ -1692,10 +1693,11 @@
 1384175917 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\univ\theme.h
 	"wx/string.h"
 
-1404568555 e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.h
+1404612684 e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.h
 	"JxqyStc.h"
 	"ConfigManager.h"
 	"wx/filedlg.h"
+	"wx/dnd.h"
 	<wx/sizer.h>
 	<wx/menu.h>
 	<wx/aui/aui.h>
@@ -2233,7 +2235,7 @@
 
 1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\msw\rcdefs.h
 
-1404568766 source:e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.cpp
+1404612776 source:e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.cpp
 	"JxqyScriptEditor.h"
 	"helperFun.h"
 	"ColourSettingDialog.h"
@@ -2245,7 +2247,7 @@
 	<wx/image.h>
 	<wx/string.h>
 
-1404563154 e:\programmingworkshop\jxqyscripteditor\jxqystc.h
+1404615909 e:\programmingworkshop\jxqyscripteditor\jxqystc.h
 	"wx/stc/stc.h"
 	<map>
 
@@ -2864,4 +2866,58 @@
 1404556465 source:e:\programmingworkshop\jxqyscripteditor\resource.cpp
 
 1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\lib\gcc_lib\mswu\wx\setup.h
+
+1404610237 e:\programmingworkshop\jxqyscripteditor\ipc.h
+	"wx/ipc.h"
+	"JxqyScriptEditor.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\ipc.h
+	"wx/dde.h"
+	"wx/sckipc.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\dde.h
+	"wx/list.h"
+	"wx/msw/dde.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\msw\dde.h
+	"wx/ipcbase.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\ipcbase.h
+	"wx/defs.h"
+	"wx/object.h"
+	"wx/string.h"
+
+1384175917 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\sckipc.h
+	"wx/defs.h"
+	"wx/ipcbase.h"
+	"wx/socket.h"
+	"wx/sckstrm.h"
+	"wx/datstrm.h"
+
+1384175917 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\socket.h
+	"wx/defs.h"
+	"wx/event.h"
+	"wx/sckaddr.h"
+	"wx/list.h"
+
+1384175917 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\sckaddr.h
+	"wx/defs.h"
+	"wx/string.h"
+
+1384175917 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\sckstrm.h
+	"wx/stream.h"
+	"wx/socket.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\datstrm.h
+	"wx/stream.h"
+	"wx/longlong.h"
+	"wx/convauto.h"
+
+1404609518 source:e:\programmingworkshop\jxqyscripteditor\ipc.cpp
+	"IPC.h"
+	"wx/msgdlg.h"
+
+1404612995 e:\programmingworkshop\jxqyscripteditor\ipc.cpp
+	"wx/ipc.h"
+	"JxqyScriptEditor.h"
 

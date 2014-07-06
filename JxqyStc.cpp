@@ -34,7 +34,6 @@ JxqyStc::JxqyStc(JxqyScriptEditor *parent,
 
     //Settings
     m_showCallTip = true;
-
     this->Bind(wxEVT_STC_CHARADDED, &JxqyStc::OnCharAdded, this);
     this->Bind(wxEVT_MOTION, &JxqyStc::OnMouseMove, this);
     this->Bind(wxEVT_STC_AUTOCOMP_SELECTION, &JxqyStc::OnAutocompSelection, this);
@@ -86,21 +85,21 @@ void JxqyStc::OnCharAdded(wxStyledTextEvent &event)
             break;
     if(hintLen > 1)
     {
-    	wxString compList, tmpStr;
-    	wxString findStr = lineStr.Mid(lineLen - hintLen);
-		size_t len = m_functionKeyword.Length();
-		size_t findEnd;
-    	for(size_t findBeg = 0; findBeg < len;)
-		{
-			findEnd = m_functionKeyword.find(wxChar(' '), findBeg);
-			tmpStr = m_functionKeyword.Mid(findBeg, findEnd - findBeg);
-			if(tmpStr.Length() >= findStr.Length() &&
-				!findStr.CmpNoCase(tmpStr.Mid(0, findStr.Length())))
-			{
-				compList += (tmpStr + wxT(" "));
-			}
-			findBeg = findEnd + 1;
-		}
+        wxString compList, tmpStr;
+        wxString findStr = lineStr.Mid(lineLen - hintLen);
+        size_t len = m_functionKeyword.Length();
+        size_t findEnd;
+        for(size_t findBeg = 0; findBeg < len;)
+        {
+            findEnd = m_functionKeyword.find(wxChar(' '), findBeg);
+            tmpStr = m_functionKeyword.Mid(findBeg, findEnd - findBeg);
+            if(tmpStr.Length() >= findStr.Length() &&
+                    !findStr.CmpNoCase(tmpStr.Mid(0, findStr.Length())))
+            {
+                compList += (tmpStr + wxT(" "));
+            }
+            findBeg = findEnd + 1;
+        }
 
         if(!AutoCompActive() && !compList.IsEmpty())
             AutoCompShow(hintLen, compList);
@@ -194,17 +193,15 @@ void JxqyStc::OnMouseMove(wxMouseEvent &event)
         int style = GetStyleAt(pos);
         wxString word = GetWordAtPos(pos);
         if(style == wxSTC_JXQY_FUNCTION &&
-        !word.IsEmpty()
+                !word.IsEmpty()
           )
         {
             if(word != m_lastCallTipWord || !CallTipActive())
             {
-                wxString descip;
-                FunctionMapIterator it = m_functionDescribeMap.find(word);
-                if(it != m_functionDescribeMap.end())
+                wxString descip = FindFunctionCallTip(word);
+                if(!descip.IsEmpty())
                 {
-                    m_lastCallTipWord = word;
-                    ShowFunctionCallTip(pos, it->second);
+                    ShowFunctionCallTip(pos, descip);
                 }
             }
         }
@@ -214,7 +211,19 @@ void JxqyStc::OnMouseMove(wxMouseEvent &event)
 }
 void JxqyStc::OnAutocompSelection(wxStyledTextEvent& event)
 {
-    //empty
+    wxString key = event.GetText();
+    int acstart = AutoCompPosStart();
+    int curpos = event.GetPosition();
+    //DeleteRange(curpos, acstart - curpos);
+//    InsertText(curpos, key);
+//    GotoPos(curpos + key.Length());
+//   wxMessageBox(wxString::Format("%d, %d", acstart, event.GetLength()));
+	AutoCompComplete();
+    wxString descip = FindFunctionCallTip(key);
+    if(!descip.IsEmpty())
+    {
+        ShowFunctionCallTip(curpos + key.Length(), descip);
+    }
 }
 
 wxString JxqyStc::StripBraceContensAndNonalpha(const wxString& word)
@@ -280,8 +289,19 @@ wxString JxqyStc::GetWordAtPos(int pos)
     }
     return word;
 }
+wxString JxqyStc::FindFunctionCallTip(const wxString& keyword)
+{
+    FunctionMapIterator it = m_functionDescribeMap.find(keyword);
+    if(it != m_functionDescribeMap.end())
+    {
+        return it->second;
+    }
+    else
+        return wxEmptyString;
+}
 void JxqyStc::ShowFunctionCallTip(int pos, const wxString& word)
 {
+    m_lastCallTipWord = word;
     CallTipCancel();//Cancel calltip otherwise calltip window won't work properly
     CallTipShow(pos, word);
 }
@@ -304,33 +324,33 @@ void JxqyStc::ShowLineNumber(bool show)
 bool JxqyStc::OpenFromFile(const wxString& filePath)
 {
     if(LoadFile(filePath))
-	{
-		m_filePath = filePath;
-		return true;
-	}
-	else
-		return false;
+    {
+        m_filePath = filePath;
+        return true;
+    }
+    else
+        return false;
 }
 
 bool JxqyStc::Save()
 {
-	if(m_filePath.IsEmpty()) return false;
-	return SaveFile(m_filePath);
+    if(m_filePath.IsEmpty()) return false;
+    return SaveFile(m_filePath);
 }
 
 bool JxqyStc::SaveToFile(const wxString& filePath)
 {
-	if(SaveFile(filePath))
-	{
-		m_filePath = filePath;
-		return true;
-	}
-	else
-		return false;
+    if(SaveFile(filePath))
+    {
+        m_filePath = filePath;
+        return true;
+    }
+    else
+        return false;
 }
 
 wxString JxqyStc::GetFileName()
 {
-	wxFileName fn(m_filePath);
-	return fn.GetFullName();
+    wxFileName fn(m_filePath);
+    return fn.GetFullName();
 }

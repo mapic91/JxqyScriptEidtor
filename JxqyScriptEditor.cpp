@@ -195,10 +195,9 @@ JxqyScriptEditor::JxqyScriptEditor(wxWindow* parent,wxWindowID id,const wxPoint&
     //*)
 
     Init();
-    if(wxTheApp && wxTheApp->argc > 1)
-    {
-        OpenFile(wxTheApp->argv[1]);
-    }
+
+    MyFileDrop *drop = new MyFileDrop(this);
+    SetDropTarget(drop);
 
     m_menuBar->Check(MYID_WORDWRAP, m_cfg.IsWordWrap());
     m_menuBar->Check(MYID_FUNHELP, m_cfg.IsFunctionHelpShow());
@@ -784,4 +783,14 @@ void JxqyScriptEditor::OpenFile(const wxString& path)
         m_AuiBook->AddPage(stc, stc->GetFileName(), true);
         m_AuiBook->SetPageToolTip(m_AuiBook->GetPageIndex(stc), stc->GetFilePath());
     }
+}
+bool MyFileDrop::OnDropFiles(wxCoord x, wxCoord y, const wxArrayString& filenames)
+{
+    if(mainfram == NULL) return false;
+
+    for(size_t i = 0; i < filenames.Count(); i++)
+	{
+		mainfram->OpenFile(filenames[i]);
+	}
+	return true;
 }

@@ -51,6 +51,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="0" />
 				<Option compiler="gcc" />
+				<Option parameters="E:\temp\debug.txt" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-g" />
@@ -208,6 +209,10 @@
 		<Unit filename="ColourSettingDialog.h" />
 		<Unit filename="ConfigManager.cpp" />
 		<Unit filename="ConfigManager.h" />
+		<Unit filename="IPC.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="JxqyScriptEditor.cpp" />
 		<Unit filename="JxqyScriptEditor.h" />
 		<Unit filename="JxqyStc.cpp" />
@@ -224,7 +229,7 @@
 			<envvars />
 			<debugger />
 			<wxsmith version="1">
-				<gui name="wxWidgets" src="App.cpp" main="JxqyScriptEditor" init_handlers="necessary" language="CPP" />
+				<gui name="wxWidgets" src="App.cpp" main="-- None --" init_handlers="necessary" language="CPP" />
 				<resources>
 					<wxFrame wxs="wxsmith/JxqyScriptEditor.wxs" src="JxqyScriptEditor.cpp" hdr="JxqyScriptEditor.h" fwddecl="0" i18n="0" name="JxqyScriptEditor" language="CPP" />
 					<wxDialog wxs="wxsmith/ColourSettingDialog.wxs" src="ColourSettingDialog.cpp" hdr="ColourSettingDialog.h" fwddecl="0" i18n="0" name="ColourSettingDialog" language="CPP" />

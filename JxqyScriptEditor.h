@@ -5,6 +5,7 @@
 #include "ConfigManager.h"
 
 #include "wx/filedlg.h"
+#include "wx/dnd.h"
 //(*Headers(JxqyScriptEditor)
 #include <wx/sizer.h>
 #include <wx/menu.h>
@@ -19,6 +20,7 @@ class JxqyScriptEditor: public wxFrame
 
 		JxqyScriptEditor(wxWindow* parent,wxWindowID id=wxID_ANY,const wxPoint& pos=wxDefaultPosition,const wxSize& size=wxDefaultSize);
 		virtual ~JxqyScriptEditor();
+		void OpenFile(const wxString& path);
 
 	private:
 
@@ -93,8 +95,6 @@ class JxqyScriptEditor: public wxFrame
 		//true - saved to file, false - not saved to file
 		bool SavePageToFile(int idx = -1, const wxString& path = wxEmptyString, const wxString &defaultFileName = wxEmptyString, bool *pageCloseVeto = NULL);
 		wxString GetPageTiltleClean(int idx = -1);
-		void OpenFile(const wxString& path);
-
 
 		void AddNewFile();
 		JxqyStc* GetInitlizedJxqyStc();
@@ -154,6 +154,18 @@ class JxqyScriptEditor: public wxFrame
 		ConfigManager m_cfg;
 
 		DECLARE_EVENT_TABLE()
+};
+
+class MyFileDrop:public wxFileDropTarget
+{
+public:
+    MyFileDrop(){mainfram = NULL;}
+    MyFileDrop(JxqyScriptEditor *frame){mainfram = frame;}
+    void SetMainFrame(JxqyScriptEditor *frame){mainfram = frame;}
+    virtual bool OnDropFiles(wxCoord x, wxCoord y, const wxArrayString& filenames);
+private:
+    JxqyScriptEditor *mainfram;
+
 };
 
 #endif

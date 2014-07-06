@@ -109,6 +109,7 @@ private:
     wxString StripBraceContensAndNonalpha(const wxString &word);
     void StripBraceContensAndNonalpha(wxArrayString *words);
 	wxString GetWordAtPos(int pos);
+	wxString FindFunctionCallTip(const wxString& kwyword);
 	void ShowFunctionCallTip(int pos, const wxString &word);
 
     void OnCharAdded(wxStyledTextEvent &event);
