@@ -86,6 +86,17 @@
 					<accel>Ctrl+A</accel>
 				</object>
 			</object>
+			<object class="wxMenu" variable="Menu4" member="yes">
+				<label>搜索</label>
+				<object class="wxMenuItem" name="wxID_FIND" variable="MenuItem24" member="yes">
+					<label>查找...</label>
+					<accel>Ctrl+F</accel>
+				</object>
+				<object class="wxMenuItem" name="wxID_REPLACE" variable="MenuItem25" member="yes">
+					<label>替换...</label>
+					<accel>Ctrl+R</accel>
+				</object>
+			</object>
 			<object class="wxMenu" variable="Menu2" member="yes">
 				<label>设置</label>
 				<object class="wxMenuItem" name="MYID_FONTSETTING" variable="MenuItem9" member="yes">

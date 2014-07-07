@@ -92,6 +92,8 @@ BEGIN_EVENT_TABLE(JxqyScriptEditor,wxFrame)
     EVT_MENU(TOOLBAR_MYID_PASTE, JxqyScriptEditor::OnEdit)
     EVT_MENU(MYID_DELETE, JxqyScriptEditor::OnEdit)
     EVT_MENU(MYID_SELECTALL, JxqyScriptEditor::OnEdit)
+    EVT_MENU(wxID_FIND, JxqyScriptEditor::OnSearch)
+    EVT_MENU(wxID_REPLACE, JxqyScriptEditor::OnSearch)
     EVT_MENU(MYID_FONTSETTING, JxqyScriptEditor::OnFontSetting)
     EVT_MENU(MYID_COLOURSETTING, JxqyScriptEditor::OnColourSetting)
     EVT_MENU(MYID_WORDWRAP, JxqyScriptEditor::OnWordWrap)
@@ -149,6 +151,12 @@ JxqyScriptEditor::JxqyScriptEditor(wxWindow* parent,wxWindowID id,const wxPoint&
     MenuItem23 = new wxMenuItem(Menu3, MYID_SELECTALL, _T("È«Ñ¡\tCtrl+A"), wxEmptyString, wxITEM_NORMAL);
     Menu3->Append(MenuItem23);
     m_menuBar->Append(Menu3, _T("±à¼­"));
+    Menu4 = new wxMenu();
+    MenuItem24 = new wxMenuItem(Menu4, wxID_FIND, _T("²éÕÒ...\tCtrl+F"), wxEmptyString, wxITEM_NORMAL);
+    Menu4->Append(MenuItem24);
+    MenuItem25 = new wxMenuItem(Menu4, wxID_REPLACE, _T("Ìæ»»...\tCtrl+R"), wxEmptyString, wxITEM_NORMAL);
+    Menu4->Append(MenuItem25);
+    m_menuBar->Append(Menu4, _T("ËÑË÷"));
     Menu2 = new wxMenu();
     MenuItem9 = new wxMenuItem(Menu2, MYID_FONTSETTING, _T("×ÖÌåÉèÖÃ..."), wxEmptyString, wxITEM_NORMAL);
     Menu2->Append(MenuItem9);
@@ -199,6 +207,8 @@ JxqyScriptEditor::JxqyScriptEditor(wxWindow* parent,wxWindowID id,const wxPoint&
     MyFileDrop *drop = new MyFileDrop(this);
     SetDropTarget(drop);
 
+    m_find = new FindDialog(this);
+
     m_menuBar->Check(MYID_WORDWRAP, m_cfg.IsWordWrap());
     m_menuBar->Check(MYID_FUNHELP, m_cfg.IsFunctionHelpShow());
     m_menuBar->Check(MYID_SHOWLINENUMBER, m_cfg.IsShowLineNumber());
@@ -231,11 +241,13 @@ JxqyScriptEditor::~JxqyScriptEditor()
 void JxqyScriptEditor::Init()
 {
     m_AuiBook->Bind(wxEVT_AUINOTEBOOK_PAGE_CLOSE, &JxqyScriptEditor::OnPageClose, this);
+    this->Bind(wxEVT_ACTIVATE, &JxqyScriptEditor::OnActivate, this);
 }
 
 void JxqyScriptEditor::Uninit()
 {
     m_AuiBook->Unbind(wxEVT_AUINOTEBOOK_PAGE_CLOSE, &JxqyScriptEditor::OnPageClose, this);
+    this->Unbind(wxEVT_ACTIVATE, &JxqyScriptEditor::OnActivate, this);
 }
 
 
@@ -250,7 +262,7 @@ void JxqyScriptEditor::OnOpenFile(wxCommandEvent& event)
 
     if(fileDlg->ShowModal() == wxID_OK)
     {
-		OpenFile(fileDlg->GetPath());
+        OpenFile(fileDlg->GetPath());
     }
     delete fileDlg;
 }
@@ -327,6 +339,27 @@ void JxqyScriptEditor::OnEdit(wxCommandEvent& event)
             stc->SelectAll();
     }
 
+}
+void JxqyScriptEditor::OnSearch(wxCommandEvent& event)
+{
+    int id = event.GetId();
+    JxqyStc *stc = GetCurrentStc();
+    if(stc)
+    {
+        if(stc->HasSelection())
+            m_find->SetFindText(stc->GetSelectedText());
+    }
+
+    if(id == wxID_FIND)
+    {
+		m_find->SetPage(0);
+    }
+    else if(id == wxID_REPLACE)
+	{
+		m_find->SetPage(1);
+	}
+
+    m_find->Show();
 }
 void JxqyScriptEditor::OnFontSetting(wxCommandEvent& event)
 {
@@ -412,7 +445,10 @@ void JxqyScriptEditor::OnPageClose(wxAuiNotebookEvent& event)
         }
     }
 }
+void JxqyScriptEditor::OnActivate(wxActivateEvent& event)
+{
 
+}
 void JxqyScriptEditor::AddNewFile()
 {
     JxqyStc *stc = GetInitlizedJxqyStc();
@@ -789,8 +825,8 @@ bool MyFileDrop::OnDropFiles(wxCoord x, wxCoord y, const wxArrayString& filename
     if(mainfram == NULL) return false;
 
     for(size_t i = 0; i < filenames.Count(); i++)
-	{
-		mainfram->OpenFile(filenames[i]);
-	}
-	return true;
+    {
+        mainfram->OpenFile(filenames[i]);
+    }
+    return true;
 }

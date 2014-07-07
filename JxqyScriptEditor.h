@@ -3,6 +3,7 @@
 
 #include "JxqyStc.h"
 #include "ConfigManager.h"
+#include "FindDialog.h"
 
 #include "wx/filedlg.h"
 #include "wx/dnd.h"
@@ -21,6 +22,7 @@ class JxqyScriptEditor: public wxFrame
 		JxqyScriptEditor(wxWindow* parent,wxWindowID id=wxID_ANY,const wxPoint& pos=wxDefaultPosition,const wxSize& size=wxDefaultSize);
 		virtual ~JxqyScriptEditor();
 		void OpenFile(const wxString& path);
+		JxqyStc* GetCurrentStc();
 
 	private:
 
@@ -30,6 +32,7 @@ class JxqyScriptEditor: public wxFrame
 		wxToolBarToolBase* ToolBarItem9;
 		wxMenuItem* MenuItem7;
 		wxAuiNotebook* m_AuiBook;
+		wxMenuItem* MenuItem25;
 		wxToolBarToolBase* ToolBarItem3;
 		wxMenuItem* MenuItem5;
 		wxMenuItem* MenuItem2;
@@ -47,6 +50,7 @@ class JxqyScriptEditor: public wxFrame
 		wxMenuItem* MenuItem10;
 		wxToolBarToolBase* ToolBarItem6;
 		wxMenuItem* MenuItem12;
+		wxMenuItem* MenuItem24;
 		wxToolBarToolBase* ToolBarItem1;
 		wxMenuItem* MenuItem3;
 		wxMenuItem* MenuItem20;
@@ -62,6 +66,7 @@ class JxqyScriptEditor: public wxFrame
 		wxMenuItem* MenuItem9;
 		wxMenuItem* MenuItem18;
 		wxToolBarToolBase* ToolBarItem2;
+		wxMenu* Menu4;
 		wxMenuItem* MenuItem19;
 		wxToolBarToolBase* ToolBarItem7;
 		//*)
@@ -77,6 +82,8 @@ class JxqyScriptEditor: public wxFrame
 		void OnExit(wxCommandEvent &event);
 		//Edit
 		void OnEdit(wxCommandEvent &event);
+		//Search
+		void OnSearch(wxCommandEvent &event);
 		//Setting
 		void OnFontSetting(wxCommandEvent &event);
 		void OnColourSetting(wxCommandEvent &event);
@@ -86,6 +93,8 @@ class JxqyScriptEditor: public wxFrame
 		void OnFunctionFileChoose(wxCommandEvent &event);
 
 		void OnPageClose(wxAuiNotebookEvent &event);
+
+		void OnActivate(wxActivateEvent &event);
 
 		bool ClosePage(int idx = -1, bool deletePage = true);
 		bool CloseAllPage();
@@ -101,7 +110,6 @@ class JxqyScriptEditor: public wxFrame
 		void SetJxqyStcStyleFromSetting(JxqyStc *stc);
 		void ResetOpenedPageStyle();
 		void ResetPageTitleTooltip(int idx = -1);
-		JxqyStc* GetCurrentStc();
 		void SetMenuAndPageState(JxqyStc *stc = NULL);
 
 		wxFileDialog* GetFileSaveDialog(const wxString& defaultFileName = wxEmptyString);
@@ -152,6 +160,7 @@ class JxqyScriptEditor: public wxFrame
 
 	private:
 		ConfigManager m_cfg;
+		FindDialog *m_find;
 
 		DECLARE_EVENT_TABLE()
 };

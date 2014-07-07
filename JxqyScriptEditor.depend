@@ -1693,9 +1693,10 @@
 1384175917 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\univ\theme.h
 	"wx/string.h"
 
-1404612684 e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.h
+1404701770 e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.h
 	"JxqyStc.h"
 	"ConfigManager.h"
+	"FindDialog.h"
 	"wx/filedlg.h"
 	"wx/dnd.h"
 	<wx/sizer.h>
@@ -2235,7 +2236,7 @@
 
 1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\msw\rcdefs.h
 
-1404612776 source:e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.cpp
+1404702035 source:e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.cpp
 	"JxqyScriptEditor.h"
 	"helperFun.h"
 	"ColourSettingDialog.h"
@@ -2393,7 +2394,7 @@
 	<os2.h>
 	<pmstddlg.h>
 
-1404618976 source:e:\programmingworkshop\jxqyscripteditor\jxqystc.cpp
+1404623109 source:e:\programmingworkshop\jxqyscripteditor\jxqystc.cpp
 	"JxqyStc.h"
 	"wx/textfile.h"
 	"wx/msgdlg.h"
@@ -2920,4 +2921,120 @@
 1404612995 e:\programmingworkshop\jxqyscripteditor\ipc.cpp
 	"wx/ipc.h"
 	"JxqyScriptEditor.h"
+
+1404712083 e:\programmingworkshop\jxqyscripteditor\finddialog.h
+	<wx/notebook.h>
+	<wx/stattext.h>
+	<wx/textctrl.h>
+	<wx/checkbox.h>
+	<wx/radiobut.h>
+	<wx/statbox.h>
+	<wx/panel.h>
+	<wx/button.h>
+	<wx/dialog.h>
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\checkbox.h
+	"wx/defs.h"
+	"wx/control.h"
+	"wx/univ/checkbox.h"
+	"wx/msw/checkbox.h"
+	"wx/motif/checkbox.h"
+	"wx/gtk/checkbox.h"
+	"wx/gtk1/checkbox.h"
+	"wx/osx/checkbox.h"
+	"wx/cocoa/checkbox.h"
+	"wx/os2/checkbox.h"
+
+1384175917 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\univ\checkbox.h
+	"wx/button.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\msw\checkbox.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\motif\checkbox.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\gtk\checkbox.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\gtk1\checkbox.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\osx\checkbox.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\cocoa\checkbox.h
+	"wx/cocoa/NSButton.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\os2\checkbox.h
+	"wx/control.h"
+
+1384175917 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\radiobut.h
+	"wx/defs.h"
+	"wx/control.h"
+	"wx/univ/radiobut.h"
+	"wx/msw/radiobut.h"
+	"wx/motif/radiobut.h"
+	"wx/gtk/radiobut.h"
+	"wx/gtk1/radiobut.h"
+	"wx/osx/radiobut.h"
+	"wx/cocoa/radiobut.h"
+	"wx/os2/radiobut.h"
+
+1384175917 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\univ\radiobut.h
+	"wx/checkbox.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\msw\radiobut.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\motif\radiobut.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\gtk\radiobut.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\gtk1\radiobut.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\osx\radiobut.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\cocoa\radiobut.h
+	"wx/cocoa/NSButton.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\os2\radiobut.h
+	"wx/control.h"
+
+1384175917 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\statbox.h
+	"wx/defs.h"
+	"wx/control.h"
+	"wx/containr.h"
+	"wx/univ/statbox.h"
+	"wx/msw/statbox.h"
+	"wx/motif/statbox.h"
+	"wx/gtk/statbox.h"
+	"wx/gtk1/statbox.h"
+	"wx/osx/statbox.h"
+	"wx/cocoa/statbox.h"
+	"wx/os2/statbox.h"
+
+1384175917 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\univ\statbox.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\msw\statbox.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\motif\statbox.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\gtk\statbox.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\gtk1\statbox.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\osx\statbox.h
+	"wx/control.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\cocoa\statbox.h
+	"wx/cocoa/NSBox.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\cocoa\nsbox.h
+	"wx/hashmap.h"
+	"wx/cocoa/ObjcAssociate.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\os2\statbox.h
+	"wx/control.h"
+
+1404711787 source:e:\programmingworkshop\jxqyscripteditor\finddialog.cpp
+	"FindDialog.h"
+	"JxqyScriptEditor.h"
+	"JxqyStc.h"
+	"wx/msgdlg.h"
+	<wx/string.h>
 

@@ -209,6 +209,8 @@
 		<Unit filename="ColourSettingDialog.h" />
 		<Unit filename="ConfigManager.cpp" />
 		<Unit filename="ConfigManager.h" />
+		<Unit filename="FindDialog.cpp" />
+		<Unit filename="FindDialog.h" />
 		<Unit filename="IPC.cpp">
 			<Option compile="0" />
 			<Option link="0" />
@@ -223,6 +225,7 @@
 			<Option compilerVar="WINDRES" />
 		</Unit>
 		<Unit filename="wxsmith/ColourSettingDialog.wxs" />
+		<Unit filename="wxsmith/FindDialog.wxs" />
 		<Unit filename="wxsmith/JxqyScriptEditor.wxs" />
 		<Extensions>
 			<code_completion />
@@ -233,6 +236,7 @@
 				<resources>
 					<wxFrame wxs="wxsmith/JxqyScriptEditor.wxs" src="JxqyScriptEditor.cpp" hdr="JxqyScriptEditor.h" fwddecl="0" i18n="0" name="JxqyScriptEditor" language="CPP" />
 					<wxDialog wxs="wxsmith/ColourSettingDialog.wxs" src="ColourSettingDialog.cpp" hdr="ColourSettingDialog.h" fwddecl="0" i18n="0" name="ColourSettingDialog" language="CPP" />
+					<wxDialog wxs="wxsmith/FindDialog.wxs" src="FindDialog.cpp" hdr="FindDialog.h" fwddecl="0" i18n="0" name="FindDialog" language="CPP" />
 				</resources>
 			</wxsmith>
 		</Extensions>
