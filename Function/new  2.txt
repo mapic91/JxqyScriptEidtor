@@ -1,0 +1,33 @@
+AddMagic("magic056_烟火霹雳弹.ini", 1);
+AddOneMagic("张琳心", "magic021_凤舞九天.ini"); 
+ChangeMapColor(175, 175, 175);
+ChangeThew("杨瑛", 100); 
+ChangeMana(a, b)
+ChangeMana("杨瑛", 100); 
+ChangeLife(a, b)
+ChangeLife("杨瑛", 100);
+ClearEffect();
+CloseWaterEffect();
+DelMagic("magic004_灵剑幻花.ini");
+DisableNpcAI();
+DisplayMessage("快速存档");
+Gamble(80, 1, $map027laoban); 
+GetPlayerLevel($PlayerLevel);
+HideBottomWnd();
+HideInterface();
+MoveMagic("magic满江红.ini", 3); 
+PlayerAddEmotion(-*);
+PlayerAddJustice(-*);
+SaveGame();
+SetFadeLum(0);
+
+SetNpcClickScript("赌坊老板", "赌坊老板点击脚本.txt");
+SetNpcDir(4);
+SetNpcDir();//重新摆放人物的位置
+SetPlayerState("独孤剑", 1);
+
+ShowInterface();
+NpcSpecialAction();
+
+PlayMusic();
+SetPartnerLevel("张琳心", 46);

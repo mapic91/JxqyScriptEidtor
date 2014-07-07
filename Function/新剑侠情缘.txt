@@ -1,15 +1,413 @@
 If
-功能：条件跳转
-参数：等于：    ==
-      大于等于：>=
-      小于等于：<=
-      不等于：  !=
+If ($Color == 1) @Color1;
+If ($Event >> 20) @Other;
+If ($Pos >= 7 ) @Again;
+If ($Event << 100) @Eventlessthan100;
+If ($Event <= 230) @Event230;
+If ($Suba <> 220) @Subno220;
 
 Goto
-功能：无条件跳转
-参数：@标号名称
+Goto(@end);
 
 
 Return
-功能：返回		
-参数：无
+Return;
+
+Add(a,b)
+Add($End, 200);
+ 
+AddExp(a)
+AddExp(2200);
+
+AddGoods(a)
+AddGoods("Goods208_百年陈酿.ini");
+
+AddMagic(a)
+AddMagic("magic009_风雷九洲.ini");
+
+AddMagic(a, b)
+AddMagic("magic满江红.ini", 1);
+
+AddMoney(a)
+AddMoney(200);
+
+AddNpc(a,b,c,d)
+AddNpc("npc002_张如梦.ini", 7, 69, 6);
+AddNpc("杨瑛".ini,*,*,*);
+
+AddObj(a,b,c,d)
+AddObj("方勉尸体.ini",14,27,7);
+AddObj("",*,*,*);
+
+AddOneMagic(a, b)
+AddOneMagic("张琳心", "magic021_凤舞九天.ini"); 
+
+AddRandGoods(a)
+AddRandGoods("6级防具.ini");
+
+AddRandMoney(a,b)
+AddRandMoney(3000,4000);
+
+Assign(a, b);
+Assign($Event, 10);
+
+BeginRain(a)
+BeginRain("Rain2.ini");
+
+ChangeAsfColor(a, b, c)
+ChangeAsfColor(255, 255, 255);
+
+ChangeLife(a, b)
+ChangeLife("杨瑛", 100);
+
+ChangeMana(a, b)
+ChangeMana("杨瑛", 100); 
+
+ChangeMapColor(a, b, c)
+ChangeMapColor(175, 175, 175);
+
+ChangeThew(a, b)
+ChangeThew("杨瑛", 100); 
+
+CheckYear(a)
+CheckYear($PlayYear);
+
+Choose(a, b, c, d);
+Choose("请选择游戏的难度：", "普通", "困难", $Level);
+
+ClearBody()
+ClearBody();
+
+ClearEffect()
+ClearEffect();
+
+CloseTimeLimit()
+CloseTimeLimit();
+
+CloseWaterEffect()
+CloseWaterEffect();
+
+DelCurObj()
+DelCurObj();
+
+DelGoods(a)
+DelGoods("Goods218_回回丹.ini");
+
+DelMagic(a)
+DelMagic("magic004_灵剑幻花.ini");
+
+DelNpc(a)
+DelNpc("南宫彩虹");
+
+DelObj(a)
+DelObj("变成灰的信");
+
+DisableFight()
+DisableFight();
+
+DisableInput()
+DisableInput();
+
+DisableNpcAI()
+DisableNpcAI();
+
+DisplayMessage(a)
+DisplayMessage("快速存档");
+
+EnableFight()
+EnableFight();
+
+EnableInput()
+EnableInput();
+
+EnableNpcAI()
+EnableNpcAI();
+
+EndRain()
+EndRain();
+
+FadeIn()
+FadeIn();
+
+FadeOut()
+FadeOut();
+
+FreeMap()
+FreeMap();
+
+FullLife()
+FullLife();
+
+FullMana()
+FullMana();
+
+FullThew()
+FullThew();
+
+Gamble(a, b, c)
+Gamble(80, 1, $map027laoban); 
+
+GetGoodsNum(a)
+GetGoodsNum("Goods211_千金藤.ini")；
+
+GetMoneyNum()
+GetMoneyNum();
+
+GetPlayerLevel(a)
+GetPlayerLevel($PlayerLevel);
+
+GetRandNum(a, b, c)
+GetRandNum($Talkwuyidizi,0,3);
+
+HideBottomWnd()
+HideBottomWnd();
+
+HideInterface()
+HideInterface();
+
+HideTimerWnd()
+HideTimerWnd();
+
+LoadGame(a)
+LoadGame(0);
+
+LoadMap(a)
+LoadMap("map071_朱仙镇.map");
+
+LoadNpc(a)
+LoadNpc("map071.npc");
+
+LoadObj(a)
+LoadObj("map001.obj");
+
+Memo(a)
+Memo("拒绝秋雨的请求后离开。");
+
+MoveMagic(a, b)
+MoveMagic("magic满江红.ini", 3); 
+
+MoveScreen(a,b,c)
+MoveScreen(1, 120, 2);
+MoveScreen(*,*,*); //移到房间正中
+MoveScreen(*,*,*); //移到南宫灭和独孤剑之间
+
+NpcAttack(a,b,c)
+NpcAttack("独孤剑", 35,20);
+
+NpcGoto(a,b,c)
+NpcGoto("卢青", 30, 27);
+
+NpcGotoDir(a,b,c)
+NpcGotoDir("杀手头目", 4, 2);
+
+NpcGotoEx(a,b,c)
+NpcGotoEx("张琳心", 7, 21);
+NpcGotoEx(卢青, *,*);
+
+NpcSpecialAction()
+NpcSpecialAction();
+
+NpcSpecialAction(a,b)
+NpcSpecialAction("刘轻舟", "mpc001_2.asf");
+
+NpcSpecialActionEx(a, b)
+NpcSpecialActionEx("杨影枫", "mpc006_跪.asf");
+
+OpenBox()
+OpenBox();
+
+OpenBox(a)
+OpenBox("关上的门");
+
+OpenTimeLimit(a)
+OpenTimeLimit(2);
+
+OpenWaterEffect()
+OpenWaterEffect();
+
+PlayerAddEmotion(-*)
+PlayerAddEmotion(-*);
+
+PlayerAddJustice(-*)
+PlayerAddJustice(-*);
+
+PlayerChange(a)
+PlayerChange(1);
+
+PlayerGoto(a, b)
+PlayerGoto(24, 43);
+
+PlayerGotoDir(a, b)
+PlayerGotoDir(5, 2);
+
+PlayerGotoEx(a,b)
+PlayerGotoEx(8,19);
+PlayerGotoEx(*,*); //看风景
+
+PlayerRunTo(a,b)
+PlayerRunTo(9,29);
+
+PlayMovie(a)
+PlayMovie("open.avi");
+
+PlayMovie(a,b,c,d);
+PlayMovie("team.avi",0,0,0);
+
+PlayMusic()
+PlayMusic();
+
+PlayMusic(a)
+PlayMusic("情缘之伴奏.mp3");
+
+PlaySound(a)
+PlaySound("物-银子.wav");
+
+ReturnToTitle()
+ReturnToTitle();
+
+RunScript(a)
+RunScript("Begin.txt");
+
+SaveGame()
+SaveGame();
+
+SaveNpc()
+SaveNpc();
+
+SaveNpc(a)
+SaveNpc("temp_map007.npc");
+
+SaveObj()
+SaveObj();
+
+Say(a)
+Say("一股清凉的气息游遍全身。");
+
+Say(a, b)
+Say("杀手头目：不错！", 111);
+
+SellGoods(a)
+SellGoods("低级药品.ini");
+
+SetFadeLum(a)
+SetFadeLum(0);
+
+SetLevelFile(a)
+SetLevelFile("Level-easy.ini");
+
+SetMagicLevel(a,b)
+SetMagicLevel("magic009_风雷九洲.ini", 2);
+
+SetMapPos(a, b)
+SetMapPos(2, 20);
+
+SetMapTrap(a,b)
+SetMapTrap(1,"");
+SetMapTrap(1,"trap01.txt");
+
+SetMoneyNum(a)
+SetMoneyNum(0);
+
+SetNpcAction(a,b)
+SetNpcAction(何梅, ,"");	
+SetNpcAction(("独孤剑",13);
+
+SetNpcAction(a, b, c)
+SetNpcAction(独孤剑,13,""); //解开绳索
+SetNpcAction(何梅, ,""); //何梅站起来	
+
+SetNpcActionFile(a, b, c)
+SetNpcActionFile("独孤剑", 0, "mpc409_2.asf");
+
+SetNpcClickScript(a, b)
+SetNpcClickScript("赌坊老板", "赌坊老板点击脚本.txt");
+
+SetNpcDeathScript(a,b)
+SetNpcDeathScript("杀手头目", "杀手头目死亡.txt");
+
+SetNpcDir()
+SetNpcDir();//重新摆放人物的位置
+
+SetNpcDir(a)
+SetNpcDir(7);
+SetNpcDir(*);
+
+SetNpcDir(a,b)
+SetNpcDir("南宫彩虹", 1);
+SetNpcDir("杨瑛",*);
+
+SetNpcKind(a, b)
+SetNpcKind("张琳心", 3);
+
+SetNpcLevel(a, b)
+SetNpcLevel("张如梦", 27);
+
+SetNpcMagicFile(a,b)
+SetNpcMagicFile("独孤剑","magic001_衡山有雪.ini");
+
+SetNpcPos(a,b,c)
+SetNpcPos("南宫彩虹", 16, 20); 
+
+SetNpcRelation(a,b)
+SetNpcRelation("南宫彩虹", 0);
+
+SetNpcRes(a,b)
+SetNpcRes("张如梦", "npcres003_喝醉酒的张如梦.ini");
+
+SetNpcScript(a,b)
+SetNpcScript("张琳心", "");
+SetNpcScript("张琳心", "张琳心对话.txt");
+
+SetObjScript(a,b)
+SetObjScript("","")
+SetObjScript("","关宝箱.txt");
+SetObjScript("石碑", "");
+SetObjScript("茶馆留书", "桌上的书信.txt");
+
+SetPartnerLevel(a, b)
+SetPartnerLevel("张琳心", 46);
+
+SetPlayerDir(a)
+SetPlayerDir(6);
+
+SetPlayerPos(a, b)
+SetPlayerPos(26,107);
+
+SetPlayerScn()
+SetPlayerScn();
+
+SetPlayerState(a)
+SetPlayerState(1);
+
+SetPlayerState(a, b)
+SetPlayerState("独孤剑", 1);
+
+SetTimeScript(a,b)
+SetTimeScript(0, "剑门关之战.txt");
+SetTimeScript(60, "time60.txt");
+
+ShowInterface()
+ShowInterface();
+
+ShowMessage(a)
+ShowMessage(94400);
+
+ShowNpc(a, b)
+ShowNpc("张琳心", 0);
+
+ShowSnow(a)
+ShowSnow(0);
+ShowSnow(1);
+
+Sleep(a)
+Sleep(2000);
+
+StopMusic()
+StopMusic();
+
+Talk(a,b)
+Talk(14050,14090);
+
+Watch(a, b, c)
+Watch("张如梦", "南宫彩虹", 0);
+
