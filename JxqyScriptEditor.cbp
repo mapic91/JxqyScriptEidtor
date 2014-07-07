@@ -203,6 +203,8 @@
 			<Add library="libwsock32.a" />
 			<Add library="libodbc32.a" />
 		</Linker>
+		<Unit filename="AboutDialog.cpp" />
+		<Unit filename="AboutDialog.h" />
 		<Unit filename="App.cpp" />
 		<Unit filename="App.h" />
 		<Unit filename="ColourSettingDialog.cpp" />
@@ -224,6 +226,7 @@
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
 		</Unit>
+		<Unit filename="wxsmith/AboutDialog.wxs" />
 		<Unit filename="wxsmith/ColourSettingDialog.wxs" />
 		<Unit filename="wxsmith/FindDialog.wxs" />
 		<Unit filename="wxsmith/JxqyScriptEditor.wxs" />
@@ -237,6 +240,7 @@
 					<wxFrame wxs="wxsmith/JxqyScriptEditor.wxs" src="JxqyScriptEditor.cpp" hdr="JxqyScriptEditor.h" fwddecl="0" i18n="0" name="JxqyScriptEditor" language="CPP" />
 					<wxDialog wxs="wxsmith/ColourSettingDialog.wxs" src="ColourSettingDialog.cpp" hdr="ColourSettingDialog.h" fwddecl="0" i18n="0" name="ColourSettingDialog" language="CPP" />
 					<wxDialog wxs="wxsmith/FindDialog.wxs" src="FindDialog.cpp" hdr="FindDialog.h" fwddecl="0" i18n="0" name="FindDialog" language="CPP" />
+					<wxDialog wxs="wxsmith/AboutDialog.wxs" src="AboutDialog.cpp" hdr="AboutDialog.h" fwddecl="0" i18n="0" name="AboutDialog" language="CPP" />
 				</resources>
 			</wxsmith>
 		</Extensions>

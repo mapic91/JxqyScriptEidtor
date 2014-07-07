@@ -54,13 +54,17 @@ class FindDialog: public wxDialog
 
 		bool BeginFind(const wxString& findVal, bool toPos);
 		bool DoFind(const wxString& findVal, bool toPos);
-		bool DoReplace(const wxString& findVal, bool toPos);
+		bool DoReplace(const wxString& findVal, bool toPos, int *counts = NULL);
+
+		int CharPosToStrPos(const wxString& str, int char_pos)
+		{
+			return wxString::FromUTF8(str.utf8_str(), char_pos).Length();
+		}
 
 		JxqyScriptEditor *m_edit;
 		JxqyStc *m_stc;
 		int m_lineNumber,
 			m_lineFindBegin;
-		bool m_replaceBegin;
 
 	protected:
 

@@ -30,11 +30,14 @@ class JxqyScriptEditor: public wxFrame
 		wxToolBarToolBase* ToolBarItem4;
 		wxMenuItem* MenuItem8;
 		wxToolBarToolBase* ToolBarItem9;
+		wxMenuItem* MenuItem26;
 		wxMenuItem* MenuItem7;
 		wxAuiNotebook* m_AuiBook;
 		wxMenuItem* MenuItem25;
 		wxToolBarToolBase* ToolBarItem3;
+		wxToolBarToolBase* ToolBarItem12;
 		wxMenuItem* MenuItem5;
+		wxToolBarToolBase* ToolBarItem11;
 		wxMenuItem* MenuItem2;
 		wxMenu* Menu3;
 		wxToolBarToolBase* ToolBarItem10;
@@ -66,6 +69,7 @@ class JxqyScriptEditor: public wxFrame
 		wxMenuItem* MenuItem9;
 		wxMenuItem* MenuItem18;
 		wxToolBarToolBase* ToolBarItem2;
+		wxMenu* Menu5;
 		wxMenu* Menu4;
 		wxMenuItem* MenuItem19;
 		wxToolBarToolBase* ToolBarItem7;
@@ -91,6 +95,8 @@ class JxqyScriptEditor: public wxFrame
 		void OnFunctionHelpShow(wxCommandEvent &event);
 		void OnLineNumberShow(wxCommandEvent &event);
 		void OnFunctionFileChoose(wxCommandEvent &event);
+		//Help
+		void OnAbout(wxCommandEvent &event);
 
 		void OnPageClose(wxAuiNotebookEvent &event);
 

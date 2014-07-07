@@ -1,6 +1,7 @@
 #include "JxqyScriptEditor.h"
 #include "helperFun.h"
 #include "ColourSettingDialog.h"
+#include "AboutDialog.h"
 
 #include "wx/msgdlg.h"
 #include "wx/fontdlg.h"
@@ -96,6 +97,7 @@ BEGIN_EVENT_TABLE(JxqyScriptEditor,wxFrame)
     EVT_MENU(wxID_REPLACE, JxqyScriptEditor::OnSearch)
     EVT_MENU(MYID_FONTSETTING, JxqyScriptEditor::OnFontSetting)
     EVT_MENU(MYID_COLOURSETTING, JxqyScriptEditor::OnColourSetting)
+    EVT_MENU(wxID_ABOUT, JxqyScriptEditor::OnAbout)
     EVT_MENU(MYID_WORDWRAP, JxqyScriptEditor::OnWordWrap)
     EVT_MENU(MYID_FUNHELP, JxqyScriptEditor::OnFunctionHelpShow)
     EVT_MENU(MYID_SHOWLINENUMBER, JxqyScriptEditor::OnLineNumberShow)
@@ -109,7 +111,7 @@ JxqyScriptEditor::JxqyScriptEditor(wxWindow* parent,wxWindowID id,const wxPoint&
     //(*Initialize(JxqyScriptEditor)
     wxBoxSizer* BoxSizer1;
 
-    Create(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
+    Create(parent, wxID_ANY, _T("½£ÏÀÇéÔµ½Å±¾±à¼­Æ÷"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
     SetClientSize(wxSize(800,600));
     BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
     m_AuiBook = new wxAuiNotebook(this, ID_AUINOTEBOOK1, wxDefaultPosition, wxDefaultSize, wxAUI_NB_CLOSE_ON_ALL_TABS|wxAUI_NB_DEFAULT_STYLE);
@@ -177,6 +179,10 @@ JxqyScriptEditor::JxqyScriptEditor(wxWindow* parent,wxWindowID id,const wxPoint&
     MenuItem15 = new wxMenuItem(Menu2, MYID_XJXQY, _T("ÐÂ½£ÏÀÇéÔµ"), wxEmptyString, wxITEM_RADIO);
     Menu2->Append(MenuItem15);
     m_menuBar->Append(Menu2, _T("ÉèÖÃ"));
+    Menu5 = new wxMenu();
+    MenuItem26 = new wxMenuItem(Menu5, wxID_ABOUT, _T("¹ØÓÚ"), wxEmptyString, wxITEM_NORMAL);
+    Menu5->Append(MenuItem26);
+    m_menuBar->Append(Menu5, _T("°ïÖú"));
     SetMenuBar(m_menuBar);
     m_toolBar = new wxToolBar(this, ID_TOOLBAR1, wxDefaultPosition, wxDefaultSize, wxTB_HORIZONTAL|wxNO_BORDER, _T("ID_TOOLBAR1"));
     ToolBarItem1 = m_toolBar->AddTool(wxID_NEW, _T("ÐÂ½¨ÎÄµµ"), wxBITMAP_PNG(NEW), wxNullBitmap, wxITEM_NORMAL, _T("ÐÂ½¨ÎÄµµ"), wxEmptyString);
@@ -191,6 +197,9 @@ JxqyScriptEditor::JxqyScriptEditor(wxWindow* parent,wxWindowID id,const wxPoint&
     ToolBarItem8 = m_toolBar->AddTool(TOOLBAR_MYID_CUT, _T("¼ôÇÐ"), wxBITMAP_PNG(CUT), wxNullBitmap, wxITEM_NORMAL, _T("¼ôÇÐ"), wxEmptyString);
     ToolBarItem9 = m_toolBar->AddTool(TOOLBAR_MYID_COPY, _T("¸´ÖÆ"), wxBITMAP_PNG(COPY), wxNullBitmap, wxITEM_NORMAL, _T("¸´ÖÆ"), wxEmptyString);
     ToolBarItem10 = m_toolBar->AddTool(TOOLBAR_MYID_PASTE, _T("Õ³Ìù"), wxBITMAP_PNG(PASTE), wxNullBitmap, wxITEM_NORMAL, _T("Õ³Ìù"), wxEmptyString);
+    m_toolBar->AddSeparator();
+    ToolBarItem11 = m_toolBar->AddTool(wxID_FIND, _T("²éÕÒ"), wxBITMAP_PNG(FIND), wxNullBitmap, wxITEM_NORMAL, _T("²éÕÒ"), wxEmptyString);
+    ToolBarItem12 = m_toolBar->AddTool(wxID_REPLACE, _T("Ìæ»»"), wxBITMAP_PNG(REPLACE), wxNullBitmap, wxITEM_NORMAL, _T("Ìæ»»"), wxEmptyString);
     m_toolBar->Realize();
     SetToolBar(m_toolBar);
     SetSizer(BoxSizer1);
@@ -240,6 +249,8 @@ JxqyScriptEditor::~JxqyScriptEditor()
 }
 void JxqyScriptEditor::Init()
 {
+	SetMenuAndPageState();
+
     m_AuiBook->Bind(wxEVT_AUINOTEBOOK_PAGE_CLOSE, &JxqyScriptEditor::OnPageClose, this);
     this->Bind(wxEVT_ACTIVATE, &JxqyScriptEditor::OnActivate, this);
 }
@@ -383,6 +394,12 @@ void JxqyScriptEditor::OnColourSetting(wxCommandEvent& event)
         ResetOpenedPageStyle();
     }
 }
+void JxqyScriptEditor::OnAbout(wxCommandEvent& event)
+{
+	AboutDialog dlg(this);
+	dlg.ShowModal();
+}
+
 void JxqyScriptEditor::OnWordWrap(wxCommandEvent& event)
 {
     if(m_cfg.IsWordWrap())
@@ -447,7 +464,14 @@ void JxqyScriptEditor::OnPageClose(wxAuiNotebookEvent& event)
 }
 void JxqyScriptEditor::OnActivate(wxActivateEvent& event)
 {
-
+	if(!event.GetActive())
+	{
+		JxqyStc *stc = GetCurrentStc();
+		if(stc)
+		{
+			stc->AutoCompCancel();
+		}
+	}
 }
 void JxqyScriptEditor::AddNewFile()
 {

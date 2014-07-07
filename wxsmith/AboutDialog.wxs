@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxDialog" name="AboutDialog">
+		<title>关于</title>
+		<centered>1</centered>
+		<size>304,163</size>
+		<id_arg>0</id_arg>
+		<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
+			<label>剑&#x0A;侠&#x0A;情&#x0A;缘&#x0A;脚&#x0A;本&#x0A;编&#x0A;辑&#x0A;器</label>
+			<pos>32,8</pos>
+			<fg>#FF8040</fg>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT2" variable="StaticText2" member="yes">
+			<label>版本：</label>
+			<pos>80,16</pos>
+			<fg>#25A9B4</fg>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticText3" member="yes">
+			<label>V1.0</label>
+			<pos>128,16</pos>
+			<fg>#25A9B4</fg>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT4" variable="StaticText4" member="yes">
+			<label>    BY：</label>
+			<pos>80,48</pos>
+			<fg>#25A9B4</fg>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT5" variable="StaticText5" member="yes">
+			<label>2014.07.07</label>
+			<pos>192,96</pos>
+			<fg>#800000</fg>
+		</object>
+		<object class="wxButton" name="ID_BUTTON1" variable="Button1" member="yes">
+			<label>确定</label>
+			<default>1</default>
+			<pos>200,136</pos>
+			<handler function="OnButton1Click" entry="EVT_BUTTON" />
+		</object>
+		<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL1" variable="HyperlinkCtrl1" member="yes">
+			<label>小试刀剑</label>
+			<url>http://hi.baidu.com/qndryqnqbmbbceq</url>
+			<pos>128,48</pos>
+		</object>
+	</object>
+</wxsmith>

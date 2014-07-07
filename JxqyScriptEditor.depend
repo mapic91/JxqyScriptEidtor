@@ -1693,7 +1693,7 @@
 1384175917 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\univ\theme.h
 	"wx/string.h"
 
-1404701770 e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.h
+1404729085 e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.h
 	"JxqyStc.h"
 	"ConfigManager.h"
 	"FindDialog.h"
@@ -2216,7 +2216,7 @@
 	"wx/icon.h"
 	"wx/aui/auibook.h"
 
-1404567676 source:e:\programmingworkshop\jxqyscripteditor\resource.rc
+1404728336 source:e:\programmingworkshop\jxqyscripteditor\resource.rc
 	"wx/msw/wx.rc"
 
 1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\msw\wx.rc
@@ -2236,10 +2236,11 @@
 
 1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\msw\rcdefs.h
 
-1404702035 source:e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.cpp
+1404730844 source:e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.cpp
 	"JxqyScriptEditor.h"
 	"helperFun.h"
 	"ColourSettingDialog.h"
+	"AboutDialog.h"
 	"wx/msgdlg.h"
 	"wx/fontdlg.h"
 	"wx/log.h"
@@ -2394,9 +2395,10 @@
 	<os2.h>
 	<pmstddlg.h>
 
-1404623109 source:e:\programmingworkshop\jxqyscripteditor\jxqystc.cpp
+1404730509 source:e:\programmingworkshop\jxqyscripteditor\jxqystc.cpp
 	"JxqyStc.h"
 	"wx/textfile.h"
+	"wx/file.h"
 	"wx/msgdlg.h"
 	"wx/filename.h"
 	"JxqyScriptEditor.h"
@@ -2922,7 +2924,7 @@
 	"wx/ipc.h"
 	"JxqyScriptEditor.h"
 
-1404712083 e:\programmingworkshop\jxqyscripteditor\finddialog.h
+1404725922 e:\programmingworkshop\jxqyscripteditor\finddialog.h
 	<wx/notebook.h>
 	<wx/stattext.h>
 	<wx/textctrl.h>
@@ -3031,10 +3033,35 @@
 1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\os2\statbox.h
 	"wx/control.h"
 
-1404711787 source:e:\programmingworkshop\jxqyscripteditor\finddialog.cpp
+1404728689 source:e:\programmingworkshop\jxqyscripteditor\finddialog.cpp
 	"FindDialog.h"
 	"JxqyScriptEditor.h"
 	"JxqyStc.h"
 	"wx/msgdlg.h"
 	<wx/string.h>
+
+1404730439 source:e:\programmingworkshop\jxqyscripteditor\aboutdialog.cpp
+	"AboutDialog.h"
+	<wx/string.h>
+
+1404730421 e:\programmingworkshop\jxqyscripteditor\aboutdialog.h
+	<wx/stattext.h>
+	<wx/hyperlink.h>
+	<wx/button.h>
+	<wx/dialog.h>
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\hyperlink.h
+	"wx/defs.h"
+	"wx/control.h"
+	"wx/gtk/hyperlink.h"
+	"wx/msw/hyperlink.h"
+	"wx/generic/hyperlink.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\gtk\hyperlink.h
+	"wx/generic/hyperlink.h"
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\generic\hyperlink.h
+
+1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\msw\hyperlink.h
+	"wx/generic/hyperlink.h"
 

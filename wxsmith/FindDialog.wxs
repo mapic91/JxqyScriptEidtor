@@ -21,6 +21,7 @@
 					</object>
 					<object class="wxButton" name="ID_BUTTON1" variable="m_button_Next" member="yes">
 						<label>查找下一个</label>
+						<default>1</default>
 						<pos>264,48</pos>
 						<size>82,23</size>
 						<handler function="Onm_button_NextClick" entry="EVT_BUTTON" />
@@ -48,18 +49,19 @@
 					</object>
 					<object class="wxButton" name="ID_BUTTON3" variable="m_button_Replace_Next" member="yes">
 						<label>查找下一个</label>
+						<default>1</default>
 						<pos>264,48</pos>
 						<size>82,23</size>
 						<handler function="Onm_button_Replace_NextClick" entry="EVT_BUTTON" />
 					</object>
 					<object class="wxButton" name="ID_BUTTON4" variable="m_button_Replace_Replace" member="yes">
-						<label>替换</label>
+						<label>替换(&amp;R)</label>
 						<pos>264,80</pos>
 						<size>82,23</size>
 						<handler function="Onm_button_Replace_ReplaceClick" entry="EVT_BUTTON" />
 					</object>
 					<object class="wxButton" name="ID_BUTTON5" variable="m_button_Replace_All" member="yes">
-						<label>替换所有</label>
+						<label>替换所有(&amp;A)</label>
 						<pos>264,112</pos>
 						<size>82,23</size>
 						<handler function="Onm_button_Replace_AllClick" entry="EVT_BUTTON" />

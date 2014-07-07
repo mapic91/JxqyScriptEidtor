@@ -1,5 +1,6 @@
 #include "JxqyStc.h"
 #include "wx/textfile.h"
+#include "wx/file.h"
 #include "wx/msgdlg.h"
 #include "wx/filename.h"
 #include "JxqyScriptEditor.h"
@@ -31,7 +32,7 @@ JxqyStc::JxqyStc(JxqyScriptEditor *parent,
 //    SetTabIndents (false);
 //    SetBackSpaceUnIndents(false);
 //    SetIndentationGuides(true);
-
+//SetCodePage(65001);
     //Settings
     m_showCallTip = true;
     m_autoCompSelected = false;
@@ -86,7 +87,7 @@ void JxqyStc::OnCharAdded(wxStyledTextEvent &event)
             hintLen++;
         else
             break;
-    if(hintLen > 1)
+    if(hintLen > 0)
     {
     	m_autoCompSearchLength = hintLen;
 
@@ -330,8 +331,16 @@ void JxqyStc::ShowLineNumber(bool show)
 }
 bool JxqyStc::OpenFromFile(const wxString& filePath)
 {
-    if(LoadFile(filePath))
+	wxFile file(filePath);
+    if(file.IsOpened())
     {
+    	size_t length = (size_t) file.Length();
+    	char *buf = new char[length + 1];
+    	file.Read((void*)buf, length);
+    	buf[length] = 0;
+    	wxString text(buf);
+    	SetText(text);
+    	EmptyUndoBuffer();
         m_filePath = filePath;
         return true;
     }

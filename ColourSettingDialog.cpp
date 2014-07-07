@@ -128,7 +128,7 @@ void ColourSettingDialog::Onm_button_CancleClick(wxCommandEvent& event)
 
 void ColourSettingDialog::Onm_listBox_StyleSelect(wxCommandEvent& event)
 {
-	int sel = event.GetSelection();
+	int sel = GetCorrectedListSelection();
 	if(sel != wxNOT_FOUND)
 	{
 		wxColour forcol, backcol;

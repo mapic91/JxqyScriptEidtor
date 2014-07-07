@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <wxsmith>
 	<object class="wxFrame" name="JxqyScriptEditor">
+		<title>剑侠情缘脚本编辑器</title>
 		<centered>1</centered>
 		<size>800,600</size>
 		<id_arg>0</id_arg>
@@ -132,6 +133,12 @@
 					<radio>1</radio>
 				</object>
 			</object>
+			<object class="wxMenu" variable="Menu5" member="yes">
+				<label>帮助</label>
+				<object class="wxMenuItem" name="wxID_ABOUT" variable="MenuItem26" member="yes">
+					<label>关于</label>
+				</object>
+			</object>
 		</object>
 		<object class="wxToolBar" name="ID_TOOLBAR1" variable="m_toolBar" member="yes">
 			<object class="tool" name="wxID_NEW" variable="ToolBarItem1" member="yes">
@@ -185,6 +192,17 @@
 				<label>粘贴</label>
 				<bitmap code="wxBITMAP_PNG(PASTE)" />
 				<tooltip>粘贴</tooltip>
+			</object>
+			<object class="separator" />
+			<object class="tool" name="wxID_FIND" variable="ToolBarItem11" member="yes">
+				<label>查找</label>
+				<bitmap code="wxBITMAP_PNG(FIND)" />
+				<tooltip>查找</tooltip>
+			</object>
+			<object class="tool" name="wxID_REPLACE" variable="ToolBarItem12" member="yes">
+				<label>替换</label>
+				<bitmap code="wxBITMAP_PNG(REPLACE)" />
+				<tooltip>替换</tooltip>
 			</object>
 		</object>
 	</object>
