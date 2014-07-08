@@ -21,7 +21,7 @@ class JxqyScriptEditor: public wxFrame
 
 		JxqyScriptEditor(wxWindow* parent,wxWindowID id=wxID_ANY,const wxPoint& pos=wxDefaultPosition,const wxSize& size=wxDefaultSize);
 		virtual ~JxqyScriptEditor();
-		void OpenFile(const wxString& path);
+		bool OpenFile(const wxString& path);
 		JxqyStc* GetCurrentStc();
 
 	private:
@@ -45,6 +45,8 @@ class JxqyScriptEditor: public wxFrame
 		wxMenuItem* MenuItem4;
 		wxMenuItem* MenuItem14;
 		wxMenuItem* MenuItem11;
+		wxMenuItem* MenuItem29;
+		wxMenu m_menuPageTabPopup;
 		wxMenuItem* MenuItem15;
 		wxMenuItem* MenuItem22;
 		wxMenuItem* MenuItem17;
@@ -54,9 +56,11 @@ class JxqyScriptEditor: public wxFrame
 		wxToolBarToolBase* ToolBarItem6;
 		wxMenuItem* MenuItem12;
 		wxMenuItem* MenuItem24;
+		wxMenuItem* MenuItem27;
 		wxToolBarToolBase* ToolBarItem1;
 		wxMenuItem* MenuItem3;
 		wxMenuItem* MenuItem20;
+		wxMenuItem* MenuItem28;
 		wxMenuItem* MenuItem6;
 		wxToolBar* m_toolBar;
 		wxMenuItem* MenuItem23;
@@ -68,6 +72,7 @@ class JxqyScriptEditor: public wxFrame
 		wxMenu* Menu2;
 		wxMenuItem* MenuItem9;
 		wxMenuItem* MenuItem18;
+		wxMenuItem* MenuItem30;
 		wxToolBarToolBase* ToolBarItem2;
 		wxMenu* Menu5;
 		wxMenu* Menu4;
@@ -96,14 +101,17 @@ class JxqyScriptEditor: public wxFrame
 		void OnLineNumberShow(wxCommandEvent &event);
 		void OnFunctionFileChoose(wxCommandEvent &event);
 		//Help
+		void OnHelp(wxCommandEvent &event);
 		void OnAbout(wxCommandEvent &event);
+		//Pagetab popup
+		void OnPageTabPopup(wxCommandEvent &event);
 
 		void OnPageClose(wxAuiNotebookEvent &event);
 
 		void OnActivate(wxActivateEvent &event);
 
 		bool ClosePage(int idx = -1, bool deletePage = true);
-		bool CloseAllPage();
+		bool CloseAllPage(size_t keep = -1);
 
 		int GetOpenedFile(const wxString &path);
 		void SetPageChanged(bool changed = true, int idx = -1);
@@ -153,6 +161,9 @@ class JxqyScriptEditor: public wxFrame
 		static const long TOOLBAR_MYID_COPY;
 		static const long TOOLBAR_MYID_PASTE;
 		static const long ID_TOOLBAR1;
+		static const long MYID_PAGETABCLOSENOTTHIS;
+		static const long MYID_PAGETABCLOSEALL;
+		static const long MYID_OPENFILEDIR;
 		//*)
 
 	public:
@@ -161,6 +172,8 @@ class JxqyScriptEditor: public wxFrame
 		void OnFrameClose(wxCloseEvent& event);
 		void OnPageClosed(wxAuiNotebookEvent& event);
 		void OnPageChanged(wxAuiNotebookEvent& event);
+		void OBookTabRightDown(wxAuiNotebookEvent& event);
+		void Onm_AuiBookPageChanging(wxAuiNotebookEvent& event);
 		//*)
 		void OnStcChange(wxStyledTextEvent &event);
 

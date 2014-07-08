@@ -65,6 +65,9 @@ const long JxqyScriptEditor::TOOLBAR_MYID_CUT = wxNewId();
 const long JxqyScriptEditor::TOOLBAR_MYID_COPY = wxNewId();
 const long JxqyScriptEditor::TOOLBAR_MYID_PASTE = wxNewId();
 const long JxqyScriptEditor::ID_TOOLBAR1 = wxNewId();
+const long JxqyScriptEditor::MYID_PAGETABCLOSENOTTHIS = wxNewId();
+const long JxqyScriptEditor::MYID_PAGETABCLOSEALL = wxNewId();
+const long JxqyScriptEditor::MYID_OPENFILEDIR = wxNewId();
 //*)
 
 
@@ -98,12 +101,16 @@ BEGIN_EVENT_TABLE(JxqyScriptEditor,wxFrame)
     EVT_MENU(MYID_FONTSETTING, JxqyScriptEditor::OnFontSetting)
     EVT_MENU(MYID_COLOURSETTING, JxqyScriptEditor::OnColourSetting)
     EVT_MENU(wxID_ABOUT, JxqyScriptEditor::OnAbout)
+    EVT_MENU(wxID_HELP, JxqyScriptEditor::OnHelp)
     EVT_MENU(MYID_WORDWRAP, JxqyScriptEditor::OnWordWrap)
     EVT_MENU(MYID_FUNHELP, JxqyScriptEditor::OnFunctionHelpShow)
     EVT_MENU(MYID_SHOWLINENUMBER, JxqyScriptEditor::OnLineNumberShow)
     EVT_MENU(MYID_JXQY2, JxqyScriptEditor::OnFunctionFileChoose)
     EVT_MENU(MYID_YYCS, JxqyScriptEditor::OnFunctionFileChoose)
     EVT_MENU(MYID_XJXQY, JxqyScriptEditor::OnFunctionFileChoose)
+    EVT_MENU(MYID_OPENFILEDIR, JxqyScriptEditor::OnPageTabPopup)
+    EVT_MENU(MYID_PAGETABCLOSENOTTHIS, JxqyScriptEditor::OnPageTabPopup)
+    EVT_MENU(MYID_PAGETABCLOSEALL, JxqyScriptEditor::OnCloseAll)
 END_EVENT_TABLE()
 
 JxqyScriptEditor::JxqyScriptEditor(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size)
@@ -180,6 +187,8 @@ JxqyScriptEditor::JxqyScriptEditor(wxWindow* parent,wxWindowID id,const wxPoint&
     Menu2->Append(MenuItem15);
     m_menuBar->Append(Menu2, _T("设置"));
     Menu5 = new wxMenu();
+    MenuItem30 = new wxMenuItem(Menu5, wxID_HELP, _T("帮助\tF1"), wxEmptyString, wxITEM_NORMAL);
+    Menu5->Append(MenuItem30);
     MenuItem26 = new wxMenuItem(Menu5, wxID_ABOUT, _T("关于"), wxEmptyString, wxITEM_NORMAL);
     Menu5->Append(MenuItem26);
     m_menuBar->Append(Menu5, _T("帮助"));
@@ -202,12 +211,21 @@ JxqyScriptEditor::JxqyScriptEditor(wxWindow* parent,wxWindowID id,const wxPoint&
     ToolBarItem12 = m_toolBar->AddTool(wxID_REPLACE, _T("替换"), wxBITMAP_PNG(REPLACE), wxNullBitmap, wxITEM_NORMAL, _T("替换"), wxEmptyString);
     m_toolBar->Realize();
     SetToolBar(m_toolBar);
+    MenuItem29 = new wxMenuItem((&m_menuPageTabPopup), MYID_PAGETABCLOSENOTTHIS, _T("关闭非当前文件"), wxEmptyString, wxITEM_NORMAL);
+    m_menuPageTabPopup.Append(MenuItem29);
+    MenuItem28 = new wxMenuItem((&m_menuPageTabPopup), MYID_PAGETABCLOSEALL, _T("关闭所有"), wxEmptyString, wxITEM_NORMAL);
+    m_menuPageTabPopup.Append(MenuItem28);
+    m_menuPageTabPopup.AppendSeparator();
+    MenuItem27 = new wxMenuItem((&m_menuPageTabPopup), MYID_OPENFILEDIR, _T("打开文件所在文件夹"), wxEmptyString, wxITEM_NORMAL);
+    m_menuPageTabPopup.Append(MenuItem27);
     SetSizer(BoxSizer1);
     Layout();
     Center();
 
     Connect(ID_AUINOTEBOOK1,wxEVT_COMMAND_AUINOTEBOOK_PAGE_CLOSED,(wxObjectEventFunction)&JxqyScriptEditor::OnPageClosed);
     Connect(ID_AUINOTEBOOK1,wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGED,(wxObjectEventFunction)&JxqyScriptEditor::OnPageChanged);
+    Connect(ID_AUINOTEBOOK1,wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGING,(wxObjectEventFunction)&JxqyScriptEditor::Onm_AuiBookPageChanging);
+    Connect(ID_AUINOTEBOOK1,wxEVT_COMMAND_AUINOTEBOOK_TAB_RIGHT_DOWN,(wxObjectEventFunction)&JxqyScriptEditor::OBookTabRightDown);
     Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&JxqyScriptEditor::OnFrameClose);
     //*)
 
@@ -394,10 +412,38 @@ void JxqyScriptEditor::OnColourSetting(wxCommandEvent& event)
         ResetOpenedPageStyle();
     }
 }
+void JxqyScriptEditor::OnHelp(wxCommandEvent& event)
+{
+	wxMessageBox(wxT("设置：可以设置字体、颜色、哪个游戏等。\n\n函数提示文件在Function文件夹下，可以自行修改。\n"),
+				wxT("帮助"));
+}
+
 void JxqyScriptEditor::OnAbout(wxCommandEvent& event)
 {
 	AboutDialog dlg(this);
 	dlg.ShowModal();
+}
+
+void JxqyScriptEditor::OnPageTabPopup(wxCommandEvent& event)
+{
+	int id = event.GetId();
+	if(id == MYID_OPENFILEDIR)
+	{
+		JxqyStc *stc = GetCurrentStc();
+		if(stc)
+		{
+			wxString filePath = stc->GetFilePath();
+			if(wxFileName::FileExists(filePath))
+			{
+				wxString cmd = wxT("explorer /select,\"") + filePath + wxT("\"");
+				wxExecute(cmd);
+			}
+		}
+	}
+	else if(id == MYID_PAGETABCLOSENOTTHIS)
+	{
+		CloseAllPage(m_AuiBook->GetSelection());
+	}
 }
 
 void JxqyScriptEditor::OnWordWrap(wxCommandEvent& event)
@@ -732,20 +778,28 @@ bool JxqyScriptEditor::ClosePage(int idx, bool deletePage)
     else
         return false;
 }
-bool JxqyScriptEditor::CloseAllPage()
+bool JxqyScriptEditor::CloseAllPage(size_t keep)
 {
     size_t count = m_AuiBook->GetPageCount();
-    JxqyStc *stc;
+    JxqyStc *stc[count];
     for(size_t i = 0; i < count; i++)
     {
-        stc = (JxqyStc*)m_AuiBook->GetPage(i);
-        if(stc)
-        {
-            m_AuiBook->SetSelection(i);
-            if(!ClosePage(i, false)) return false;
-        }
+    	stc[i] = NULL;
+    	if(i != keep)
+		{
+            stc[i] = (JxqyStc*)m_AuiBook->GetPage(i);
+            if(stc[i])
+            {
+                m_AuiBook->SetSelection(i);
+                if(!ClosePage(i, false)) return false;
+            }
+		}
     }
-    m_AuiBook->DeleteAllPages();
+    for(size_t i = 0; i < count; i++)
+    {
+		m_AuiBook->DeletePage(m_AuiBook->GetPageIndex(stc[i]));
+    }
+	SetMenuAndPageState();
     return true;
 }
 
@@ -829,7 +883,7 @@ void JxqyScriptEditor::OnPageChanged(wxAuiNotebookEvent& event)
     SetMenuAndPageState();
 }
 
-void JxqyScriptEditor::OpenFile(const wxString& path)
+bool JxqyScriptEditor::OpenFile(const wxString& path)
 {
     int openedIdx = GetOpenedFile(path);
     if(openedIdx != -1)
@@ -839,10 +893,16 @@ void JxqyScriptEditor::OpenFile(const wxString& path)
     else
     {
         JxqyStc *stc = GetInitlizedJxqyStc();
-        stc->OpenFromFile(path);
+        if(!stc->OpenFromFile(path))
+		{
+			wxMessageBox(wxT("文件打开失败！"), wxT("错误"), wxOK|wxCENTER|wxICON_ERROR);
+			delete stc;
+			return false;
+		}
         m_AuiBook->AddPage(stc, stc->GetFileName(), true);
         m_AuiBook->SetPageToolTip(m_AuiBook->GetPageIndex(stc), stc->GetFilePath());
     }
+    return true;
 }
 bool MyFileDrop::OnDropFiles(wxCoord x, wxCoord y, const wxArrayString& filenames)
 {
@@ -853,4 +913,19 @@ bool MyFileDrop::OnDropFiles(wxCoord x, wxCoord y, const wxArrayString& filename
         mainfram->OpenFile(filenames[i]);
     }
     return true;
+}
+
+void JxqyScriptEditor::OBookTabRightDown(wxAuiNotebookEvent& event)
+{
+	m_AuiBook->SetSelection(event.GetSelection());
+	PopupMenu(&m_menuPageTabPopup);
+}
+
+void JxqyScriptEditor::Onm_AuiBookPageChanging(wxAuiNotebookEvent& event)
+{
+	JxqyStc *stc = GetCurrentStc();
+	if(stc)
+	{
+		stc->CallTipCancel();
+	}
 }

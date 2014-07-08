@@ -1693,7 +1693,7 @@
 1384175917 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\univ\theme.h
 	"wx/string.h"
 
-1404729085 e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.h
+1404783028 e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.h
 	"JxqyStc.h"
 	"ConfigManager.h"
 	"FindDialog.h"
@@ -2236,7 +2236,7 @@
 
 1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\msw\rcdefs.h
 
-1404730844 source:e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.cpp
+1404783028 source:e:\programmingworkshop\jxqyscripteditor\jxqyscripteditor.cpp
 	"JxqyScriptEditor.h"
 	"helperFun.h"
 	"ColourSettingDialog.h"
@@ -2395,7 +2395,7 @@
 	<os2.h>
 	<pmstddlg.h>
 
-1404730509 source:e:\programmingworkshop\jxqyscripteditor\jxqystc.cpp
+1404778682 source:e:\programmingworkshop\jxqyscripteditor\jxqystc.cpp
 	"JxqyStc.h"
 	"wx/textfile.h"
 	"wx/file.h"
@@ -2710,7 +2710,7 @@
 1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\osx\fontdlg.h
 	"wx/dialog.h"
 
-1404470760 source:e:\programmingworkshop\jxqyscripteditor\coloursettingdialog.cpp
+1404733988 source:e:\programmingworkshop\jxqyscripteditor\coloursettingdialog.cpp
 	"ColourSettingDialog.h"
 	<wx/string.h>
 
@@ -3040,7 +3040,7 @@
 	"wx/msgdlg.h"
 	<wx/string.h>
 
-1404730439 source:e:\programmingworkshop\jxqyscripteditor\aboutdialog.cpp
+1404780530 source:e:\programmingworkshop\jxqyscripteditor\aboutdialog.cpp
 	"AboutDialog.h"
 	<wx/string.h>
 

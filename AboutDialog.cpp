@@ -32,7 +32,7 @@ AboutDialog::AboutDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos,const
 	StaticText3->SetForegroundColour(wxColour(37,169,180));
 	StaticText4 = new wxStaticText(this, ID_STATICTEXT4, _T("    BY£º"), wxPoint(80,48), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
 	StaticText4->SetForegroundColour(wxColour(37,169,180));
-	StaticText5 = new wxStaticText(this, ID_STATICTEXT5, _T("2014.07.07"), wxPoint(192,96), wxDefaultSize, 0, _T("ID_STATICTEXT5"));
+	StaticText5 = new wxStaticText(this, ID_STATICTEXT5, _T("2014.07.08"), wxPoint(192,96), wxDefaultSize, 0, _T("ID_STATICTEXT5"));
 	StaticText5->SetForegroundColour(wxColour(128,0,0));
 	Button1 = new wxButton(this, ID_BUTTON1, _T("È·¶¨"), wxPoint(200,136), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
 	Button1->SetDefault();

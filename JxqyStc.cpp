@@ -339,6 +339,7 @@ bool JxqyStc::OpenFromFile(const wxString& filePath)
     	file.Read((void*)buf, length);
     	buf[length] = 0;
     	wxString text(buf);
+    	if(text.char_str().length() != length) return false;
     	SetText(text);
     	EmptyUndoBuffer();
         m_filePath = filePath;

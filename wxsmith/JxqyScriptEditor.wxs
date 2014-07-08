@@ -12,6 +12,8 @@
 					<style>wxAUI_NB_CLOSE_ON_ALL_TABS|wxAUI_NB_DEFAULT_STYLE</style>
 					<handler function="OnPageClosed" entry="EVT_AUINOTEBOOK_PAGE_CLOSED" />
 					<handler function="OnPageChanged" entry="EVT_AUINOTEBOOK_PAGE_CHANGED" />
+					<handler function="Onm_AuiBookPageChanging" entry="EVT_AUINOTEBOOK_PAGE_CHANGING" />
+					<handler function="OBookTabRightDown" entry="EVT_AUINOTEBOOK_TAB_RIGHT_DOWN" />
 				</object>
 				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 				<option>1</option>
@@ -135,6 +137,10 @@
 			</object>
 			<object class="wxMenu" variable="Menu5" member="yes">
 				<label>帮助</label>
+				<object class="wxMenuItem" name="wxID_HELP" variable="MenuItem30" member="yes">
+					<label>帮助</label>
+					<accel>F1</accel>
+				</object>
 				<object class="wxMenuItem" name="wxID_ABOUT" variable="MenuItem26" member="yes">
 					<label>关于</label>
 				</object>
@@ -203,6 +209,18 @@
 				<label>替换</label>
 				<bitmap code="wxBITMAP_PNG(REPLACE)" />
 				<tooltip>替换</tooltip>
+			</object>
+		</object>
+		<object class="wxMenu" variable="m_menuPageTabPopup" member="yes">
+			<object class="wxMenuItem" name="MYID_PAGETABCLOSENOTTHIS" variable="MenuItem29" member="yes">
+				<label>关闭非当前文件</label>
+			</object>
+			<object class="wxMenuItem" name="MYID_PAGETABCLOSEALL" variable="MenuItem28" member="yes">
+				<label>关闭所有</label>
+			</object>
+			<object class="separator" />
+			<object class="wxMenuItem" name="MYID_OPENFILEDIR" variable="MenuItem27" member="yes">
+				<label>打开文件所在文件夹</label>
 			</object>
 		</object>
 	</object>
