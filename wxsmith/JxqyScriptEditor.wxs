@@ -111,27 +111,33 @@
 				<object class="separator" />
 				<object class="wxMenuItem" name="MYID_WORDWRAP" variable="MenuItem11" member="yes">
 					<label>自动换行</label>
+					<accel>F2</accel>
 					<checkable>1</checkable>
 				</object>
 				<object class="wxMenuItem" name="MYID_FUNHELP" variable="MenuItem12" member="yes">
 					<label>显示函数帮助</label>
+					<accel>F3</accel>
 					<checkable>1</checkable>
 				</object>
 				<object class="wxMenuItem" name="MYID_SHOWLINENUMBER" variable="MenuItem16" member="yes">
 					<label>显示行数</label>
+					<accel>F4</accel>
 					<checkable>1</checkable>
 				</object>
 				<object class="separator" />
 				<object class="wxMenuItem" name="MYID_JXQY2" variable="MenuItem13" member="yes">
 					<label>剑侠情缘二</label>
+					<accel>Ctrl+1</accel>
 					<radio>1</radio>
 				</object>
 				<object class="wxMenuItem" name="MYID_YYCS" variable="MenuItem14" member="yes">
 					<label>月影传说</label>
+					<accel>Ctrl+2</accel>
 					<radio>1</radio>
 				</object>
 				<object class="wxMenuItem" name="MYID_XJXQY" variable="MenuItem15" member="yes">
 					<label>新剑侠情缘</label>
+					<accel>Ctrl+3</accel>
 					<radio>1</radio>
 				</object>
 			</object>
