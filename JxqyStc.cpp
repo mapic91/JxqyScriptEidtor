@@ -48,7 +48,7 @@ JxqyStc::~JxqyStc()
     this->Unbind(wxEVT_STC_CHARADDED, &JxqyStc::OnCharAdded, this);
     this->Unbind(wxEVT_MOTION, &JxqyStc::OnMouseMove, this);
     this->Unbind(wxEVT_STC_AUTOCOMP_SELECTION, &JxqyStc::OnAutocompSelection, this);
-   // this->Unbind(wxEVT_STC_CHANGE, &JxqyStc::OnStcChange, this);
+    // this->Unbind(wxEVT_STC_CHANGE, &JxqyStc::OnStcChange, this);
     this->Unbind(wxEVT_STC_UPDATEUI, &JxqyScriptEditor::OnStcChange, (JxqyScriptEditor*)GetParent());
     //wxMessageBox(wxT("JxqyStc destructed"));
 }
@@ -67,8 +67,11 @@ void JxqyStc::OnCharAdded(wxStyledTextEvent &event)
         }
         if (lineInd != 0)
         {
+            wxString line = GetLine(currentLine);
+            line.Trim();
+            line.Trim(true);
             SetLineIndentation (currentLine, lineInd);
-            GotoPos(PositionFromLine (currentLine) + lineInd);
+			GotoPos(PositionFromLine(currentLine) + lineInd/GetIndent());
         }
     }
 
@@ -89,7 +92,7 @@ void JxqyStc::OnCharAdded(wxStyledTextEvent &event)
             break;
     if(hintLen > 0)
     {
-    	m_autoCompSearchLength = hintLen;
+        m_autoCompSearchLength = hintLen;
 
         wxString compList, tmpStr;
         wxString findStr = lineStr.Mid(lineLen - hintLen);
@@ -113,15 +116,15 @@ void JxqyStc::OnCharAdded(wxStyledTextEvent &event)
 }
 void JxqyStc::OnStcChange(wxStyledTextEvent& event)
 {
-	if(m_showCallTip && m_autoCompSelected)
-	{
-		m_autoCompSelected = false;
-		wxString descrip = FindFunctionCallTip(m_lastCallTipWord);
-		if(!descrip.IsEmpty())
-		{
-			ShowFunctionCallTip(GetCurrentPos(),descrip);
-		}
-	}
+    if(m_showCallTip && m_autoCompSelected)
+    {
+        m_autoCompSelected = false;
+        wxString descrip = FindFunctionCallTip(m_lastCallTipWord);
+        if(!descrip.IsEmpty())
+        {
+            ShowFunctionCallTip(GetCurrentPos(),descrip);
+        }
+    }
 }
 
 void JxqyStc::SetFunctionKeywordFromFile(const wxString &filename)
@@ -216,7 +219,7 @@ void JxqyStc::OnMouseMove(wxMouseEvent &event)
         {
             if(word != m_lastCallTipWord || !CallTipActive())
             {
-            	m_lastCallTipWord = word;
+                m_lastCallTipWord = word;
                 wxString descip = FindFunctionCallTip(word);
                 if(!descip.IsEmpty())
                 {
@@ -331,17 +334,17 @@ void JxqyStc::ShowLineNumber(bool show)
 }
 bool JxqyStc::OpenFromFile(const wxString& filePath)
 {
-	wxFile file(filePath);
+    wxFile file(filePath);
     if(file.IsOpened())
     {
-    	size_t length = (size_t) file.Length();
-    	char *buf = new char[length + 1];
-    	file.Read((void*)buf, length);
-    	buf[length] = 0;
-    	wxString text(buf);
-    	if(text.char_str().length() != length) return false;
-    	SetText(text);
-    	EmptyUndoBuffer();
+        size_t length = (size_t) file.Length();
+        char *buf = new char[length + 1];
+        file.Read((void*)buf, length);
+        buf[length] = 0;
+        wxString text(buf);
+        if(text.char_str().length() != length) return false;
+        SetText(text);
+        EmptyUndoBuffer();
         m_filePath = filePath;
         return true;
     }
