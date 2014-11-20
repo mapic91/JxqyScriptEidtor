@@ -3065,7 +3065,7 @@
 1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\msw\hyperlink.h
 	"wx/generic/hyperlink.h"
 
-1415265996 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\aboutdialog.cpp
+1416473574 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\aboutdialog.cpp
 	"AboutDialog.h"
 	<wx/string.h>
 
@@ -4940,7 +4940,7 @@
 	"wx/strconv.h"
 	"wx/fontenc.h"
 
-1404788248 e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\jxqyscripteditor.h
+1416474259 e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\jxqyscripteditor.h
 	"JxqyStc.h"
 	"ConfigManager.h"
 	"FindDialog.h"
@@ -4951,6 +4951,7 @@
 	<wx/aui/aui.h>
 	<wx/toolbar.h>
 	<wx/frame.h>
+	"wxFormBuilder/FileExplorerPanelBase.h"
 
 1415266577 e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\jxqystc.h
 	"wx/stc/stc.h"
@@ -6089,11 +6090,126 @@
 
 1412631243 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\msw\rcdefs.h
 
-1415265945 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\jxqystc.cpp
+1415266656 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\jxqystc.cpp
 	"JxqyStc.h"
 	"wx/textfile.h"
 	"wx/file.h"
 	"wx/msgdlg.h"
 	"wx/filename.h"
 	"JxqyScriptEditor.h"
+
+1412631243 d:\protools\wxwidgets\wxwidgets-3.0\lib\gcc_dll\mswu\wx\setup.h
+
+1416471998 e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\wxformbuilder\fileexplorerpanelbase.h
+	<wx/artprov.h>
+	<wx/xrc/xmlres.h>
+	<wx/string.h>
+	<wx/dirctrl.h>
+	<wx/gdicmn.h>
+	<wx/font.h>
+	<wx/colour.h>
+	<wx/settings.h>
+	<wx/combobox.h>
+	<wx/sizer.h>
+	<wx/panel.h>
+	<wx/frame.h>
+
+1412631243 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\xrc\xmlres.h
+	"wx/defs.h"
+	"wx/string.h"
+	"wx/dynarray.h"
+	"wx/arrstr.h"
+	"wx/datetime.h"
+	"wx/list.h"
+	"wx/gdicmn.h"
+	"wx/filesys.h"
+	"wx/bitmap.h"
+	"wx/icon.h"
+	"wx/artprov.h"
+	"wx/colour.h"
+	"wx/vector.h"
+	"wx/xrc/xmlreshandler.h"
+
+1412631242 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\filesys.h
+	"wx/defs.h"
+	"wx/stream.h"
+	"wx/datetime.h"
+	"wx/filename.h"
+	"wx/hashmap.h"
+
+1412631243 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\xrc\xmlreshandler.h
+	"wx/defs.h"
+	"wx/string.h"
+	"wx/artprov.h"
+	"wx/colour.h"
+	"wx/filesys.h"
+	"wx/imaglist.h"
+	"wx/window.h"
+
+1412631242 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\dirctrl.h
+	"wx/generic/dirctrlg.h"
+
+1412631242 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\generic\dirctrlg.h
+	"wx/treectrl.h"
+	"wx/dialog.h"
+	"wx/dirdlg.h"
+	"wx/choice.h"
+
+1412631243 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\treectrl.h
+	"wx/defs.h"
+	"wx/control.h"
+	"wx/treebase.h"
+	"wx/textctrl.h"
+	"wx/generic/treectlg.h"
+	"wx/msw/treectrl.h"
+	"wx/generic/treectlg.h"
+	"wx/generic/treectlg.h"
+	"wx/generic/treectlg.h"
+	"wx/generic/treectlg.h"
+	"wx/generic/treectlg.h"
+
+1412631243 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\treebase.h
+	"wx/defs.h"
+	"wx/window.h"
+	"wx/event.h"
+	"wx/dynarray.h"
+	"wx/itemid.h"
+
+1412631242 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\itemid.h
+
+1412631242 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\generic\treectlg.h
+	"wx/scrolwin.h"
+	"wx/pen.h"
+
+1412631243 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\msw\treectrl.h
+	"wx/textctrl.h"
+	"wx/dynarray.h"
+	"wx/treebase.h"
+	"wx/hashmap.h"
+
+1412631242 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\dirdlg.h
+	"wx/dialog.h"
+	"wx/generic/dirdlgg.h"
+	"wx/generic/dirdlgg.h"
+	"wx/generic/dirdlgg.h"
+	"wx/msw/dirdlg.h"
+	"wx/gtk/dirdlg.h"
+	"wx/generic/dirdlgg.h"
+	"wx/osx/dirdlg.h"
+	"wx/cocoa/dirdlg.h"
+	"wx/generic/dirdlgg.h"
+
+1412631242 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\generic\dirdlgg.h
+	"wx/dialog.h"
+
+1412631243 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\msw\dirdlg.h
+
+1412631242 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\gtk\dirdlg.h
+
+1412631243 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\osx\dirdlg.h
+
+1412631242 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\cocoa\dirdlg.h
+
+1416472790 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\wxformbuilder\fileexplorerpanelbase.cpp
+	"FileExplorerPanelBase.h"
 

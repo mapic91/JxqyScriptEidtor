@@ -15,6 +15,7 @@
 #include <wx/frame.h>
 //*)
 
+class FileExplorerPanel;
 class JxqyScriptEditor: public wxFrame
 {
 	public:
@@ -28,6 +29,7 @@ class JxqyScriptEditor: public wxFrame
 
 		//(*Declarations(JxqyScriptEditor)
 		wxToolBarToolBase* ToolBarItem4;
+		wxMenuItem* MenuItem31;
 		wxMenuItem* MenuItem8;
 		wxToolBarToolBase* ToolBarItem9;
 		wxMenuItem* MenuItem26;
@@ -49,6 +51,7 @@ class JxqyScriptEditor: public wxFrame
 		wxMenu m_menuPageTabPopup;
 		wxMenuItem* MenuItem15;
 		wxMenuItem* MenuItem22;
+		wxMenuItem* MenuItem32;
 		wxMenuItem* MenuItem17;
 		wxMenuItem* MenuItem13;
 		wxMenu* Menu1;
@@ -69,6 +72,7 @@ class JxqyScriptEditor: public wxFrame
 		wxToolBarToolBase* ToolBarItem8;
 		wxMenuItem* MenuItem21;
 		wxMenuItem* MenuItem16;
+		wxMenu* Menu6;
 		wxMenu* Menu2;
 		wxMenuItem* MenuItem9;
 		wxMenuItem* MenuItem18;
@@ -100,6 +104,8 @@ class JxqyScriptEditor: public wxFrame
 		void OnFunctionHelpShow(wxCommandEvent &event);
 		void OnLineNumberShow(wxCommandEvent &event);
 		void OnFunctionFileChoose(wxCommandEvent &event);
+		//Window
+		void OnShowFileExplorer(wxCommandEvent &event);
 		//Help
 		void OnHelp(wxCommandEvent &event);
 		void OnAbout(wxCommandEvent &event);
@@ -154,6 +160,7 @@ class JxqyScriptEditor: public wxFrame
 		static const long MYID_JXQY2;
 		static const long MYID_YYCS;
 		static const long MYID_XJXQY;
+		static const long MYID_SHOWFILEEXPLORER;
 		static const long TOOLBAR_MYID_SAVEALL;
 		static const long TOOLBAR_MYID_UNDO;
 		static const long TOOLBAR_MYID_REDO;
@@ -163,6 +170,7 @@ class JxqyScriptEditor: public wxFrame
 		static const long ID_TOOLBAR1;
 		static const long MYID_PAGETABCLOSENOTTHIS;
 		static const long MYID_PAGETABCLOSEALL;
+		static const long MYID_SHOWINFILEEXPLORER;
 		static const long MYID_OPENFILEDIR;
 		//*)
 
@@ -181,6 +189,9 @@ class JxqyScriptEditor: public wxFrame
 		ConfigManager m_cfg;
 		FindDialog *m_find;
 
+		//Panels
+		FileExplorerPanel *m_fileExplorer;
+
 		DECLARE_EVENT_TABLE()
 };
 
@@ -194,6 +205,31 @@ public:
 private:
     JxqyScriptEditor *mainfram;
 
+};
+
+#include "wxFormBuilder/FileExplorerPanelBase.h"
+
+class FileExplorerPanel: public FileExplorerPanelBase
+{
+public:
+	FileExplorerPanel(wxWindow *parent)
+		:FileExplorerPanelBase(parent)
+	{
+		SetTitle(wxT("文件浏览"));
+		m_genericDirCtrl1->SetFilter(wxT("TXT(*.txt)|*.txt|所有文件|*.*"));
+		m_parent = (JxqyScriptEditor*)parent;
+	}
+
+	void ExpandPath(wxString path)
+	{
+		m_genericDirCtrl1->ExpandPath(path);
+	}
+protected:
+	virtual void OnFilterChange( wxCommandEvent& event );
+	virtual void OnTreeItemActivated( wxTreeEvent& event );
+	virtual void OnClose( wxCloseEvent& event ) { Show(false); }
+
+	JxqyScriptEditor *m_parent;
 };
 
 #endif

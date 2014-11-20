@@ -226,6 +226,8 @@
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
 		</Unit>
+		<Unit filename="wxFormBuilder/FileExplorerPanelBase.cpp" />
+		<Unit filename="wxFormBuilder/FileExplorerPanelBase.h" />
 		<Unit filename="wxsmith/AboutDialog.wxs" />
 		<Unit filename="wxsmith/ColourSettingDialog.wxs" />
 		<Unit filename="wxsmith/FindDialog.wxs" />

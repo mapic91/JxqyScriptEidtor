@@ -141,6 +141,13 @@
 					<radio>1</radio>
 				</object>
 			</object>
+			<object class="wxMenu" variable="Menu6" member="yes">
+				<label>窗口</label>
+				<object class="wxMenuItem" name="MYID_SHOWFILEEXPLORER" variable="MenuItem31" member="yes">
+					<label>文件浏览</label>
+					<accel>Ctrl+E</accel>
+				</object>
+			</object>
 			<object class="wxMenu" variable="Menu5" member="yes">
 				<label>帮助</label>
 				<object class="wxMenuItem" name="wxID_HELP" variable="MenuItem30" member="yes">
@@ -225,6 +232,9 @@
 				<label>关闭所有</label>
 			</object>
 			<object class="separator" />
+			<object class="wxMenuItem" name="MYID_SHOWINFILEEXPLORER" variable="MenuItem32" member="yes">
+				<label>在文件浏览窗口显示</label>
+			</object>
 			<object class="wxMenuItem" name="MYID_OPENFILEDIR" variable="MenuItem27" member="yes">
 				<label>打开文件所在文件夹</label>
 			</object>

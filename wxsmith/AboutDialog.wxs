@@ -16,7 +16,7 @@
 			<fg>#25A9B4</fg>
 		</object>
 		<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticText3" member="yes">
-			<label>V1.1</label>
+			<label>V1.1.1</label>
 			<pos>128,16</pos>
 			<fg>#25A9B4</fg>
 		</object>
@@ -26,7 +26,7 @@
 			<fg>#25A9B4</fg>
 		</object>
 		<object class="wxStaticText" name="ID_STATICTEXT5" variable="StaticText5" member="yes">
-			<label>2014.11.06</label>
+			<label>2014.11.20</label>
 			<pos>192,96</pos>
 			<fg>#800000</fg>
 		</object>
