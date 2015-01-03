@@ -4940,10 +4940,11 @@
 	"wx/strconv.h"
 	"wx/fontenc.h"
 
-1416474259 e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\jxqyscripteditor.h
+1420276989 e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\jxqyscripteditor.h
 	"JxqyStc.h"
 	"ConfigManager.h"
 	"FindDialog.h"
+	"TalkIndex.h"
 	"wx/filedlg.h"
 	"wx/dnd.h"
 	<wx/sizer.h>
@@ -6212,4 +6213,8 @@
 
 1416472790 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\wxformbuilder\fileexplorerpanelbase.cpp
 	"FileExplorerPanelBase.h"
+
+1420277494 e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\talkindex.h
+	<map>
+	"wx/string.h"
 

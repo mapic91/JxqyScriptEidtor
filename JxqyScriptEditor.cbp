@@ -221,6 +221,8 @@
 		<Unit filename="JxqyScriptEditor.h" />
 		<Unit filename="JxqyStc.cpp" />
 		<Unit filename="JxqyStc.h" />
+		<Unit filename="TalkIndex.cpp" />
+		<Unit filename="TalkIndex.h" />
 		<Unit filename="helperFun.cpp" />
 		<Unit filename="helperFun.h" />
 		<Unit filename="resource.rc">

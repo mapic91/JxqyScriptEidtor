@@ -4,6 +4,7 @@
 #include "JxqyStc.h"
 #include "ConfigManager.h"
 #include "FindDialog.h"
+#include "TalkIndex.h"
 
 #include "wx/filedlg.h"
 #include "wx/dnd.h"
@@ -191,6 +192,9 @@ class JxqyScriptEditor: public wxFrame
 
 		//Panels
 		FileExplorerPanel *m_fileExplorer;
+
+		//TalkIndex
+		TalkIndex m_talkList;
 
 		DECLARE_EVENT_TABLE()
 };
