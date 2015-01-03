@@ -4940,11 +4940,11 @@
 	"wx/strconv.h"
 	"wx/fontenc.h"
 
-1420276989 e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\jxqyscripteditor.h
+1420287975 e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\jxqyscripteditor.h
 	"JxqyStc.h"
 	"ConfigManager.h"
 	"FindDialog.h"
-	"TalkIndex.h"
+	"TalkListPanel.h"
 	"wx/filedlg.h"
 	"wx/dnd.h"
 	<wx/sizer.h>
@@ -6023,7 +6023,7 @@
 
 1412631243 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\os2\stdpaths.h
 
-1416474528 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\jxqyscripteditor.cpp
+1420290157 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\jxqyscripteditor.cpp
 	"JxqyScriptEditor.h"
 	"helperFun.h"
 	"ColourSettingDialog.h"
@@ -6214,7 +6214,92 @@
 1416472790 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\wxformbuilder\fileexplorerpanelbase.cpp
 	"FileExplorerPanelBase.h"
 
-1420277494 e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\talkindex.h
+1420289597 e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\talkindex.h
 	<map>
 	"wx/string.h"
+
+1420291107 e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\talklistpanel.h
+	"wxFormBuilder/TalkListPanelBase.h"
+	"TalkIndex.h"
+
+1420291993 e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\wxformbuilder\talklistpanelbase.h
+	<wx/artprov.h>
+	<wx/xrc/xmlres.h>
+	<wx/dataview.h>
+	<wx/gdicmn.h>
+	<wx/font.h>
+	<wx/colour.h>
+	<wx/settings.h>
+	<wx/string.h>
+	<wx/sizer.h>
+	<wx/panel.h>
+	<wx/frame.h>
+
+1412631242 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\dataview.h
+	"wx/defs.h"
+	"wx/textctrl.h"
+	"wx/headercol.h"
+	"wx/variant.h"
+	"wx/dnd.h"
+	"wx/dynarray.h"
+	"wx/icon.h"
+	"wx/itemid.h"
+	"wx/weakref.h"
+	"wx/vector.h"
+	"wx/dataobj.h"
+	"wx/withimages.h"
+	"wx/dvrenderers.h"
+	"wx/generic/dataview.h"
+	"wx/gtk/dataview.h"
+	"wx/osx/dataview.h"
+
+1412631242 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\headercol.h
+	"wx/bitmap.h"
+
+1412631242 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\dvrenderers.h
+	"wx/gtk/dvrenderer.h"
+	"wx/osx/dvrenderer.h"
+	"wx/generic/dvrenderer.h"
+	"wx/generic/dvrenderers.h"
+	"wx/gtk/dvrenderers.h"
+	"wx/osx/dvrenderers.h"
+
+1412631242 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\gtk\dvrenderer.h
+
+1412631243 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\osx\dvrenderer.h
+
+1412631242 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\generic\dvrenderer.h
+
+1412631242 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\generic\dvrenderers.h
+
+1412631242 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\gtk\dvrenderers.h
+
+1412631243 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\osx\dvrenderers.h
+
+1412631242 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\generic\dataview.h
+	"wx/defs.h"
+	"wx/object.h"
+	"wx/list.h"
+	"wx/control.h"
+	"wx/scrolwin.h"
+	"wx/icon.h"
+	"wx/vector.h"
+
+1412631242 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\gtk\dataview.h
+	"wx/list.h"
+
+1412631243 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\osx\dataview.h
+
+1420289888 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\talkindex.cpp
+	"TalkIndex.h"
+	"wx/file.h"
+	"wx/log.h"
+
+1420291738 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\talklistpanel.cpp
+	"TalkListPanel.h"
+
+1420291061 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\wxformbuilder\talklistpanelbase.cpp
+	"TalkListPanelBase.h"
+
+1412631243 d:\protools\wxwidgets\wxwidgets-3.0\lib\gcc_lib\mswud\wx\setup.h
 

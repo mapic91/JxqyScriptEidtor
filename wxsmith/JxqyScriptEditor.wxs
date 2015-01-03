@@ -147,6 +147,10 @@
 					<label>文件浏览</label>
 					<accel>Ctrl+E</accel>
 				</object>
+				<object class="wxMenuItem" name="MYID_SHOW_TALKLIST" variable="MenuItem33" member="yes">
+					<label>对话列表</label>
+					<accel>Ctrl+T</accel>
+				</object>
 			</object>
 			<object class="wxMenu" variable="Menu5" member="yes">
 				<label>帮助</label>

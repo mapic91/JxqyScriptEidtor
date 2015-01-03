@@ -223,6 +223,8 @@
 		<Unit filename="JxqyStc.h" />
 		<Unit filename="TalkIndex.cpp" />
 		<Unit filename="TalkIndex.h" />
+		<Unit filename="TalkListPanel.cpp" />
+		<Unit filename="TalkListPanel.h" />
 		<Unit filename="helperFun.cpp" />
 		<Unit filename="helperFun.h" />
 		<Unit filename="resource.rc">
@@ -230,6 +232,8 @@
 		</Unit>
 		<Unit filename="wxFormBuilder/FileExplorerPanelBase.cpp" />
 		<Unit filename="wxFormBuilder/FileExplorerPanelBase.h" />
+		<Unit filename="wxFormBuilder/TalkListPanelBase.cpp" />
+		<Unit filename="wxFormBuilder/TalkListPanelBase.h" />
 		<Unit filename="wxsmith/AboutDialog.wxs" />
 		<Unit filename="wxsmith/ColourSettingDialog.wxs" />
 		<Unit filename="wxsmith/FindDialog.wxs" />

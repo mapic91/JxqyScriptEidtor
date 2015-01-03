@@ -22,6 +22,29 @@ class TalkIndex
 		virtual ~TalkIndex();
 
 	public:
+		typedef std::map<int, TalkDetail>::iterator iterator;
+
+		/**\brief Get iterator at begin.
+		 *
+		 *\return Begin iterator.
+		 *
+		 */
+		iterator Begin();
+
+		/**\brief Get iterator at end.
+		 *
+		 *\return End iterator.
+		 *
+		 */
+		iterator End();
+
+		/**\brief Get item count.
+		 *
+		 *\return Item count.
+		 *
+		 */
+		int Count();
+
 		/**\brief Get TalkDetail at index.
 		 *
 		 *\param index Item index
@@ -72,7 +95,6 @@ class TalkIndex
 		void Save();
 
 	private:
-		typedef std::map<int, TalkDetail>::iterator iterator;
 		std::map<int, TalkDetail> m_talkList;
 };
 

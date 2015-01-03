@@ -59,6 +59,7 @@ const long JxqyScriptEditor::MYID_JXQY2 = wxNewId();
 const long JxqyScriptEditor::MYID_YYCS = wxNewId();
 const long JxqyScriptEditor::MYID_XJXQY = wxNewId();
 const long JxqyScriptEditor::MYID_SHOWFILEEXPLORER = wxNewId();
+const long JxqyScriptEditor::MYID_SHOW_TALKLIST = wxNewId();
 const long JxqyScriptEditor::TOOLBAR_MYID_SAVEALL = wxNewId();
 const long JxqyScriptEditor::TOOLBAR_MYID_UNDO = wxNewId();
 const long JxqyScriptEditor::TOOLBAR_MYID_REDO = wxNewId();
@@ -115,6 +116,7 @@ BEGIN_EVENT_TABLE(JxqyScriptEditor,wxFrame)
     EVT_MENU(MYID_SHOWINFILEEXPLORER, JxqyScriptEditor::OnPageTabPopup)
     EVT_MENU(MYID_PAGETABCLOSEALL, JxqyScriptEditor::OnCloseAll)
     EVT_MENU(MYID_SHOWFILEEXPLORER, JxqyScriptEditor::OnShowFileExplorer)
+    EVT_MENU(MYID_SHOW_TALKLIST, JxqyScriptEditor::OnShowTalkList)
 END_EVENT_TABLE()
 
 JxqyScriptEditor::JxqyScriptEditor(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size)
@@ -193,6 +195,8 @@ JxqyScriptEditor::JxqyScriptEditor(wxWindow* parent,wxWindowID id,const wxPoint&
     Menu6 = new wxMenu();
     MenuItem31 = new wxMenuItem(Menu6, MYID_SHOWFILEEXPLORER, _T("文件浏览\tCtrl+E"), wxEmptyString, wxITEM_NORMAL);
     Menu6->Append(MenuItem31);
+    MenuItem33 = new wxMenuItem(Menu6, MYID_SHOW_TALKLIST, _T("对话列表\tCtrl+T"), wxEmptyString, wxITEM_NORMAL);
+    Menu6->Append(MenuItem33);
     m_menuBar->Append(Menu6, _T("窗口"));
     Menu5 = new wxMenu();
     MenuItem30 = new wxMenuItem(Menu5, wxID_HELP, _T("帮助\tF1"), wxEmptyString, wxITEM_NORMAL);
@@ -264,7 +268,8 @@ JxqyScriptEditor::JxqyScriptEditor(wxWindow* parent,wxWindowID id,const wxPoint&
         break;
     }
 
-    m_fileExplorer = new FileExplorerPanel(this);
+    m_fileExplorer = NULL;
+    m_talkList = NULL;
 
     SetIcon(wxICON(aaaa));
     Center();
@@ -275,6 +280,8 @@ JxqyScriptEditor::~JxqyScriptEditor()
 {
     //(*Destroy(JxqyScriptEditor)
     //*)
+    if(m_fileExplorer) delete m_fileExplorer;
+    if(m_talkList) delete m_talkList;
     Uninit();
 }
 void JxqyScriptEditor::Init()
@@ -461,8 +468,8 @@ void JxqyScriptEditor::OnPageTabPopup(wxCommandEvent& event)
     {
 		if(wxFileName::FileExists(filePath))
 		{
-			m_fileExplorer->Show();
-			m_fileExplorer->ExpandPath(filePath);
+			GetFileExplorerPanel()->Show();
+			GetFileExplorerPanel()->ExpandPath(filePath);
 		}
     }
 }
@@ -651,9 +658,13 @@ void JxqyScriptEditor::OnFunctionFileChoose(wxCommandEvent& event)
 
 void JxqyScriptEditor::OnShowFileExplorer(wxCommandEvent& event)
 {
-    m_fileExplorer->Show(true);
+    GetFileExplorerPanel()->Show(true);
 }
 
+void JxqyScriptEditor::OnShowTalkList(wxCommandEvent& event)
+{
+	GetTalkListPanel()->Show(true);
+}
 
 int JxqyScriptEditor::GetOpenedFile(const wxString& path)
 {
@@ -982,4 +993,22 @@ void FileExplorerPanel::OnTreeItemActivated(wxTreeEvent& event)
     {
         m_parent->OpenFile(path);
     }
+}
+
+FileExplorerPanel* JxqyScriptEditor::GetFileExplorerPanel()
+{
+	if(!m_fileExplorer)
+	{
+		m_fileExplorer = new FileExplorerPanel(this);
+	}
+	return m_fileExplorer;
+}
+
+TalkListPanel* JxqyScriptEditor::GetTalkListPanel()
+{
+	if(!m_talkList)
+	{
+		m_talkList = new TalkListPanel(this);
+	}
+	return m_talkList;
 }

@@ -63,16 +63,16 @@ TalkIndex::TalkIndex()
 	{
 		textOffset[ic] = CharToInt(indexBuffer + index);
 	}
-	textOffset[count] = indexFileSize;
+	textOffset[count] = talkFileSize;
 
 	index = 0;
 	for(int i = 0; i < indexFileSize; i += 12, index++)
 	{
 		TalkDetail detail;
-		detail.PortraitIndex = CharToInt(indexBuffer + 4);
-		detail.Text = wxString(talkText + textOffset[i],
-								textOffset[i+1] - textOffset[i]);
-		m_talkList[CharToInt(indexBuffer)] = detail;
+		detail.PortraitIndex = CharToInt(indexBuffer + i + 4);
+		detail.Text = wxString(talkText + textOffset[index],
+								textOffset[index+1] - textOffset[index]);
+		m_talkList[CharToInt(indexBuffer + i)] = detail;
 	}
 
 	delete[] textOffset;
@@ -83,6 +83,21 @@ TalkIndex::TalkIndex()
 TalkIndex::~TalkIndex()
 {
 	//dtor
+}
+
+TalkIndex::iterator TalkIndex::Begin()
+{
+	return m_talkList.begin();
+}
+
+TalkIndex::iterator TalkIndex::End()
+{
+	return m_talkList.end();
+}
+
+int TalkIndex::Count()
+{
+	return m_talkList.size();
 }
 
 TalkDetail* TalkIndex::GetItem(int index)

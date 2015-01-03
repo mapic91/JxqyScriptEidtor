@@ -4,7 +4,7 @@
 #include "JxqyStc.h"
 #include "ConfigManager.h"
 #include "FindDialog.h"
-#include "TalkIndex.h"
+#include "TalkListPanel.h"
 
 #include "wx/filedlg.h"
 #include "wx/dnd.h"
@@ -32,6 +32,7 @@ class JxqyScriptEditor: public wxFrame
 		wxToolBarToolBase* ToolBarItem4;
 		wxMenuItem* MenuItem31;
 		wxMenuItem* MenuItem8;
+		wxMenuItem* MenuItem33;
 		wxToolBarToolBase* ToolBarItem9;
 		wxMenuItem* MenuItem26;
 		wxMenuItem* MenuItem7;
@@ -107,6 +108,7 @@ class JxqyScriptEditor: public wxFrame
 		void OnFunctionFileChoose(wxCommandEvent &event);
 		//Window
 		void OnShowFileExplorer(wxCommandEvent &event);
+		void OnShowTalkList(wxCommandEvent &event);
 		//Help
 		void OnHelp(wxCommandEvent &event);
 		void OnAbout(wxCommandEvent &event);
@@ -162,6 +164,7 @@ class JxqyScriptEditor: public wxFrame
 		static const long MYID_YYCS;
 		static const long MYID_XJXQY;
 		static const long MYID_SHOWFILEEXPLORER;
+		static const long MYID_SHOW_TALKLIST;
 		static const long TOOLBAR_MYID_SAVEALL;
 		static const long TOOLBAR_MYID_UNDO;
 		static const long TOOLBAR_MYID_REDO;
@@ -192,9 +195,9 @@ class JxqyScriptEditor: public wxFrame
 
 		//Panels
 		FileExplorerPanel *m_fileExplorer;
-
-		//TalkIndex
-		TalkIndex m_talkList;
+		FileExplorerPanel* GetFileExplorerPanel();
+		TalkListPanel *m_talkList;
+		TalkListPanel* GetTalkListPanel();
 
 		DECLARE_EVENT_TABLE()
 };
