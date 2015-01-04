@@ -2,6 +2,8 @@
 #include "helperFun.h"
 #include "ColourSettingDialog.h"
 #include "AboutDialog.h"
+#include "FindDialog.h"
+#include "TalkListPanel.h"
 
 #include "wx/msgdlg.h"
 #include "wx/fontdlg.h"
@@ -472,6 +474,38 @@ void JxqyScriptEditor::OnPageTabPopup(wxCommandEvent& event)
 			GetFileExplorerPanel()->ExpandPath(filePath);
 		}
     }
+}
+
+void JxqyScriptEditor::TalkToSay()
+{
+	JxqyStc *stc = GetCurrentStc();
+	if(stc)
+	{
+		wxArrayString lines;
+		int count = stc->GetLineCount();
+
+		stc->BeginUndoAction();
+        stc->ClearAll();
+        for(int i = 0; i < count; i++)
+		{
+			wxString linetoAdd = stc->GetLine(i);
+			std::string line = std::string(stc->GetLine(i).char_str());
+			size_t pos = line.find("Talk");
+			while(pos != std::string::npos)
+			{
+				int textPos = stc->PositionFromLine(i);
+				textPos += pos;
+				if(stc->GetStyleAt(textPos) == wxSTC_JXQY_FUNCTION)
+				{
+                    linetoAdd = wxString(line.substr(0, pos).c_str());
+                    //Go on.......
+				}
+				pos = line.find("Talk", pos+1);
+			}
+			lines.Add(linetoAdd);
+		}
+		stc->EndUndoAction();
+	}
 }
 
 void JxqyScriptEditor::OnWordWrap(wxCommandEvent& event)

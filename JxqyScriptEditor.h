@@ -3,8 +3,6 @@
 
 #include "JxqyStc.h"
 #include "ConfigManager.h"
-#include "FindDialog.h"
-#include "TalkListPanel.h"
 
 #include "wx/filedlg.h"
 #include "wx/dnd.h"
@@ -16,7 +14,9 @@
 #include <wx/frame.h>
 //*)
 
+class FindDialog;
 class FileExplorerPanel;
+class TalkListPanel;
 class JxqyScriptEditor: public wxFrame
 {
 	public:
@@ -114,6 +114,8 @@ class JxqyScriptEditor: public wxFrame
 		void OnAbout(wxCommandEvent &event);
 		//Pagetab popup
 		void OnPageTabPopup(wxCommandEvent &event);
+
+		void TalkToSay();
 
 		void OnPageClose(wxAuiNotebookEvent &event);
 

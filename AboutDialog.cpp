@@ -28,11 +28,11 @@ AboutDialog::AboutDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos,const
 	StaticText1->SetForegroundColour(wxColour(255,128,64));
 	StaticText2 = new wxStaticText(this, ID_STATICTEXT2, _T("°æ±¾£º"), wxPoint(80,16), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
 	StaticText2->SetForegroundColour(wxColour(37,169,180));
-	StaticText3 = new wxStaticText(this, ID_STATICTEXT3, _T("V1.1.1"), wxPoint(128,16), wxDefaultSize, 0, _T("ID_STATICTEXT3"));
+	StaticText3 = new wxStaticText(this, ID_STATICTEXT3, _T("V1.2"), wxPoint(128,16), wxDefaultSize, 0, _T("ID_STATICTEXT3"));
 	StaticText3->SetForegroundColour(wxColour(37,169,180));
 	StaticText4 = new wxStaticText(this, ID_STATICTEXT4, _T("    BY£º"), wxPoint(80,48), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
 	StaticText4->SetForegroundColour(wxColour(37,169,180));
-	StaticText5 = new wxStaticText(this, ID_STATICTEXT5, _T("2014.11.20"), wxPoint(192,96), wxDefaultSize, 0, _T("ID_STATICTEXT5"));
+	StaticText5 = new wxStaticText(this, ID_STATICTEXT5, _T("2015.1.4"), wxPoint(192,96), wxDefaultSize, 0, _T("ID_STATICTEXT5"));
 	StaticText5->SetForegroundColour(wxColour(128,0,0));
 	Button1 = new wxButton(this, ID_BUTTON1, _T("È·¶¨"), wxPoint(200,136), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
 	Button1->SetDefault();

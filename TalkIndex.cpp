@@ -1,6 +1,7 @@
 #include "TalkIndex.h"
 #include "wx/file.h"
 #include "wx/log.h"
+#include "wx/msgdlg.h"
 
 const wxString TalkPath = wxT("script\\common\\Talk.dat");
 const wxString TalkIndexPath = wxT("script\\common\\Talkidx.dat");
@@ -69,10 +70,11 @@ TalkIndex::TalkIndex()
 	for(int i = 0; i < indexFileSize; i += 12, index++)
 	{
 		TalkDetail detail;
+		detail.Index = CharToInt(indexBuffer + i);
 		detail.PortraitIndex = CharToInt(indexBuffer + i + 4);
 		detail.Text = wxString(talkText + textOffset[index],
 								textOffset[index+1] - textOffset[index]);
-		m_talkList[CharToInt(indexBuffer + i)] = detail;
+		m_talkList.push_back(detail);
 	}
 
 	delete[] textOffset;
@@ -100,50 +102,88 @@ int TalkIndex::Count()
 	return m_talkList.size();
 }
 
+int TalkIndex::GetNewIndex()
+{
+	if(Count() == 0)
+	{
+		return 0;
+	}
+	else
+	{
+		return (m_talkList.rbegin()->Index + 1);
+	}
+}
+
+int TalkIndex::GetListIndex(int itemIndex)
+{
+	iterator end = End();
+	int c = 0;
+	for(iterator it = Begin(); it != end; it++, c++)
+	{
+		if(it->Index == itemIndex)
+		{
+			return c;
+		}
+	}
+	return -1;
+}
+
+TalkIndex::iterator TalkIndex::GetIterator(int index)
+{
+	iterator it = Begin();
+	iterator end = End();
+	int c = 0;
+	for(; it != end; it++, c++)
+	{
+		if(c == index)
+		{
+			break;
+		}
+	}
+	return it;
+}
+
 TalkDetail* TalkIndex::GetItem(int index)
 {
-	if(m_talkList.count(index))
+	iterator it = GetIterator(index);
+	if(it != End())
 	{
-		return &(m_talkList[index]);
+		return &(*it);
+	}
+	return NULL;
+}
+
+TalkDetail* TalkIndex::AppendItem()
+{
+	int newIndex = GetNewIndex();
+	TalkDetail detail;
+	detail.Index = newIndex;
+	m_talkList.push_back(detail);
+	return &(*m_talkList.rbegin());
+}
+
+TalkDetail* TalkIndex::InsertItem(int index)
+{
+	iterator it = GetIterator(index);
+	if(it == End())
+	{
+		return AppendItem();
 	}
 	else
 	{
-		return NULL;
+		TalkDetail detail;
+		detail.Index = it->Index - 1;
+		return &(*m_talkList.insert(it, detail));
 	}
 }
 
-bool TalkIndex::SetItem(int index, int portraitIndex, const wxString& text)
+void TalkIndex::Delete(int index)
 {
-	TalkDetail *item = GetItem(index);
-	if(item)
+	iterator it = GetIterator(index);
+	if(it != End())
 	{
-		item->PortraitIndex = portraitIndex;
-		item->Text = text;
+		m_talkList.erase(it);
 	}
-	return (bool)item;
-}
-
-bool TalkIndex::AddItem(int index)
-{
-	if(m_talkList.count(index))
-	{
-		return false;
-	}
-	else
-	{
-		m_talkList[index];
-		return true;
-	}
-}
-
-bool TalkIndex::AddAfter(int index)
-{
-	return AddItem(index + 1);
-}
-
-bool TalkIndex::AddBefore(int index)
-{
-	return AddItem(index - 1);
 }
 
 void TalkIndex::Save()
@@ -157,16 +197,16 @@ void TalkIndex::Save()
 	{
         for(iterator it = m_talkList.begin(); it != m_talkList.end(); it++)
 		{
-            if(it->second.Text.IsEmpty())
+            if(it->Text.IsEmpty())
 			{
 				continue;
 			}
 			else
 			{
-				const char* str = it->second.Text.char_str();
+				wxWritableCharBuffer str = it->Text.char_str();
 				int length = strlen(str);
 				talkFile.Write(str, length);
-				IntToChar(it->first, it->second.PortraitIndex, offset, intBuf);
+				IntToChar(it->Index, it->PortraitIndex, offset, intBuf);
 				indexFile.Write(intBuf, 12);
 				offset += length;
 			}

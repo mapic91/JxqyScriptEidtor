@@ -16,6 +16,9 @@
 #include <wx/colour.h>
 #include <wx/settings.h>
 #include <wx/string.h>
+#include <wx/button.h>
+#include <wx/stattext.h>
+#include <wx/spinctrl.h>
 #include <wx/sizer.h>
 #include <wx/panel.h>
 #include <wx/frame.h>
@@ -33,9 +36,21 @@ class TalkListPanelBase : public wxFrame
 	protected:
 		wxPanel* m_panel1;
 		wxDataViewListCtrl* m_listView;
+		wxButton* m_bAdd;
+		wxButton* m_bInsert;
+		wxButton* m_bDelete;
+		wxStaticText* m_stGoto;
+		wxSpinCtrl* m_scGoto;
+		wxButton* m_bSave;
 		
 		// Virtual event handlers, overide them in your derived class
 		virtual void OnClose( wxCloseEvent& event ) { event.Skip(); }
+		virtual void OnItemEdited( wxDataViewEvent& event ) { event.Skip(); }
+		virtual void OnAdd( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnInsert( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnDelete( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnGoto( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnSave( wxCommandEvent& event ) { event.Skip(); }
 		
 	
 	public:
