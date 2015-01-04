@@ -29,7 +29,7 @@ TalkListPanelBase::TalkListPanelBase( wxWindow* parent, wxWindowID id, const wxS
 	m_bAdd = new wxButton( m_panel1, wxID_ANY, wxT("+"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer3->Add( m_bAdd, 0, wxALL, 5 );
 	
-	m_bInsert = new wxButton( m_panel1, wxID_ANY, wxT("<+"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_bInsert = new wxButton( m_panel1, wxID_ANY, wxT("+>"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer3->Add( m_bInsert, 0, wxALL, 5 );
 	
 	m_bDelete = new wxButton( m_panel1, wxID_ANY, wxT("x"), wxDefaultPosition, wxDefaultSize, 0 );

@@ -13,7 +13,7 @@ TalkListPanel::TalkListPanel(wxWindow *parent)
 	m_columnText = m_listView->AppendTextColumn( wxT("文本"), wxDATAVIEW_CELL_EDITABLE, 550, wxALIGN_LEFT );
 
 	m_bAdd->SetToolTip(wxT("在末尾添加"));
-	m_bInsert->SetToolTip(wxT("在当前选择项前添加"));
+	m_bInsert->SetToolTip(wxT("在当前选择项后添加"));
 	m_bDelete->SetToolTip(wxT("删除当前选择项"));
 	m_stGoto->SetLabel(wxT("跳到："));
 	m_bSave->SetLabel(wxT("保存"));
@@ -142,10 +142,10 @@ void TalkListPanel::OnInsert(wxCommandEvent& event)
 {
 	int row = m_listView->GetSelectedRow();
 	if(row == wxNOT_FOUND) return;
-	TalkDetail *detail = m_talkList.InsertItem(row);
+	TalkDetail *detail = m_talkList.AddAfter(row);
 	if(!detail) return;
 
-	SelectAndShowRow(InsertItem(row, detail->Index, detail->PortraitIndex, detail->Text));
+	SelectAndShowRow(InsertItem(row+1, detail->Index, detail->PortraitIndex, detail->Text));
 }
 
 void TalkListPanel::OnDelete(wxCommandEvent& event)

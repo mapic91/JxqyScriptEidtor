@@ -3065,7 +3065,7 @@
 1384175916 d:\protools\wxwidgets\wxwidgets-3.0-dev\include\wx\msw\hyperlink.h
 	"wx/generic/hyperlink.h"
 
-1420359419 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\aboutdialog.cpp
+1420360112 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\aboutdialog.cpp
 	"AboutDialog.h"
 	<wx/string.h>
 
@@ -4940,7 +4940,7 @@
 	"wx/strconv.h"
 	"wx/fontenc.h"
 
-1420359254 e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\jxqyscripteditor.h
+1420360112 e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\jxqyscripteditor.h
 	"JxqyStc.h"
 	"ConfigManager.h"
 	"wx/filedlg.h"
@@ -6021,7 +6021,7 @@
 
 1412631243 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\os2\stdpaths.h
 
-1420359284 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\jxqyscripteditor.cpp
+1420360112 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\jxqyscripteditor.cpp
 	"JxqyScriptEditor.h"
 	"helperFun.h"
 	"ColourSettingDialog.h"
@@ -6091,7 +6091,7 @@
 
 1412631243 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\msw\rcdefs.h
 
-1420358618 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\jxqystc.cpp
+1420360112 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\jxqystc.cpp
 	"JxqyStc.h"
 	"wx/textfile.h"
 	"wx/file.h"
@@ -6101,7 +6101,7 @@
 
 1412631243 d:\protools\wxwidgets\wxwidgets-3.0\lib\gcc_dll\mswu\wx\setup.h
 
-1416471998 e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\wxformbuilder\fileexplorerpanelbase.h
+1420360112 e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\wxformbuilder\fileexplorerpanelbase.h
 	<wx/artprov.h>
 	<wx/xrc/xmlres.h>
 	<wx/string.h>
@@ -6211,18 +6211,18 @@
 
 1412631242 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\cocoa\dirdlg.h
 
-1416472790 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\wxformbuilder\fileexplorerpanelbase.cpp
+1420360112 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\wxformbuilder\fileexplorerpanelbase.cpp
 	"FileExplorerPanelBase.h"
 
-1420354683 e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\talkindex.h
+1420360647 e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\talkindex.h
 	<list>
 	"wx/string.h"
 
-1420355384 e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\talklistpanel.h
+1420360112 e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\talklistpanel.h
 	"wxFormBuilder/TalkListPanelBase.h"
 	"TalkIndex.h"
 
-1420355391 e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\wxformbuilder\talklistpanelbase.h
+1420360112 e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\wxformbuilder\talklistpanelbase.h
 	<wx/artprov.h>
 	<wx/xrc/xmlres.h>
 	<wx/dataview.h>
@@ -6293,17 +6293,18 @@
 
 1412631243 d:\protools\wxwidgets\wxwidgets-3.0\include\wx\osx\dataview.h
 
-1420354863 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\talkindex.cpp
+1420360895 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\talkindex.cpp
 	"TalkIndex.h"
 	"wx/file.h"
 	"wx/log.h"
 	"wx/msgdlg.h"
 
-1420356490 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\talklistpanel.cpp
+1420360922 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\talklistpanel.cpp
 	"TalkListPanel.h"
 	"wx/log.h"
+	"wx/msgdlg.h"
 
-1420359467 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\wxformbuilder\talklistpanelbase.cpp
+1420360571 source:e:\programmingworkshop\_store_\jxqy\jxqyscripteditor\wxformbuilder\talklistpanelbase.cpp
 	"TalkListPanelBase.h"
 
 1412631243 d:\protools\wxwidgets\wxwidgets-3.0\lib\gcc_lib\mswud\wx\setup.h

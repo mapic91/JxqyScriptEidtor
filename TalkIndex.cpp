@@ -162,7 +162,7 @@ TalkDetail* TalkIndex::AppendItem()
 	return &(*m_talkList.rbegin());
 }
 
-TalkDetail* TalkIndex::InsertItem(int index)
+TalkDetail* TalkIndex::AddAfter(int index)
 {
 	iterator it = GetIterator(index);
 	if(it == End())
@@ -172,7 +172,9 @@ TalkDetail* TalkIndex::InsertItem(int index)
 	else
 	{
 		TalkDetail detail;
-		detail.Index = it->Index - 1;
+		detail.Index = it->Index + 1;
+
+		it++;//Add one because insert in list is insert before
 		return &(*m_talkList.insert(it, detail));
 	}
 }

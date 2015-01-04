@@ -35,7 +35,7 @@ class TalkIndex
 		TalkDetail *GetItem(int index);
 		iterator GetIterator(int index);
 		TalkDetail* AppendItem();
-		TalkDetail* InsertItem(int index);
+		TalkDetail* AddAfter(int index);
 		void Delete(int index);
 		void Save();
 
