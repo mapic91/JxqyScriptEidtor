@@ -41,6 +41,7 @@ class TalkListPanelBase : public wxFrame
 		wxButton* m_bDelete;
 		wxStaticText* m_stGoto;
 		wxSpinCtrl* m_scGoto;
+		wxButton* m_bSaveTxt;
 		wxButton* m_bSave;
 		
 		// Virtual event handlers, overide them in your derived class
@@ -50,6 +51,7 @@ class TalkListPanelBase : public wxFrame
 		virtual void OnInsert( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnDelete( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnGoto( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnSaveTxt( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnSave( wxCommandEvent& event ) { event.Skip(); }
 		
 	

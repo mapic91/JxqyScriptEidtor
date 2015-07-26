@@ -18,6 +18,7 @@ class TalkListPanel : public TalkListPanelBase
 		virtual void OnDelete( wxCommandEvent& event );
 		virtual void OnGoto( wxCommandEvent& event );
 		virtual void OnSave( wxCommandEvent& event );
+		virtual void OnSaveTxt( wxCommandEvent& event );
 
 	private:
 		wxVector<wxVariant> CreateItemData(int itemIndex, int portraitIndex, const wxString &text);

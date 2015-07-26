@@ -45,6 +45,9 @@ TalkListPanelBase::TalkListPanelBase( wxWindow* parent, wxWindowID id, const wxS
 	
 	bSizer3->Add( 0, 0, 1, wxEXPAND, 5 );
 	
+	m_bSaveTxt = new wxButton( m_panel1, wxID_ANY, wxT("SaveTxt..."), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer3->Add( m_bSaveTxt, 0, wxALL, 5 );
+	
 	m_bSave = new wxButton( m_panel1, wxID_ANY, wxT("Save"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer3->Add( m_bSave, 0, wxALL, 5 );
 	
@@ -70,6 +73,7 @@ TalkListPanelBase::TalkListPanelBase( wxWindow* parent, wxWindowID id, const wxS
 	m_bInsert->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TalkListPanelBase::OnInsert ), NULL, this );
 	m_bDelete->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TalkListPanelBase::OnDelete ), NULL, this );
 	m_scGoto->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( TalkListPanelBase::OnGoto ), NULL, this );
+	m_bSaveTxt->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TalkListPanelBase::OnSaveTxt ), NULL, this );
 	m_bSave->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TalkListPanelBase::OnSave ), NULL, this );
 }
 
@@ -82,6 +86,7 @@ TalkListPanelBase::~TalkListPanelBase()
 	m_bInsert->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TalkListPanelBase::OnInsert ), NULL, this );
 	m_bDelete->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TalkListPanelBase::OnDelete ), NULL, this );
 	m_scGoto->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( TalkListPanelBase::OnGoto ), NULL, this );
+	m_bSaveTxt->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TalkListPanelBase::OnSaveTxt ), NULL, this );
 	m_bSave->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( TalkListPanelBase::OnSave ), NULL, this );
 	
 }

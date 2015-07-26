@@ -1,6 +1,7 @@
 #include "TalkListPanel.h"
 #include "wx/log.h"
 #include "wx/msgdlg.h"
+#include "wx/filedlg.h"
 
 TalkListPanel::TalkListPanel(wxWindow *parent)
 	:TalkListPanelBase(parent),
@@ -16,6 +17,8 @@ TalkListPanel::TalkListPanel(wxWindow *parent)
 	m_bInsert->SetToolTip(wxT("在当前选择项后添加"));
 	m_bDelete->SetToolTip(wxT("删除当前选择项"));
 	m_stGoto->SetLabel(wxT("跳到："));
+	m_bSaveTxt->SetLabel(wxT("保存为文本..."));
+	m_bSaveTxt->SetToolTip(wxT("保存的txt文件可以用于高清版[Content\\TalkIndex.txt]"));
 	m_bSave->SetLabel(wxT("保存"));
 
 	InitFromTalkList();
@@ -170,5 +173,19 @@ void TalkListPanel::OnSave(wxCommandEvent& event)
 		 == wxYES)
 	{
 		m_talkList.Save();
+	}
+}
+
+void TalkListPanel::OnSaveTxt(wxCommandEvent& event)
+{
+	wxFileDialog dialog(this,
+            wxT("保存文件"),
+            wxEmptyString,
+            wxEmptyString,
+            wxT("txt(*.txt)|*.txt|所有文件(*.*)|*.*"),
+            wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+	if(dialog.ShowModal() == wxID_OK)
+	{
+		m_talkList.SaveAsTxt(dialog.GetPath());
 	}
 }

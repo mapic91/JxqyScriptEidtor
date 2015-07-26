@@ -216,3 +216,29 @@ void TalkIndex::Save()
 	}
 }
 
+void TalkIndex::SaveAsTxt(wxString path)
+{
+	wxFile txtFile;
+	if(txtFile.Create(path, true))
+	{
+		for(iterator it = m_talkList.begin(); it != m_talkList.end(); it++)
+		{
+			if(it->Text.IsEmpty())
+			{
+				continue;
+			}
+			else
+			{
+				wxString line = wxString::Format("[%d,%d]", it->Index, it->PortraitIndex);
+				line += it->Text;
+				line += wxT("\n");
+				wxWritableCharBuffer str = line.char_str();
+				txtFile.Write(str, strlen(str));
+			}
+		}
+	}
+	else
+	{
+		wxMessageBox(wxT("±£¥Ê ß∞‹£°"), wxT("¥ÌŒÛ"), wxOK | wxCENTER | wxICON_ERROR);
+	}
+}

@@ -38,6 +38,7 @@ class TalkIndex
 		TalkDetail* AddAfter(int index);
 		void Delete(int index);
 		void Save();
+		void SaveAsTxt(wxString path);
 
 	private:
 		std::list<TalkDetail> m_talkList;
