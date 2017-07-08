@@ -16,7 +16,7 @@
 			<fg>#25A9B4</fg>
 		</object>
 		<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticText3" member="yes">
-			<label>V1.2.1</label>
+			<label>V1.2.2</label>
 			<pos>128,16</pos>
 			<fg>#25A9B4</fg>
 		</object>
@@ -26,7 +26,7 @@
 			<fg>#25A9B4</fg>
 		</object>
 		<object class="wxStaticText" name="ID_STATICTEXT5" variable="StaticText5" member="yes">
-			<label>2015.07.26</label>
+			<label>2017.07.08</label>
 			<pos>192,96</pos>
 			<fg>#800000</fg>
 		</object>
@@ -38,7 +38,7 @@
 		</object>
 		<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL1" variable="HyperlinkCtrl1" member="yes">
 			<label>小试刀剑</label>
-			<url>http://hi.baidu.com/qndryqnqbmbbceq</url>
+			<url>https://github.com/mapic91</url>
 			<pos>128,48</pos>
 		</object>
 	</object>

@@ -60,6 +60,7 @@ const long JxqyScriptEditor::MYID_SHOWLINENUMBER = wxNewId();
 const long JxqyScriptEditor::MYID_JXQY2 = wxNewId();
 const long JxqyScriptEditor::MYID_YYCS = wxNewId();
 const long JxqyScriptEditor::MYID_XJXQY = wxNewId();
+const long JxqyScriptEditor::MYID_YYCSGQ = wxNewId();
 const long JxqyScriptEditor::MYID_SHOWFILEEXPLORER = wxNewId();
 const long JxqyScriptEditor::MYID_SHOW_TALKLIST = wxNewId();
 const long JxqyScriptEditor::TOOLBAR_MYID_SAVEALL = wxNewId();
@@ -113,6 +114,7 @@ BEGIN_EVENT_TABLE(JxqyScriptEditor,wxFrame)
     EVT_MENU(MYID_JXQY2, JxqyScriptEditor::OnFunctionFileChoose)
     EVT_MENU(MYID_YYCS, JxqyScriptEditor::OnFunctionFileChoose)
     EVT_MENU(MYID_XJXQY, JxqyScriptEditor::OnFunctionFileChoose)
+    EVT_MENU(MYID_YYCSGQ, JxqyScriptEditor::OnFunctionFileChoose)
     EVT_MENU(MYID_OPENFILEDIR, JxqyScriptEditor::OnPageTabPopup)
     EVT_MENU(MYID_PAGETABCLOSENOTTHIS, JxqyScriptEditor::OnPageTabPopup)
     EVT_MENU(MYID_SHOWINFILEEXPLORER, JxqyScriptEditor::OnPageTabPopup)
@@ -130,7 +132,7 @@ JxqyScriptEditor::JxqyScriptEditor(wxWindow* parent,wxWindowID id,const wxPoint&
     SetClientSize(wxSize(800,600));
     BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
     m_AuiBook = new wxAuiNotebook(this, ID_AUINOTEBOOK1, wxDefaultPosition, wxDefaultSize, wxAUI_NB_CLOSE_ON_ALL_TABS|wxAUI_NB_DEFAULT_STYLE);
-    BoxSizer1->Add(m_AuiBook, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+    BoxSizer1->Add(m_AuiBook, 1, wxALL|wxEXPAND, 0);
     SetSizer(BoxSizer1);
     m_menuBar = new wxMenuBar();
     Menu1 = new wxMenu();
@@ -193,6 +195,8 @@ JxqyScriptEditor::JxqyScriptEditor(wxWindow* parent,wxWindowID id,const wxPoint&
     Menu2->Append(MenuItem14);
     MenuItem15 = new wxMenuItem(Menu2, MYID_XJXQY, _T("新剑侠情缘\tCtrl+3"), wxEmptyString, wxITEM_RADIO);
     Menu2->Append(MenuItem15);
+    MenuItem34 = new wxMenuItem(Menu2, MYID_YYCSGQ, _T("月影传说-高清版\tCtrl+4"), wxEmptyString, wxITEM_RADIO);
+    Menu2->Append(MenuItem34);
     m_menuBar->Append(Menu2, _T("设置"));
     Menu6 = new wxMenu();
     MenuItem31 = new wxMenuItem(Menu6, MYID_SHOWFILEEXPLORER, _T("文件浏览\tCtrl+E"), wxEmptyString, wxITEM_NORMAL);
@@ -266,6 +270,9 @@ JxqyScriptEditor::JxqyScriptEditor(wxWindow* parent,wxWindowID id,const wxPoint&
     case ConfigManager::LEX_XJXQY:
         m_menuBar->Check(MYID_XJXQY, true);
         break;
+	case ConfigManager::LEX_YYCSGQ:
+		m_menuBar->Check(MYID_YYCSGQ, true);
+		break;
     default:
         break;
     }
@@ -686,6 +693,8 @@ void JxqyScriptEditor::OnFunctionFileChoose(wxCommandEvent& event)
         m_cfg.SetLexerType(ConfigManager::LEX_YYCS);
     else if(id == MYID_XJXQY)
         m_cfg.SetLexerType(ConfigManager::LEX_XJXQY);
+	else if(id == MYID_YYCSGQ)
+		m_cfg.SetLexerType(ConfigManager::LEX_YYCSGQ);
     m_cfg.WriteConfig();
     ResetOpenedPageStyle();
 }

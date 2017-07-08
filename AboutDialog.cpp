@@ -28,15 +28,15 @@ AboutDialog::AboutDialog(wxWindow* parent,wxWindowID id,const wxPoint& pos,const
 	StaticText1->SetForegroundColour(wxColour(255,128,64));
 	StaticText2 = new wxStaticText(this, ID_STATICTEXT2, _T("版本："), wxPoint(80,16), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
 	StaticText2->SetForegroundColour(wxColour(37,169,180));
-	StaticText3 = new wxStaticText(this, ID_STATICTEXT3, _T("V1.2.1"), wxPoint(128,16), wxDefaultSize, 0, _T("ID_STATICTEXT3"));
+	StaticText3 = new wxStaticText(this, ID_STATICTEXT3, _T("V1.2.2"), wxPoint(128,16), wxDefaultSize, 0, _T("ID_STATICTEXT3"));
 	StaticText3->SetForegroundColour(wxColour(37,169,180));
 	StaticText4 = new wxStaticText(this, ID_STATICTEXT4, _T("    BY："), wxPoint(80,48), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
 	StaticText4->SetForegroundColour(wxColour(37,169,180));
-	StaticText5 = new wxStaticText(this, ID_STATICTEXT5, _T("2015.07.26"), wxPoint(192,96), wxDefaultSize, 0, _T("ID_STATICTEXT5"));
+	StaticText5 = new wxStaticText(this, ID_STATICTEXT5, _T("2017.07.08"), wxPoint(192,96), wxDefaultSize, 0, _T("ID_STATICTEXT5"));
 	StaticText5->SetForegroundColour(wxColour(128,0,0));
 	Button1 = new wxButton(this, ID_BUTTON1, _T("确定"), wxPoint(200,136), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
 	Button1->SetDefault();
-	HyperlinkCtrl1 = new wxHyperlinkCtrl(this, ID_HYPERLINKCTRL1, _T("小试刀剑"), _T("http://hi.baidu.com/qndryqnqbmbbceq"), wxPoint(128,48), wxDefaultSize, wxHL_CONTEXTMENU|wxHL_ALIGN_CENTRE|wxNO_BORDER, _T("ID_HYPERLINKCTRL1"));
+	HyperlinkCtrl1 = new wxHyperlinkCtrl(this, ID_HYPERLINKCTRL1, _T("小试刀剑"), _T("https://github.com/mapic91"), wxPoint(128,48), wxDefaultSize, wxHL_CONTEXTMENU|wxHL_ALIGN_CENTRE|wxNO_BORDER, _T("ID_HYPERLINKCTRL1"));
 	Center();
 
 	Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AboutDialog::OnButton1Click);

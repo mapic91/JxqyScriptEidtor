@@ -73,6 +73,7 @@ class JxqyScriptEditor: public wxFrame
 		wxToolBarToolBase* ToolBarItem5;
 		wxToolBarToolBase* ToolBarItem8;
 		wxMenuItem* MenuItem21;
+		wxMenuItem* MenuItem34;
 		wxMenuItem* MenuItem16;
 		wxMenu* Menu6;
 		wxMenu* Menu2;
@@ -165,6 +166,7 @@ class JxqyScriptEditor: public wxFrame
 		static const long MYID_JXQY2;
 		static const long MYID_YYCS;
 		static const long MYID_XJXQY;
+		static const long MYID_YYCSGQ;
 		static const long MYID_SHOWFILEEXPLORER;
 		static const long MYID_SHOW_TALKLIST;
 		static const long TOOLBAR_MYID_SAVEALL;

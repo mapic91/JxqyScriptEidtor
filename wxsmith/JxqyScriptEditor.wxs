@@ -15,7 +15,7 @@
 					<handler function="Onm_AuiBookPageChanging" entry="EVT_AUINOTEBOOK_PAGE_CHANGING" />
 					<handler function="OBookTabRightDown" entry="EVT_AUINOTEBOOK_TAB_RIGHT_DOWN" />
 				</object>
-				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<flag>wxALL|wxEXPAND</flag>
 				<option>1</option>
 			</object>
 		</object>
@@ -138,6 +138,11 @@
 				<object class="wxMenuItem" name="MYID_XJXQY" variable="MenuItem15" member="yes">
 					<label>新剑侠情缘</label>
 					<accel>Ctrl+3</accel>
+					<radio>1</radio>
+				</object>
+				<object class="wxMenuItem" name="MYID_YYCSGQ" variable="MenuItem34" member="yes">
+					<label>月影传说-高清版</label>
+					<accel>Ctrl+4</accel>
 					<radio>1</radio>
 				</object>
 			</object>

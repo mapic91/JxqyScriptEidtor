@@ -14,6 +14,7 @@
 const wxString ConfigManager::LEX_JXQY2_FILEPATH = wxT("Function\\剑侠情缘二.txt");
 const wxString ConfigManager::LEX_YYCS_FILEPATH = wxT("Function\\月影传说.txt");
 const wxString ConfigManager::LEX_XJXQY_FILEPATH = wxT("Function\\新剑侠情缘.txt");
+const wxString ConfigManager::LEX_YYCSGQ_FILEPATH = wxT("Function\\月影传说高清版.txt");
 //const wxString ConfigManager::CONFIGNAME = wxT("JxqyScriptEditor");
 //static const unsigned int ConfigManager::FORGROUND_INIT[wxSTC_STYLE_DEFAULT + 1] =
 //{
@@ -81,6 +82,9 @@ wxString ConfigManager::GetLexerFilePath()
     case LEX_XJXQY:
         path += LEX_XJXQY_FILEPATH;
         break;
+	case LEX_YYCSGQ:
+		path += LEX_YYCSGQ_FILEPATH;
+		break;
     default:
         path.Clear();
     }

@@ -22,12 +22,14 @@ class ConfigManager
 			LEX_JXQY2,
 			LEX_YYCS,
 			LEX_XJXQY,
+			LEX_YYCSGQ,
 			LEX_MAX
 		};
 		//static const wxString CONFIGNAME;
 		static const wxString LEX_JXQY2_FILEPATH;
 		static const wxString LEX_YYCS_FILEPATH;
 		static const wxString LEX_XJXQY_FILEPATH;
+		static const wxString LEX_YYCSGQ_FILEPATH;
 //		static const unsigned int FORGROUND_INIT[wxSTC_STYLE_DEFAULT + 1];
 //		static const unsigned int BACKGROUND_INIT[wxSTC_STYLE_DEFAULT + 1];
 		static const wxFont FONT_INIT;
